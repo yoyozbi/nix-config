@@ -1,0 +1,3 @@
+[submodule "home-manager/_mixins/console/nvim-config"]
+	path = home-manager/_mixins/console/nvim-config
+	url = git@github.com:yoyozbi/nvim-config

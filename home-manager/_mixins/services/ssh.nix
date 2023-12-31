@@ -6,7 +6,7 @@ _:
 			matchBlocks = {
 				"gitlab-etu.ing.he-arc.ch" = {
 					hostname = "gitlab-etu.ing.he-arc.ch";
-					identityFile = "/home/yohan/.ssh/id_gitlab";
+					identityFile = "/home/yohan/.ssh/id_gitlab-etu";
 				};
 
 				"github.com" = {

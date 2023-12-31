@@ -8,10 +8,12 @@ in
 		file = {
 			"${config.xdg.configHome}/yazi/keymap.toml".text = builtins.readFile ./yazi-keymap.toml;
 			"${config.xdg.configHome}/yazi/theme.toml".text = builtins.readFile ./yazi-theme.toml;
+
+			"${config.xdg.configHome}/nvim" = {
+				source = ./nvim-config;
+				recursive = true;
+			};
 		};
-		file = {
-			"${config.xdg.configHome}/nvim"
-		}
 
 		packages = with pkgs; [
 			(nerdfonts.override { fonts = ["FiraCode" "SourceCodePro" "UbuntuMono"]; })

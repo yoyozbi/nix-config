@@ -7,7 +7,7 @@
 		../_mixins/services/bluetooth.nix
 		../_mixins/services/firewall.nix
 		../_mixins/services/fwupd.nix
-		#../_mixins/services/touchpad.nix
+		../_mixins/services/docker.nix
 		../_mixins/services/thunderbolt.nix
 	];
 	nixpkgs.hostPlatform = lib.mkDefault "${platform}";

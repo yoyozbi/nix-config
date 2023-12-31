@@ -30,7 +30,7 @@
 				}
 			];
 			mutableExtensionsDir = true;
-			package = pkgs.vscode;
+			#package = pkgs.vscode;
 		};
 	};
 }
