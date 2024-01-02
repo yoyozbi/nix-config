@@ -9,8 +9,8 @@
 			pkiBundle = "/etc/secureboot";
 		};
 		loader = {
-			efi = {
-				canTouchEfiVariables = true;
+			 efi = {
+			 	canTouchEfiVariables = true;
 			};
 			systemd-boot = {
 				enable = lib.mkForce false;

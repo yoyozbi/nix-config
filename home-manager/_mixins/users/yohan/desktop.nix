@@ -1,7 +1,7 @@
 _:
 {
 	imports = [
-	#	../../desktop/vscode.nix
+		../../desktop/vscode.nix
 		../../desktop/discord.nix
 	];
 }

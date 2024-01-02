@@ -38,7 +38,7 @@ let
 		bruno
 
 		# IDE
-		neovim
+		#neovim
 		#jetbrains-toolbox
 
 		# C/C++
@@ -77,6 +77,16 @@ let
 		environment.localBinInPath = true;
 		environment.systemPackages = stable-packages ++ unstable-packages;
 
+		programs.zsh.enable = true;
+
+		# Configure keymap in X11
+  	services.xserver = {
+    	layout = "ch";
+    	xkbVariant = "fr";
+  	};
+  	# Configure console keymap
+  	console.keyMap = "fr_CH";
+
 		users.groups.yohan = {};
 
 		users.users.yohan = {
@@ -98,6 +108,6 @@ let
 			# mkpasswd -m sha-512
 			hashedPassword = "$6$a.nRdlFB3YPvVgjX$iWBzmkH0zK/3n/yyEl2Fuwp1G4ayzr5zG0Un7z4hCvWoKctMZirMKWMcwPBgqRylhgnI.gKLhg5xvwqRuipqZ.";
 			packages = [ pkgs.home-manager ];
-			#shell = pkgs.zsh;
+			shell = pkgs.zsh;
 		};
 	}

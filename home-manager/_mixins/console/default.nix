@@ -82,6 +82,10 @@ in
       wthrr # Modern Unix weather
       wormhole-william # Terminal file transfer
       yq-go # Terminal `jq` for YAML
+
+
+
+			nodejs_20
 		] ++ lib.optionals isLinux [
 			figlet # Terminal ASCII banners
       iw # Terminal WiFi info
@@ -233,6 +237,9 @@ in
         };
       };
     };
+		neovim = {
+			enable = true;
+		};
 	};
 
 	# Nicely reload system units when changing configs
@@ -244,5 +251,6 @@ in
 			enable = isLinux;
 			createDirectories = lib.mkDefault true;
 		};
-	};
+
+		};
 }
