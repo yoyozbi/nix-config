@@ -243,6 +243,7 @@ in
     };
 		neovim = {
 			enable = true;
+			defaultEditor = true;
 		};
 
 		tmux = {
