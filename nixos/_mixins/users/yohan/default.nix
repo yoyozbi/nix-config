@@ -42,26 +42,27 @@ let
 		#jetbrains-toolbox
 
 		# C/C++
-		# gcc
-		# clang-tools
-		# cmake
-		# ninja
-		# gnumake
-		# unzip
-		# wget
+		gcc
+		clang-tools
+		cmake
+		ninja
+		gnumake
+		unzip
+		wget
 
 		# Rust
+		rustup
 	#	rust
 	#	rust-analyzer-unwrapped
 
 		# Go
-		# go
-		# gopls
+		go
+		gopls
 			
 
 		# PHP
-		# php82
-		# php82Packages.composer
+		php82
+		php82Packages.composer
 	];
 	unstable-packages = with pkgs.unstable;[
 		vivaldi

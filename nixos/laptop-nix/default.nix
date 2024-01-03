@@ -62,6 +62,8 @@
 		resumeDevice = "/dev/disk/by-uuid/1a8f4d0f-ff23-4c86-9f65-de2388610e00";
 	};
 
+ time.timeZone = "Europe/Zurich";
+
  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp4s0u2u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
