@@ -98,6 +98,7 @@ let
 				"audio"
 				"input"
 				"networkmanager"
+				"libvirtd"
 				"users"
 				"video"
 				"wheel"
