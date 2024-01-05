@@ -9,6 +9,7 @@
 		../_mixins/services/fwupd.nix
 		../_mixins/services/docker.nix
 		../_mixins/services/thunderbolt.nix
+		../_mixins/services/boxes.nix
 	];
 
 
