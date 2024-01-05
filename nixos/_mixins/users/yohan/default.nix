@@ -6,7 +6,6 @@ let
 		kubectx
 		envsubst
 		kubernetes-helm
-		minikube
 
 	]  ++ lib.optionals (desktop != null)[
 		appimage-run
@@ -14,9 +13,11 @@ let
 		owncloud-client
 		firefox
 		
+		minikube
 		#Music
 		tidal-hifi
 		spotify
+		stremio
 
 		# Discord
 		discord
@@ -98,6 +99,7 @@ let
 				"audio"
 				"input"
 				"networkmanager"
+				"kvm"
 				"libvirtd"
 				"users"
 				"video"
