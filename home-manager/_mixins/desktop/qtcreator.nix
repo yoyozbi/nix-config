@@ -9,6 +9,8 @@
 		qt6.full
 		cmake
 		ninja
+		gcc
+		gdb
 	];
 
 	

@@ -5,10 +5,10 @@
 			enable = true;
 			insertNameservers = ["1.1.1.1" "1.0.0.1"];
 			wifi = {
-				backend = "iwd";
+				#backend = "iwd";
 				powersave = true;
 			};
 		};
-	wireless.iwd.package = pkgs.iwd;
+	#wireless.iwd.package = pkgs.iwd;
 	};
 }
