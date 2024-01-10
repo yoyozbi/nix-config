@@ -12,19 +12,21 @@ let
 		libreoffice
 		owncloud-client
 		firefox
+		distrobox
 		
 		minikube
 		#Music
 		tidal-hifi
 		spotify
 		stremio
+		qbittorrent
 
 		# Discord
 		discord
 
 		# Other
 		beekeeper-studio
-		#obsidian
+		obsidian
 		structorizer
 		vlc
 		
@@ -78,6 +80,10 @@ let
 
 		environment.localBinInPath = true;
 		environment.systemPackages = stable-packages ++ unstable-packages;
+
+		nixpkgs.config.permittedInsecurePackages = [
+        "electron-25.9.0"
+    ];
 
 		programs.zsh.enable = true;
 
