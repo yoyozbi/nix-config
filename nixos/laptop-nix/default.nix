@@ -3,7 +3,7 @@
 	imports = [
 		#./hardware-configuration.nix
 		../_mixins/hardware/lanzaboote.nix
-		inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
+		inputs.nixos-hardware.nixosModules.dell-xps-15-9520
 		../_mixins/services/bluetooth.nix
 		../_mixins/services/firewall.nix
 		../_mixins/services/fwupd.nix
