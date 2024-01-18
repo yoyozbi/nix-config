@@ -1,0 +1,23 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: Homelab
+      url: "https://app.cachix.org/deploy/workspace/homelab-yohan"  # ⑴
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3                                 # ⑵
+      - uses: cachix/install-nix-action@v23
+        with:
+          extra_nix_config: "extra-platforms = aarch64-linux"             # ⑶
+      - uses: cachix/cachix-action@v12                                    # ⑷
+        with:
+          name: wagdav
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - run: nix build --print-build-logs .#cachix-deploy-spec            # ⑸
+      - run: |                                                            # ⑹
+          cachix push wagdav ./result
+          cachix deploy activate --async ./result
+        env:
+          CACHIX_ACTIVATE_TOKEN: "${{ secrets.CACHIX_ACTIVATE_TOKEN }}"
+
