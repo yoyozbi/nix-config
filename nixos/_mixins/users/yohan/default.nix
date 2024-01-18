@@ -15,6 +15,10 @@ let
 		floorp
 		firefox
 		distrobox
+
+		bottles
+		lutris
+		wine
 		
 		minikube
 		#Music
