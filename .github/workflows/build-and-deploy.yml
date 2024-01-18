@@ -21,11 +21,11 @@ jobs:
           extra_nix_config: "extra-platforms = aarch64-linux"             # ⑶
       - uses: cachix/cachix-action@v12                                    # ⑷
         with:
-          name: wagdav
+          name: homelab-yohan
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - run: nix build --print-build-logs .#cachix-deploy-spec            # ⑸
       - run: |                                                            # ⑹
-          cachix push wagdav ./result
+          cachix push homelab-yohan ./result
           cachix deploy activate --async ./result
         env:
           CACHIX_ACTIVATE_TOKEN: "${{ secrets.CACHIX_ACTIVATE_TOKEN }}"
