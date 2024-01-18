@@ -37,7 +37,7 @@
 		packages.${system}= with pkgs; {
 			cachix-deploy-spec = cachix-deploy-lib.spec {
 				agents = {
-					"laptop-nix" = self.nixosConfigurations."laptop-nix".config.system.build.topLevel;
+					"laptop-nix" = self.nixosConfigurations."laptop-nix".config.system.build.toplevel;
 				};
 			};
 		};
