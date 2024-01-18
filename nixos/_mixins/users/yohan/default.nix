@@ -6,11 +6,13 @@ let
 		kubectx
 		envsubst
 		kubernetes-helm
+		cifs-utils
 
 	]  ++ lib.optionals (desktop != null)[
 		appimage-run
 		libreoffice
 		owncloud-client
+		floorp
 		firefox
 		distrobox
 		
