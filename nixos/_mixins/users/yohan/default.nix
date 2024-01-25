@@ -12,13 +12,14 @@ let
 		appimage-run
 		libreoffice
 		owncloud-client
-		floorp
-		firefox
 		distrobox
 
 		bottles
 		lutris
-		wine
+		wine-wayland
+		#winePackages.wayland
+		winetricks
+		samba
 		
 		minikube
 		#Music
@@ -58,6 +59,7 @@ let
 		gnumake
 		unzip
 		wget
+		jetbrains-toolbox
 
 		# Rust
 		rustup
@@ -74,7 +76,10 @@ let
 		php82Packages.composer
 	];
 	unstable-packages = with pkgs.unstable;[
-		vivaldi
+		floorp
+		firefox
+		microsoft-edge
+
 	];
 	in 
 	{
