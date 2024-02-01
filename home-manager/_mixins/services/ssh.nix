@@ -22,7 +22,7 @@ _:
 				ocr1 = {
 					hostname = "144.24.253.246";
 					user = "ubuntu";
-					identityFile = "/home/yohan/.ssh/id_ocr1";
+					identityFile = "/home/yohan/.ssh/id_github";
 				};
 
 				tiny1 = {
