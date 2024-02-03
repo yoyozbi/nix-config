@@ -26,5 +26,5 @@
 	networking = {
 		hostname = "tiny1";
 		domain = "";
-	}
+	};
 }
