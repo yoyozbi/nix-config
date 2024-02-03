@@ -6,7 +6,7 @@
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
-		inputs.sops-nix.url = "github:Mic92/sops-nix";
+		sops-nix.url = "github:Mic92/sops-nix";
 
 		home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
