@@ -9,7 +9,6 @@
 		../_mixins/hardware/grub.nix
 		../_mixins/services/cachix.nix
 		../_mixins/services/openssh.nix
-		../_mixins/services/grub.nix
 		../_mixins/services/firewall.nix
 		../_mxins/services/networkmanager.nix
 	];
