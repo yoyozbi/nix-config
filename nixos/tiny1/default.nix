@@ -26,4 +26,7 @@
 		hostname = "tiny1";
 		domain = "";
 	};
+
+
+	nixpkgs.hostPlatform = lib.mkDefault "${platform}";
 }
