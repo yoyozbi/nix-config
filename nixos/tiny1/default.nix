@@ -2,9 +2,9 @@
 {
 	imports = [
 		(modulesPath + "/profiles/qemu-guest.nix")
-		inputs.nixos-hardware.nixosModules.common-cpu-amd
-		inputs.nixos-hardware.common-pc
-		inputs.nixos-hardware.common-pc-ssd
+#		inputs.nixos-hardware.nixosModules.common-cpu-amd
+#		inputs.nixos-hardware.common-pc
+#		inputs.nixos-hardware.common-pc-ssd
 		(import ./disks.nix { })
 		../_mixins/hardware/systemd-boot.nix
 		../_mixins/services/cachix.nix
