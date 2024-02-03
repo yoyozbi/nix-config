@@ -77,11 +77,12 @@ let
 		php82Packages.composer
 	];
 	unstable-packages = with pkgs.unstable;[
+		
+	] ++ lib.optionals (desktop != null) [
 		floorp
 		firefox
 		microsoft-edge
-
-	];
+		];
 	in 
 	{
 		imports = [

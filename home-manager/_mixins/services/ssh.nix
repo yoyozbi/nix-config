@@ -26,12 +26,12 @@ _:
 				};
 
 				tiny1 = {
-					hostname = "140.238.172.231";
-					user =" ubuntu";
-					identityFile = "/home/yohan/.ssh/id_tiny1";
+					hostname = "140.238.217.72";
+					user ="ubuntu";
+					identityFile = "/home/yohan/.ssh/id_ed25519";
 				};
 				tiny2 = {
-					hostname = "140.238.209.136";
+					hostname = "140.238.223.226";
 					user = "ubuntu";
 					identityFile = "/home/yohan/.ssh/id_ed25519";
 				};

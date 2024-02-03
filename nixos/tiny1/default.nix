@@ -11,7 +11,6 @@
 		../_mixins/services/openssh.nix
 		../_mixins/services/firewall.nix
 		../_mixins/services/networkmanager.nix
-		inputs.disko.nixosModules.disko
 	];
 
 	boot = {
