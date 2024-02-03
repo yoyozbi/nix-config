@@ -33,7 +33,7 @@ _:
 				tiny2 = {
 					hostname = "140.238.209.136";
 					user = "ubuntu";
-					identityFile = "/home/yohan/.ssh/id_tiny2";
+					identityFile = "/home/yohan/.ssh/id_ed25519";
 				};
 
 				k0s1 = {
