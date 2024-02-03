@@ -24,7 +24,7 @@
 
 	zramSwap.enable = true;
 	networking = {
-		hostname = "tiny1";
+		hostName = "tiny1";
 		domain = "";
 	};
 
