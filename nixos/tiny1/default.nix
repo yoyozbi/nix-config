@@ -6,7 +6,7 @@
 #		inputs.nixos-hardware.common-pc
 #		inputs.nixos-hardware.common-pc-ssd
 		(import ./disks.nix { })
-		../_mixins/hardware/systemd-boot.nix
+		../_mixins/hardware/grub.nix
 		../_mixins/services/cachix.nix
 		../_mixins/services/openssh.nix
 		../_mixins/services/grub.nix
