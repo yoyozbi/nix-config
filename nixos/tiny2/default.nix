@@ -1,4 +1,4 @@
-{hostname, inputs, lib, platform, username,modulesPath, ...}:
+{hostname, inputs, lib, platform, username,modulesPath, pkgs, ...}:
 {
 	imports = [
 		(modulesPath + "/profiles/qemu-guest.nix")
@@ -12,6 +12,10 @@
 		../_mixins/services/firewall.nix
 		../_mixins/services/networkmanager.nix
 		inputs.disko.nixosModules.disko
+	];
+
+	environment.systemPackages = with pkgs; [
+		git
 	];
 
 	boot = {
