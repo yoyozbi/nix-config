@@ -32,6 +32,8 @@
 	{
 		homeConfigurations = {
 			"yohan@laptop-nix" = libx.mkHome { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
+			"yohan@tiny1" = libx.mkHome { hostname = "tiny1"; username = "yohan"; };
+			"yohan@tiny2" = libx.mkHome { hostname = "tiny2"; username = "yohan"; };
 		};
     nixosConfigurations = {
 				"laptop-nix" = libx.mkHost { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
