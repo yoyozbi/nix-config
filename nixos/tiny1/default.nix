@@ -10,7 +10,7 @@
 		../_mixins/services/cachix.nix
 		../_mixins/services/openssh.nix
 		../_mixins/services/firewall.nix
-		../_mxins/services/networkmanager.nix
+		../_mixins/services/networkmanager.nix
 	];
 
 	boot = {
