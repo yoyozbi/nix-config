@@ -1,7 +1,7 @@
 {hostname, inputs, lib, platform, username,modulesPath, ...}:
 {
 	imports = [
-		(modulesPath + "/profiles/qemu-guests.nix")
+		(modulesPath + "/profiles/qemu-guest.nix")
 		inputs.nixos-hardware.nixosModules.common-cpu-amd
 		inputs.nixos-hardware.common-pc
 		inputs.nixos-hardware.common-pc-ssd
