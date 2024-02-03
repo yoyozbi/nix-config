@@ -37,12 +37,14 @@
     nixosConfigurations = {
 				"laptop-nix" = libx.mkHost { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
 				"tiny1" = libx.mkHost {hostname = "tiny1"; username = "yohan"; };
+				"tiny2" = libx.mkHost {hostname = "tiny2"; username = "yohan"; };
    		};
 
 		packages.${system}= with pkgs; {
 			cachix-deploy-spec = cachix-deploy-lib.spec {
 				agents = {
 					"tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
+					"tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
 				};
 			};
 		};
