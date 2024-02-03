@@ -5,6 +5,10 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		cachix-deploy.url = "github:cachix/cachix-deploy-flake";
+		disko = {
+		 	url = "github:nix-community/disko";
+    	inputs.nixpkgs.follows = "nixpkgs";
+		};
 		home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       # The `follows` keyword in inputs is used for inheritance.
@@ -32,12 +36,13 @@
 		};
     nixosConfigurations = {
 				"laptop-nix" = libx.mkHost { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
+				"tiny1" = libx.mkHost {hostname = "tiny1"; username = "yohan"; };
    		};
 
 		packages.${system}= with pkgs; {
 			cachix-deploy-spec = cachix-deploy-lib.spec {
 				agents = {
-					"laptop-nix" = self.nixosConfigurations."laptop-nix".config.system.build.toplevel;
+					"tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
 				};
 			};
 		};
