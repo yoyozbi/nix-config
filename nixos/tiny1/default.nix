@@ -1,5 +1,5 @@
 {hostname, inputs, lib, platform, username,modulesPath, pkgs, ...}:
-{
+ {
 	imports = [
 		(modulesPath + "/profiles/qemu-guest.nix")
 #		inputs.nixos-hardware.nixosModules.common-cpu-amd
@@ -11,7 +11,6 @@
 		../_mixins/services/openssh.nix
 		../_mixins/services/firewall.nix
 		../_mixins/services/networkmanager.nix
-		../../home-manager
 	];
 
 	environment.systemPackages = with pkgs; [
