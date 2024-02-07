@@ -13,10 +13,6 @@
 		../_mixins/services/networkmanager.nix
 	];
 
-	environment.systemPackages = with pkgs; [
-		git
-	];
-
 	boot = {
 		initrd = {
 			availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi" ];
