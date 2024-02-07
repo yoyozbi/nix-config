@@ -18,6 +18,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: docker/setup-qemu-action@v3                                 # ⑵
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/install-nix-action@v25
         name: Install
         with:

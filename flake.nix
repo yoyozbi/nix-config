@@ -6,6 +6,11 @@
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
+		disko = {
+			url = "github:nix-community/disko";
+    	inputs.nixpkgs.follows = "nixpkgs";
+		};
+
 		sops-nix.url = "github:Mic92/sops-nix";
 
 		home-manager = {

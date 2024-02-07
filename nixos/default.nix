@@ -1,5 +1,6 @@
 { config, desktop, hostname, inputs, lib, modulesPath, outputs, pkgs, platform, stateVersion, username, ... }: {
 	imports = [
+		inputs.disko.nixosModules.disko
 		./${hostname}
 		./_mixins/users/root
 	]
