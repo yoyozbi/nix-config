@@ -50,6 +50,7 @@
 				agents = {
 					"tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
 					"tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
+					"ocr1" = self.nixosConfigurations."ocr1".config.system.build.toplevel;
 				};
 			};
 		};
