@@ -61,6 +61,10 @@
 		extraModulePackages = [];
 
 		resumeDevice = "/dev/disk/by-uuid/1a8f4d0f-ff23-4c86-9f65-de2388610e00";
+
+		binfmt = {
+			emulatedSystems = ["aarch64-linux"];
+		};
 	};
 
  time.timeZone = "Europe/Zurich";
@@ -69,6 +73,7 @@
   # networking.interfaces.enp4s0u2u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 	hardware.enableAllFirmware = true;
+
 
 	#enable Zen kernel
 	boot.kernelPackages = pkgs.linuxPackages_zen;
