@@ -32,13 +32,13 @@
 	{
 		homeConfigurations = {
 			"yohan@laptop-nix" = libx.mkHome { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
-			"yohan@tiny1" = libx.mkHome { hostname = "tiny1"; username = "yohan"; };
-			"yohan@tiny2" = libx.mkHome { hostname = "tiny2"; username = "yohan"; };
+			"nix@tiny1" = libx.mkHome { hostname = "tiny1"; username = "nix"; };
+			"nix@tiny2" = libx.mkHome { hostname = "tiny2"; username = "nix"; };
 		};
     nixosConfigurations = {
 				"laptop-nix" = libx.mkHost { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
-				"tiny1" = libx.mkHost {hostname = "tiny1"; username = "yohan"; };
-				"tiny2" = libx.mkHost {hostname = "tiny2"; username = "yohan"; };
+				"tiny1" = libx.mkHost {hostname = "tiny1"; username = "nix"; };
+				"tiny2" = libx.mkHost {hostname = "tiny2"; username = "nix"; };
    		};
 
 		packages.${system}= with pkgs; {
