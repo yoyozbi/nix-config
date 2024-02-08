@@ -47,6 +47,7 @@ let
 		# Dev
 		# tmux
 		bruno
+		python3
 
 		# IDE
 		#neovim
