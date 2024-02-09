@@ -47,7 +47,10 @@ let
 		# Dev
 		# tmux
 		bruno
-		python3
+		python311
+		python311Packages.jupyter
+		python311Packages.notebook
+		python311Packages.pip
 
 		# IDE
 		#neovim
@@ -65,6 +68,8 @@ let
 
 		# Rust
 		rustup
+		rustPackages.clippy
+		rustfmt
 	#	rust
 	#	rust-analyzer-unwrapped
 
