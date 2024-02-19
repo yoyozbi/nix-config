@@ -11,6 +11,9 @@
 	users.groups.nix = {};
   users.users.nix = {
 		group = "nix";
+		extraGroups = [
+			"keys"
+		];
     hashedPassword = null;
 		isNormalUser = true;
     openssh.authorizedKeys.keys = [
