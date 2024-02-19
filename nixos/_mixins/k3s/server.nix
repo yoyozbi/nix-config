@@ -1,4 +1,7 @@
-{inputs, config, ...}:
+{inputs, config, lib,pkgs,  ...}:
+let 
+	configFile = builtins.readFile ./default.yaml;
+in
 {
 	sops.secrets.k3s-server-token.sopsFile = ./secrets.yml;
 	services.k3s = {
@@ -10,24 +13,29 @@
 		];
 	};
 
-	sops.secrets.cloudflared-token.sopsFile = ./deployments/secrets.yml;
+	sops.secrets.cloudflared-token = {
+		sopsFile = ./secrets.yml;
+		path = "/etc/cloudflared-token";
+	};
 
 	# Write the default kubernetes config to a file under `/etc`
-	environment.etc."kubenix.yaml".source = 
-	(inputs.kubenix.evalModules.x86_64-linux {
-		module = { self, kubenix, ...}:
-		let
-			inherit (self) config;
-		in {
-				imports = [
-					./deployments
-				];
+	/*environment.etc."kubenix.yaml".source = 
+	(inputs.kubenix.evalModules.${builtins.currentSystem} {
+		specialArgs = { 
+			inherit inputs config lib;
 		};
-	}).config.kubernetes.resultYAML;
+		module = {kubenix, inputs, config, lib, ...}: {
+				imports = [ ./deployments ];
+				kubenix.project = "default-k3s-config";
+				kubernetes.version = "1.28";
+		};
+
+	}).config.kubernetes.resultYAML;*/
+
 
 	# Link the file to k3s manifest directory
-	system.activationScripts.kubenix.text = ''
-    ln -sf /etc/kubenix.yaml /var/lib/rancher/k3s/server/manifests/kubenix.yaml
+	system.activationScripts.k3s.text = ''
+    echo ${configFile} > /var/lib/rancher/k3s/server/manifests/init.yaml
   '';
 
 }
