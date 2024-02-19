@@ -88,7 +88,7 @@ let
 		
 	] ++ lib.optionals (desktop != null) [
 		floorp
-		firefox
+		firefox-wayland
 		microsoft-edge
 		];
 	in 
