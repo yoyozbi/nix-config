@@ -11,6 +11,7 @@
 		../_mixins/services/openssh.nix
 		../_mixins/services/firewall.nix
 		../_mixins/services/networkmanager.nix
+		../_mixins/k3s/agent.nix
 	];
 
 	boot = {

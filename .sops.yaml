@@ -1,2 +1,13 @@
 keys:
   - &laptop age13ztavzckz2keqrtv2uz9n3kxnh7kquuq325rm4lusx2jk7lcfe6qfzptmx
+  - &ocr1 age1r46e0k2t89dpqf93vqerkatq9jevl8pj2lhv7d06axw5q3svs53sgy2da8 
+  - &tiny1 age19v86l3v0umcyw4qza00udkt75ny5qpry74s3vxfz7dnr72vtqeysnwzya7
+  - &tiny2 age1tuq3m0zxuw5wx2wy3qmfa4daylzljq78x8na2cemutytcekpm5qqvxvkxk
+creation_rules:
+  - path_regex: secrets.yml$
+    key_groups:
+      - age:
+          - *ocr1
+          - *tiny1
+          - *tiny2
+          - *laptop

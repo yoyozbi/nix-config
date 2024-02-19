@@ -10,6 +10,7 @@
 		../_mixins/services/openssh.nix
 		../_mixins/services/firewall.nix
 		../_mixins/services/networkmanager.nix
+		../_mixins/k3s/server.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_scsi" ];

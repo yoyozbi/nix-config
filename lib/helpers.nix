@@ -16,6 +16,7 @@
       inherit inputs outputs desktop hostname platform username stateVersion;
     };
     modules = [
+			../hosts.nix
       ../nixos
       #inputs.agenix.nixosModules.default
     ] ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ])
