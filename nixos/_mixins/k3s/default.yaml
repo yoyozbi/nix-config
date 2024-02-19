@@ -27,7 +27,7 @@ spec:
       containers:
       - image:  cloudflare/cloudflared #{"$imagescan": "cloudflared-scan"}
         command: ["cloudflared", "tunnel"]
-        args: ["--no-autoupdate", "run", "--token","$(grep -A3 'cloudflared-token:' /etc/clouflared-token | head -n1 | awk '{print $2}')" ]
+        args: ["--no-autoupdate", "run", "--token","$(cat /etc/clouflared-token)" ]
         resources:
           limits:
             cpu: 100m
@@ -57,7 +57,7 @@ kind: HelmChart
 metadata:
   name: rancher
 spec:
-  repo: https:/releases.rancher.com/server-charts/latest
+  repo: https://releases.rancher.com/server-charts/latest
   chart: rancher
   valuesContent: |-
     hostname: rancher.yohanzbinden.ch
