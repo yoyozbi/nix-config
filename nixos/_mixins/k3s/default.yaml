@@ -2,6 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: kube-system
   name:  cloudflared
   labels:
     app:  cloudflared
@@ -58,6 +59,7 @@ metadata:
   name: rancher
 spec:
   repo: https://releases.rancher.com/server-charts/latest
+  targetNamespace: cattle-system
   chart: rancher
   valuesContent: |-
     hostname: rancher.yohanzbinden.ch
