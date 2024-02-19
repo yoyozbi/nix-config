@@ -28,7 +28,7 @@ spec:
       containers:
       - image:  cloudflare/cloudflared #{"$imagescan": "cloudflared-scan"}
         command: ["cloudflared", "tunnel"]
-        args: ["--no-autoupdate", "run", "--token","$(cat /etc/clouflared-token)" ]
+        args: ["--no-autoupdate", "run", "--token","$(cat /etc/cloudflared-token)" ]
         resources:
           limits:
             cpu: 100m
