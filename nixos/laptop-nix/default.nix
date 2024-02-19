@@ -12,7 +12,6 @@
 		../_mixins/services/boxes.nix
 	];
 
-
 	fileSystems = {
 		"/" = {
 			device = "/dev/disk/by-uuid/84263630-ecdf-4ba5-a85c-78a2eb9f99f7";

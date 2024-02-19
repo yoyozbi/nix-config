@@ -83,13 +83,16 @@ let
 		# PHP
 		php82
 		php82Packages.composer
+
+
+		floorp
+		firefox-wayland
+		microsoft-edge
+
 	];
 	unstable-packages = with pkgs.unstable;[
 		
 	] ++ lib.optionals (desktop != null) [
-		floorp
-		firefox-wayland
-		microsoft-edge
 		];
 	in 
 	{
