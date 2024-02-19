@@ -1,9 +1,12 @@
-{inputs, lib, ...}:
+{kubenix, lib, ...}:
 {
 	imports =  [ 
-						inputs.kubenix.modules.k8s
-						inputs.kubenix.modules.helm
-						inputs.kubenis.modules.submodule
+						kubenix.modules.k8s
+						kubenix.modules.helm
+						kubenix.modules.submodule
+
+						./cloudflared.nix
+						./rancher.nix
 					 ];
 
 	submodules.imports = [

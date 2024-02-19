@@ -1,5 +1,5 @@
 { config
-,inputs 
+,kubenix 
 , lib
 , # Name of submodule instance.
   name
@@ -8,13 +8,6 @@
   args
 , ...
 }: {
-  imports = with inputs.kubenix.modules; [
-    # This needs to be imported in order to define a submodule.
-    submodule
-    # Importing this so that we can set config.kubernetes
-    # within the context of this submodule.
-    k8s
-  ];
 
   # Args are used to pass information from the parent context.
   options.submodule.args = {

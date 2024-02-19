@@ -10,14 +10,18 @@
 		];
 	};
 
+	sops.secrets.cloudflared-token.sopsFile = ./deployments/secrets.yml;
+
 	# Write the default kubernetes config to a file under `/etc`
 	environment.etc."kubenix.yaml".source = 
 	(inputs.kubenix.evalModules.x86_64-linux {
-		module = { kubenix, ...}: {
-			imports = [
-			./deployments/cloudflared.nix
-			./deployments/rancher.nix
-			];
+		module = { self, kubenix, ...}:
+		let
+			inherit (self) config;
+		in {
+				imports = [
+					./deployments
+				];
 		};
 	}).config.kubernetes.resultYAML;
 

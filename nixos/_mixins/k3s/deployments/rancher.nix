@@ -1,9 +1,8 @@
-{inputs, ...}:
+{kubenix, ...}:
 {
-	imports = [./.];
 
 	kubernetes.helm.releases.rancher = {
-		chart = inputs.kubenix.lib.helm.fetch {
+		chart = kubenix.lib.helm.fetch {
 			repo = "https://releases.rancher.com/server-charts/latest";
 			chart = "rancher";
 			version = "2.8.2";
@@ -20,5 +19,4 @@
 		};
 	};
 
-	inputs.kubenix.project = "rancher";
 }

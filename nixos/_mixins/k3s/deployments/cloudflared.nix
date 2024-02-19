@@ -1,9 +1,7 @@
-{inputs, config, lib, ...}
+{kubenix, config, lib, ...}
 :
 {
-	imports = [./.];
 
-	sops.secrets.cloudflared-token.sopsFile = ./secrets.yml;
 	submodules.instances.kube-system = {
 		submodule = "namespaced"; 
 
