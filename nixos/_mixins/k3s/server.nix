@@ -16,6 +16,7 @@
 	sops.secrets.cloudflared-token = {
 		sopsFile = ./secrets.yml;
 		path = "/etc/cloudflared-token";
+		mode = "0440";
 	};
 
 	# Write the default kubernetes config to a file under `/etc`
