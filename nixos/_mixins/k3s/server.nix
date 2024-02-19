@@ -35,7 +35,7 @@ in
 
 	# Link the file to k3s manifest directory
 	system.activationScripts.k3s.text = ''
-    echo ${configFile} > /var/lib/rancher/k3s/server/manifests/init.yaml
+   cat ${configFile} > /var/lib/rancher/k3s/server/manifests/init.yaml
   '';
 
 }
