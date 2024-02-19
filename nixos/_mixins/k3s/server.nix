@@ -1,5 +1,7 @@
 {inputs, config, lib,pkgs,  ...}:
 {
+	imports = [./.];
+
 	sops.secrets.k3s-server-token.sopsFile = ./secrets.yml;
 	services.k3s = {
 		role = "server";
@@ -8,6 +10,7 @@
 			"--node-ip=${config.networking.yoyozbi.currentHost.internalIp}"
 			"--advertise-address=${config.networking.yoyozbi.currentHost.internalIp}"
 		];
+		clusterInit = true;
 	};
 
 	sops.secrets.cloudflared-token = {
