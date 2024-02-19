@@ -1,7 +1,4 @@
 {inputs, config, lib,pkgs,  ...}:
-let 
-	configFile = builtins.readFile ./default.yaml;
-in
 {
 	sops.secrets.k3s-server-token.sopsFile = ./secrets.yml;
 	services.k3s = {
@@ -32,10 +29,12 @@ in
 
 	}).config.kubernetes.resultYAML;*/
 
+	environment.etc."k3s.yaml".text = builtins.readFile ./default.yaml;
+
 
 	# Link the file to k3s manifest directory
 	system.activationScripts.k3s.text = ''
-   cat ${configFile} > /var/lib/rancher/k3s/server/manifests/init.yaml
+   ln -sf /etc/k3s.yaml /var/lib/rancher/k3s/server/manifests/init.yaml
   '';
 
 }
