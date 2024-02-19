@@ -19,11 +19,6 @@
 		services = {
 			k3s = {
 				enable = true;
-				extraFlags = toString [
-					"--node-external-ip=${config.networking.yoyozbi.currentHost.externalIp}"
-					"--node-ip=${config.networking.yoyozbi.currentHost.internalIp}"
-					"--advertise-address=${config.networking.yoyozbi.currentHost.internalIp}"
-				];
 				tokenFile = lib.mkDefault config.sops.secrets.k3s-server-token.path;
 			};	
 
