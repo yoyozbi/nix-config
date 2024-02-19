@@ -1,6 +1,7 @@
 { config, desktop, hostname, inputs, lib, modulesPath, outputs, pkgs, platform, stateVersion, username, ... }: {
 	imports = [
 		inputs.disko.nixosModules.disko
+		inputs.sops-nix.nixosModules.sops
 		./${hostname}
 		./_mixins/users/root
 	]
