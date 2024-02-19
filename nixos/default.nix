@@ -2,6 +2,7 @@
 	imports = [
 		inputs.disko.nixosModules.disko
 		inputs.sops-nix.nixosModules.sops
+		../hosts.nix
 		./${hostname}
 		./_mixins/users/root
 	]
