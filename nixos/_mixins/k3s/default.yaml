@@ -25,7 +25,7 @@ spec:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-     - image:  cloudflare/cloudflared #{"$imagescan": "cloudflared-scan"}
+      - image:  cloudflare/cloudflared #{"$imagescan": "cloudflared-scan"}
         command: ["cloudflared", "tunnel"]
         args: ["--no-autoupdate", "run", "--token","$(grep -A3 'cloudflared-token:' /etc/clouflared-token | head -n1 | awk '{print $2}')" ]
         resources:
