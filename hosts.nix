@@ -1,7 +1,7 @@
 /*
 based on https://github.com/TUM-DSE/doctor-cluster-config/blob/master/modules/hosts.nix
 */
-{ lib, config, hostname, desktop }:
+{ lib, config, hostname, desktop, ... }:
 let
   hostOptions = with lib; {
     internalIp = mkOption {
