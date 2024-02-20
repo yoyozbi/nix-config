@@ -95,28 +95,6 @@ spec:
     dashboard:
       enabled: true
 
-    #deployment:
-    #  kind: DaemonSet
-    #hostNetwork: true
-
-    updateStrategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxUnavailable: 2
-        maxSurge:
-    additionalVolumes:
-      - name: dockersocket
-        hostPath:
-          path: /var/run/docker.sock
-          type: Socket
-    additionalVolumeMounts:
-      - name: dockersocket
-        mountPath: /var/run/docker.sock
-     volumes: 
-       - name: dockersocket
-         type: hostPath
-         mountPath: /var/run/docker.sock
-         hostPath: /var/run/docker.sock
     additionalArguments:
       - "--providers.docker=true"
       - "--providers.docker.exposedByDefault=false"
