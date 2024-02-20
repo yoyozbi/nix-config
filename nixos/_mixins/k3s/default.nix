@@ -15,6 +15,10 @@
 
 
 		sops.secrets.k3s-server-token.sopsFile = ./secrets.yml;
+		sops.secrets.cloudflared-token = {
+			sopsFile = ./secrets.yml;
+			path = "/etc/cloudflared-token";
+		};
 
 
 		services = {

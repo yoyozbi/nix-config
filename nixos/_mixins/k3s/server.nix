@@ -13,11 +13,6 @@
 		clusterInit = true;
 	};
 
-	sops.secrets.cloudflared-token = {
-		sopsFile = ./secrets.yml;
-		path = "/etc/cloudflared-token";
-	};
-
 	# Write the default kubernetes config to a file under `/etc`
 	/*environment.etc."kubenix.yaml".source = 
 	(inputs.kubenix.evalModules.${builtins.currentSystem} {
