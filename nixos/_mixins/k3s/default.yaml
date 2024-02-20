@@ -96,8 +96,6 @@ spec:
       enabled: true
 
     additionalArguments:
-      - "--providers.docker=true"
-      - "--providers.docker.exposedByDefault=false"
       - "--entryPoints.web.proxyProtocol.insecure"
       - "--entryPoints.websecure.proxyProtocol.insecure"
 
