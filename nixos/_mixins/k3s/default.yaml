@@ -65,6 +65,15 @@ kind: Namespace
 metadata:
   name: cattle-system
 ---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: test-header
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: "https"
+---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
@@ -80,7 +89,8 @@ spec:
     letsEncrypt.ingress.class: traefik
     ingress.enabled: true
     ingress.extraAnnotations:
-      - 'traefik.ingress.kubernetes.io/service.passhostheader="true"'
+      traefik.ingress.kubernetes.io/router.middlewares: rancher-header@kubernetescrd
+      traefik.ingress.kubernetes.io/service.passhostheader: "true"
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
