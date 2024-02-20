@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: cloudflared
-  replicas: 2
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,14 +21,25 @@ spec:
       labels:
         app:  cloudflared
     spec:
-      # initContainers:
         # Init containers are exactly like regular containers, except:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - image:  cloudflare/cloudflared #{"$imagescan": "cloudflared-scan"}
-        command: ["cloudflared", "tunnel"]
-        args: ["--no-autoupdate", "run", "--token","$(cat /etc/cloudflared-token)" ]
+      - image:  alpine #{"$imagescan": "cloudflared-scan"}
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - >- 
+            apk add --no-cache curl &&
+            if [ $(arch) = 'x86_64' ]; then
+              export arch="amd64"
+            else
+              export arch="arm64"
+            fi &&
+            curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$arch -o /usr/bin/cloudflared &&
+            chmod +x /usr/bin/cloudflared &&
+            export TUNNEL_TOKEN="$(cat /etc/cloudflared-token)" &&
+            cloudflared tunnel --no-autoupdate run 
         resources:
           limits:
             cpu: 100m
@@ -38,7 +49,8 @@ spec:
             memory: 100Mi
         volumeMounts:
           - mountPath: /etc/cloudflared-token
-            name: cloudflared-token 
+            name: cloudflared-token
+            readOnly: true
 
         name:  cloudflared
       restartPolicy: Always
