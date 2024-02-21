@@ -5,7 +5,6 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		cachix-deploy.url = "github:cachix/cachix-deploy-flake";
-		kubenix.url = "github:hall/kubenix";
 
 		disko = {
 			url = "github:nix-community/disko";
