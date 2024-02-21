@@ -83,6 +83,7 @@ let
 		# PHP
 		php82
 		php82Packages.composer
+		wl-clipboard
 
 
 		floorp
