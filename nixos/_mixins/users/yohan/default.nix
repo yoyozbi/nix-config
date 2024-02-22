@@ -13,7 +13,7 @@ let
 		libreoffice
 		owncloud-client
 		distrobox
-		tigervnc
+		virtualbox
 
 		bottles
 		lutris
