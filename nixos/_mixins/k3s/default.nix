@@ -29,9 +29,13 @@
 
 			openiscsi = { # For longhorn
 				enable = true;
-				name = "hostname-initiatorhost";
+				name = "${config.networking.hostname}-initiatorhost";
 			};
 		};
+
+		systemd.tmpfiles.rules = [
+  		"L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
+		];
 
 		environment.systemPackages = [ 
 			pkgs.nfs-utils
