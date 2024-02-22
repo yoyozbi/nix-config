@@ -10,6 +10,7 @@
 		../_mixins/services/docker.nix
 		../_mixins/services/thunderbolt.nix
 		../_mixins/services/boxes.nix
+		../_mixins/services/virtualbox.nix
 	];
 
 	fileSystems = {

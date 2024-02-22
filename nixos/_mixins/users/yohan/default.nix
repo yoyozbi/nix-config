@@ -13,7 +13,6 @@ let
 		libreoffice
 		owncloud-client
 		distrobox
-		virtualbox
 
 		bottles
 		lutris
@@ -139,6 +138,7 @@ let
 				"docker"
 				"lxd"
 				"podman"
+				"vboxusers"
 			];
 			# mkpasswd -m sha-512
 			hashedPassword = "$6$a.nRdlFB3YPvVgjX$iWBzmkH0zK/3n/yyEl2Fuwp1G4ayzr5zG0Un7z4hCvWoKctMZirMKWMcwPBgqRylhgnI.gKLhg5xvwqRuipqZ.";
