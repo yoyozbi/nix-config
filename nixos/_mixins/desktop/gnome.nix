@@ -16,6 +16,7 @@
 				};	
 			};
 		};
+		gvfs.enable = true;
 
 		gnome = {
 			gnome-keyring = {
