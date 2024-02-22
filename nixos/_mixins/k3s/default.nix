@@ -35,7 +35,7 @@
 
 		environment.systemPackages = [ 
 			pkgs.nfs-utils
-			pkgs.open-iscsi
+			pkgs.openiscsi
 			pkgs.k3s
 			(pkgs.writeShellScriptBin "k3s-reset-node" (builtins.readFile ./k3s-reset-node))
 		];
