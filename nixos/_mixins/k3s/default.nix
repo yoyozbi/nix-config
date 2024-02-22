@@ -29,7 +29,7 @@
 
 			openiscsi = { # For longhorn
 				enable = true;
-				name = "${config.networking.hostname}-initiatorhost";
+				name = "${config.networking.hostName}-initiatorhost";
 			};
 		};
 
