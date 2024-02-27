@@ -56,6 +56,7 @@ let
 		#jetbrains-toolbox
 
 		# C/C++
+		mesa # Opengl
 		gcc
 		clang-tools
 		cmake
