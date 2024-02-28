@@ -57,12 +57,16 @@ let
 
 		# C/C++
 		mesa # Opengl
+		autoconf # vcpkg
+		pkgconf
+		automake
 		gcc
 		clang-tools
 		cmake
 		ninja
 		gnumake
 		unzip
+		zip
 		wget
 		jetbrains-toolbox
 

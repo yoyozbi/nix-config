@@ -24,8 +24,11 @@
 	networking = {
 		hostName = "tiny1";
 		domain = "";
-	};
 
+		firewall = {
+			enable = lib.mkForce false;
+			};
+	};
 
 	nixpkgs.hostPlatform = lib.mkDefault "${platform}";
 }

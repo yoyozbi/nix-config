@@ -24,6 +24,10 @@
 	networking = {
 		hostName = "tiny2";
 		domain = "";
+
+		firewall = {
+			enable = lib.mkForce false;
+		};
 	};
 
 
