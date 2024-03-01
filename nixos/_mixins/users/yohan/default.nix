@@ -30,6 +30,7 @@ let
 
 		# Discord
 		discord
+		steam
 
 		# Other
 		beekeeper-studio
