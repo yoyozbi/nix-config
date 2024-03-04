@@ -28,6 +28,8 @@ let
 		stremio
 		qbittorrent
 
+		typora
+
 		# Discord
 		discord
 		steam
@@ -38,9 +40,6 @@ let
 		structorizer
 		vlc
 		
-		#Tex
-		texstudio
-		texlive.combined.scheme-full
 		# Photos
 		darktable
 		digikam
