@@ -13,6 +13,7 @@ let
 		libreoffice
 		owncloud-client
 		distrobox
+		cinnamon.warpinator
 
 		bottles
 		lutris

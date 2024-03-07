@@ -57,6 +57,7 @@
 			};
 		};
 
+		kernelParams = [ "net.ipv4.ip_forward=0"];
 		kernelModules = [ "kvm-intel" ];
 		extraModulePackages = [];
 
