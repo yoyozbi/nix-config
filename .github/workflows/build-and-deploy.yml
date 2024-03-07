@@ -18,11 +18,11 @@ jobs:
         with:
           fetch-depth: 0
       - uses: docker/setup-qemu-action@v3                                 # ⑵
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/install-nix-action@v25
         name: Install
         with:
           extra_nix_config: "extra-platforms = aarch64-linux"             # ⑶
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v14                                    # ⑷
         with:
           name: homelab-yohan
