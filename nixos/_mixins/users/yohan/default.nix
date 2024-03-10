@@ -88,6 +88,7 @@ let
 		# PHP
 		php82
 		php82Packages.composer
+		gitlab-runner
 		wl-clipboard
 
 
