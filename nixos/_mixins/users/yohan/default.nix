@@ -29,7 +29,7 @@ let
 		stremio
 		qbittorrent
 
-		typora
+		obs-studio
 
 		# Discord
 		discord
@@ -75,7 +75,6 @@ let
 		rustup
 		rustPackages.clippy
 		rustfmt
-		pkg-config
 		openssl.dev
 	#	rust
 	#	rust-analyzer-unwrapped
