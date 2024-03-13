@@ -47,6 +47,14 @@
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+		settings = {
+			substituters = [
+				"https://devenv.cachix.org"
+			];
+			trusted-public-keys = [
+				"devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+			];
+		};
 
     optimise.automatic = true;
     package = pkgs.unstable.nix;

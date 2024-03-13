@@ -82,6 +82,7 @@ spec:
   repo: https://releases.rancher.com/server-charts/latest
   targetNamespace: cattle-system
   chart: rancher
+  version: 2.8.2
   valuesContent: |-
     hostname: rancher.yohanzbinden.ch
     replicas: 1;
