@@ -21,6 +21,7 @@ let
 		#winePackages.wayland
 		winetricks
 		samba
+		rpi-imager
 		
 		minikube
 		#Music
