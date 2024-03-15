@@ -19,6 +19,7 @@ in
 		packages = with pkgs; [
 			(nerdfonts.override { fonts = ["FiraCode" "SourceCodePro" "JetBrainsMono" "UbuntuMono"]; })
 			# lsp
+			tree-sitter
 			eslint_d
 			stylua
 			ruff
