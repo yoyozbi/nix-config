@@ -90,7 +90,10 @@ let
 		php82Packages.composer
 		gitlab-runner
 		wl-clipboard
-
+		
+		#Dotnet
+		dotnet-sdk_8
+		mono
 
 		floorp
 		firefox-wayland
