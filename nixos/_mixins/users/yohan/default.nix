@@ -45,6 +45,7 @@ let
 		# Photos
 		darktable
 		digikam
+		gimp
 		# Dev
 		# tmux
 		bruno
