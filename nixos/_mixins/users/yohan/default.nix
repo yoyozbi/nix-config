@@ -15,11 +15,11 @@ let
 		distrobox
 		cinnamon.warpinator
 
-		bottles
-		lutris
-		wine-wayland
+		#bottles
+		#lutris
+		#wine-wayland
 		#winePackages.wayland
-		winetricks
+		#winetricks
 		samba
 		rpi-imager
 		
@@ -102,8 +102,9 @@ let
 
 	];
 	unstable-packages = with pkgs.unstable;[
-		
+				
 	] ++ lib.optionals (desktop != null) [
+		warp-terminal
 		];
 	in 
 	{
