@@ -1,8 +1,7 @@
-{...}:
-{
-	boot.loader.grub = {
-		efiSupport = true;
-		efiInstallAsRemovable = true;
-		device = "nodev";
-	};
+_: {
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    device = "nodev";
+  };
 }

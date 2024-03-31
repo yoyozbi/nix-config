@@ -1,23 +1,24 @@
-{lib, modulesPath, ...}:
-{
-  imports =
-    [ 
-		(modulesPath + "/profiles/qemu-guest.nix")
+{ lib
+, modulesPath
+, ...
+}: {
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
 
-		(import ./disks.nix { })
-		../_mixins/hardware/grub.nix
-		../_mixins/services/cachix.nix
-		../_mixins/services/openssh.nix
-		../_mixins/services/networkmanager.nix
-		../_mixins/k3s/server.nix
-    ];
+    (import ./disks.nix { })
+    ../_mixins/hardware/grub.nix
+    ../_mixins/services/cachix.nix
+    ../_mixins/services/openssh.nix
+    ../_mixins/services/networkmanager.nix
+    ../_mixins/k3s/server.nix
+  ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_scsi" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-	networking.hostName = "ocr1";
+  networking.hostName = "ocr1";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -28,4 +29,3 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
-

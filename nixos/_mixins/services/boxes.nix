@@ -1,13 +1,12 @@
-{pkgs, ...}: 
-{
-	virtualisation = {
-		libvirtd = {
-			enable = true;
-		};
-	};
+{ pkgs, ... }: {
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+    };
+  };
 
-	environment.systemPackages = with pkgs; [
-		gnome.gnome-boxes
-		libvirt
-	];
+  environment.systemPackages = with pkgs; [
+    gnome.gnome-boxes
+    libvirt
+  ];
 }

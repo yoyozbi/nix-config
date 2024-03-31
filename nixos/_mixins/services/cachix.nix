@@ -1,4 +1,3 @@
-{pkgs, ...}:
-{
-	services.cachix-agent.enable = true;
+_: {
+  services.cachix-agent.enable = true;
 }

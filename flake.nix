@@ -1,19 +1,19 @@
 {
   inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     lanzaboote.url = "github:nix-community/lanzaboote";
-		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-		cachix-deploy.url = "github:cachix/cachix-deploy-flake";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
-		disko = {
-			url = "github:nix-community/disko";
-    	inputs.nixpkgs.follows = "nixpkgs";
-		};
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-		sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:Mic92/sops-nix";
 
-		home-manager = {
+    home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
@@ -21,40 +21,81 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-formatter-pack = {
+      url = "github:Gerschtli/nix-formatter-pack";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-	outputs = { self, nixpkgs, lanzaboote, home-manager, nixos-hardware, cachix-deploy, ...} @ inputs :
-	let
-		inherit (self) outputs;
-		system = "x86_64-linux";
+  outputs =
+    { self
+    , nixpkgs
+    , cachix-deploy
+    , nix-formatter-pack
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
 
-		pkgs = nixpkgs.legacyPackages.${system};
-		 # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-		stateVersion = "23.11";
-		cachix-deploy-lib = cachix-deploy.lib pkgs;
-		libx = import ./lib { inherit inputs outputs stateVersion; };
-	in
-	{
-		homeConfigurations = {
-			"yohan@laptop-nix" = libx.mkHome { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
-		};
-    nixosConfigurations = {
-				"laptop-nix" = libx.mkHost { hostname = "laptop-nix"; username = "yohan"; desktop = "gnome"; };
-				"tiny1" = libx.mkHost {hostname = "tiny1"; username = "nix"; };
-				"tiny2" = libx.mkHost {hostname = "tiny2"; username = "nix"; };
-				"ocr1" = libx.mkHost {hostname = "ocr1"; username = "nix"; };
-   		};
+      pkgs = nixpkgs.legacyPackages.${system};
+      # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+      stateVersion = "23.11";
+      cachix-deploy-lib = cachix-deploy.lib pkgs;
+      libx = import ./lib { inherit inputs outputs stateVersion; };
+    in
+    {
+      homeConfigurations = {
+        "yohan@laptop-nix" = libx.mkHome {
+          hostname = "laptop-nix";
+          username = "yohan";
+          desktop = "gnome";
+        };
+      };
+      nixosConfigurations = {
+        "laptop-nix" = libx.mkHost {
+          hostname = "laptop-nix";
+          username = "yohan";
+          desktop = "gnome";
+        };
+        "tiny1" = libx.mkHost {
+          hostname = "tiny1";
+          username = "nix";
+        };
+        "tiny2" = libx.mkHost {
+          hostname = "tiny2";
+          username = "nix";
+        };
+        "ocr1" = libx.mkHost {
+          hostname = "ocr1";
+          username = "nix";
+        };
+      };
 
-		packages.${system}= with pkgs; {
-			cachix-deploy-spec = cachix-deploy-lib.spec {
-				agents = {
-					"tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
-					"tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
-					"ocr1" = self.nixosConfigurations."ocr1".config.system.build.toplevel;
-				};
-			};
-		};
+      packages.${system} = with pkgs; {
+        cachix-deploy-spec = cachix-deploy-lib.spec {
+          agents = {
+            "tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
+            "tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
+            "ocr1" = self.nixosConfigurations."ocr1".config.system.build.toplevel;
+          };
+        };
+      };
 
-		overlays = import ./overlays {inherit inputs; };
-	};
+      formatter = libx.forAllSystems (
+        system:
+        nix-formatter-pack.lib.mkFormatter {
+          pkgs = nixpkgs.legacyPackages.${system};
+          config.tools = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            nixpkgs-fmt.enable = true;
+            statix.enable = true;
+          };
+        }
+      );
+
+      overlays = import ./overlays { inherit inputs; };
+    };
 }

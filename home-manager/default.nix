@@ -1,26 +1,36 @@
-{ config, desktop, hostname, inputs, lib, outputs, pkgs, stateVersion, username, ... }:
-{
-	imports = [
-		./_mixins/console
-		#inputs.home-manager.nixosModules.home-manager
-	]
-	 ++ lib.optional (builtins.isPath (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
-	 ++ lib.optional (builtins.pathExists (./. + "/_mixins/users/${username}/hosts/${hostname}.nix")) ./_mixins/users/${username}/hosts/${hostname}.nix
-	 ++ lib.optional (desktop != null) ./_mixins/desktop;
-	home = {
-	 	# activation.report-changes = config.lib.dag.entryAnywhere ''
-	 	# 	${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
-	 	# '';
-	 	homeDirectory = "/home/${username}";
-	 	inherit stateVersion;
-	 	inherit username;
-	};
+{ config
+, desktop
+, hostname
+, inputs
+, lib
+, outputs
+, pkgs
+, stateVersion
+, username
+, ...
+}: {
+  imports =
+    [
+      ./_mixins/console
+      #inputs.home-manager.nixosModules.home-manager
+    ]
+    ++ lib.optional (builtins.isPath (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
+    ++ lib.optional (builtins.pathExists (./. + "/_mixins/users/${username}/hosts/${hostname}.nix")) ./_mixins/users/${username}/hosts/${hostname}.nix
+    ++ lib.optional (desktop != null) ./_mixins/desktop;
+  home = {
+    # activation.report-changes = config.lib.dag.entryAnywhere ''
+    # 	${pkgs.nvd}/bin/nvd diff $oldGenPath $newGenPath
+    # '';
+    homeDirectory = "/home/${username}";
+    inherit stateVersion;
+    inherit username;
+  };
 
-	# Workaround home-manager bug with flakes
+  # Workaround home-manager bug with flakes
   # - https://github.com/nix-community/home-manager/issues/2033
   news.display = "silent";
 
-	nixpkgs = {
+  nixpkgs = {
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):

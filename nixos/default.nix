@@ -1,15 +1,26 @@
-{ config, desktop, hostname, inputs, lib, modulesPath, outputs, pkgs, platform, stateVersion, username, ... }: {
-	imports = [
-		inputs.disko.nixosModules.disko
-		inputs.sops-nix.nixosModules.sops
-		../hosts.nix
-		./${hostname}
-		./_mixins/users/root
-	]
-	++ lib.optional (builtins.pathExists (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
-	++ lib.optional (desktop != null) ./_mixins/desktop;
-	nixpkgs = {
-		 overlays = [
+{ config
+, desktop
+, hostname
+, inputs
+, lib
+, outputs
+, pkgs
+, stateVersion
+, username
+, ...
+}: {
+  imports =
+    [
+      inputs.disko.nixosModules.disko
+      inputs.sops-nix.nixosModules.sops
+      ../hosts.nix
+      ./${hostname}
+      ./_mixins/users/root
+    ]
+    ++ lib.optional (builtins.pathExists (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
+    ++ lib.optional (desktop != null) ./_mixins/desktop;
+  nixpkgs = {
+    overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
@@ -32,9 +43,9 @@
       # Accept the joypixels license
       joypixels.acceptLicense = true;
     };
-	};
+  };
 
-	nix = {
+  nix = {
     gc = {
       automatic = true;
       options = "--delete-older-than 10d";
@@ -47,14 +58,14 @@
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-		settings = {
-			substituters = [
-				"https://devenv.cachix.org"
-			];
-			trusted-public-keys = [
-				"devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-			];
-		};
+    settings = {
+      substituters = [
+        "https://devenv.cachix.org"
+      ];
+      trusted-public-keys = [
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
+    };
 
     optimise.automatic = true;
     package = pkgs.unstable.nix;
@@ -69,7 +80,7 @@
       warn-dirty = false;
     };
   };
-	services.fwupd.enable = true;
+  services.fwupd.enable = true;
 
   systemd.tmpfiles.rules = [
     "d /nix/var/nix/profiles/per-user/${username} 0755 ${username} root"
@@ -89,6 +100,6 @@
     #  dates = "04:42";
     #  flake = "github:wimpysworld/nix-config";
     ##};
-    stateVersion = stateVersion;
+    inherit stateVersion;
   };
 }

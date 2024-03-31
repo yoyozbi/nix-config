@@ -1,6 +1,5 @@
-_:
-{
-disko.devices = {
+_: {
+  disko.devices = {
     disk = {
       vdb = {
         type = "disk";

@@ -1,7 +1,6 @@
-_:
-{
-	imports = [
-		../../services/ssh.nix
-		../../services/kubernetes.nix
-	];
+_: {
+  imports = [
+    ../../services/ssh.nix
+    ../../services/kubernetes.nix
+  ];
 }

@@ -1,6 +1,5 @@
-{pkgs, ...}:
-{
-	home.packages = with pkgs; [
-		mediawriter	
-	];
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    mediawriter
+  ];
 }
