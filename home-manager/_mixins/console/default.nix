@@ -23,6 +23,8 @@ in
 			eslint_d
 			stylua
 			ruff
+			php82Packages.phpcs
+			php82Packages.php-cs-fixer
 			bun
 			thefuck
 			fira
