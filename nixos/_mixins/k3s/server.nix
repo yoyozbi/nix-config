@@ -1,6 +1,4 @@
-{ config
-, ...
-}: {
+{ config, ... }: {
   imports = [ ./. ];
 
   sops.secrets.k3s-server-token.sopsFile = ./secrets.yml;
@@ -22,9 +20,9 @@
     		inherit inputs config lib;
      	};
      	module = {kubenix, inputs, config, lib, ...}: {
-     			imports = [ ./deployments ];
-     			kubenix.project = "default-k3s-config";
-     			kubernetes.version = "1.28";
+         			imports = [ ./deployments ];
+         			kubenix.project = "default-k3s-config";
+         			kubernetes.version = "1.28";
      	};
 
     }).config.kubernetes.resultYAML;

@@ -4,6 +4,5 @@
   #distrobox = pkgs.callPackage ./distrobox.nix { };
   kDrive = pkgs.callPackage ./kDrive.nix { };
   sddm-themes = pkgs.callPackage ./sddm-themes.nix { };
-  swayAudio = pkgs.callPackage ./swayAudio.nix { };
   eclipse202306 = pkgs.callPackage ./eclipse-202306 { };
 }
