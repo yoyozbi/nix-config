@@ -6,6 +6,7 @@ let
 		kubectx
 		envsubst
 		kubernetes-helm
+		talosctl
 		cifs-utils
 
 	]  ++ lib.optionals (desktop != null)[
@@ -15,15 +16,11 @@ let
 		distrobox
 		cinnamon.warpinator
 
-		#bottles
-		#lutris
-		#wine-wayland
-		#winePackages.wayland
-		#winetricks
 		samba
 		rpi-imager
 		
 		minikube
+
 		#Music
 		tidal-hifi
 		spotify
