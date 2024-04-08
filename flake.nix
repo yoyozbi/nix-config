@@ -52,14 +52,14 @@
         "yohan@laptop-nix" = libx.mkHome {
           hostname = "laptop-nix";
           username = "yohan";
-          desktop = "gnome";
+          desktop = "hyprland";
         };
       };
       nixosConfigurations = {
         "laptop-nix" = libx.mkHost {
           hostname = "laptop-nix";
           username = "yohan";
-          desktop = "gnome";
+          desktop = "hyprland";
         };
         "tiny1" = libx.mkHost {
           hostname = "tiny1";
