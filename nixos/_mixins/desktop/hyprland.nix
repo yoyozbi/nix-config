@@ -2,10 +2,10 @@
 , pkgs
 , username
 , ...
-}: let 
-
-stable-packages = with pkgs; [
-     shikane
+}:
+let
+  stable-packages = with pkgs; [
+    shikane
     waybar
     wofi
     wlogout
@@ -18,15 +18,14 @@ stable-packages = with pkgs; [
     bluetuith
     kitty
     dunst
+    pamixer
+  ];
 
-];
-
-unstable-packages = with pkgs.unstable; [
+  unstable-packages = with pkgs.unstable; [
     swaylock-effects
-];
-
-
-in {
+  ];
+in
+{
   imports = [
     ../services/networkmanager.nix
     ../services/pipewire.nix
@@ -63,5 +62,5 @@ in {
     wlr.enable = true;
   };
 
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 }

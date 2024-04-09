@@ -16,14 +16,14 @@
   /*
     environment.etc."kubenix.yaml".source =
     (inputs.kubenix.evalModules.${builtins.currentSystem} {
-     	specialArgs = {
+    	specialArgs = {
     		inherit inputs config lib;
-     	};
-     	module = {kubenix, inputs, config, lib, ...}: {
-         			imports = [ ./deployments ];
-         			kubenix.project = "default-k3s-config";
-         			kubernetes.version = "1.28";
-     	};
+    	};
+    	module = {kubenix, inputs, config, lib, ...}: {
+          			imports = [ ./deployments ];
+          			kubenix.project = "default-k3s-config";
+          			kubernetes.version = "1.28";
+    	};
 
     }).config.kubernetes.resultYAML;
   */
