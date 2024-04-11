@@ -30,6 +30,7 @@ in
         ruff
         php82Packages.phpcs
         php82Packages.php-cs-fixer
+        php82Extensions.xdebug
         bun
         thefuck
         fira
