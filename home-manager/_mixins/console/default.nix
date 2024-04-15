@@ -31,6 +31,7 @@ in
         php82Packages.phpcs
         php82Packages.php-cs-fixer
         php82Extensions.xdebug
+        php82Extensions.pcov
         bun
         thefuck
         fira
