@@ -16,6 +16,7 @@
     ../_mixins/services/thunderbolt.nix
     ../_mixins/services/boxes.nix
     ../_mixins/services/virtualbox.nix
+    ../_mixins/services/focusrite.nix
   ];
 
   fileSystems = {
