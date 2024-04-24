@@ -33,7 +33,7 @@
   };
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/75f49aa5-8296-45ab-8ddb-d12fa9afc72a";
+      device = "/dev/disk/by-uuid/3b523100-edaf-4f54-bb65-c96a67e8fa38";
     }
   ];
 
@@ -61,7 +61,7 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
 
-    resumeDevice = "/dev/disk/by-uuid/75f49aa5-8296-45ab-8ddb-d12fa9afc72a";
+    resumeDevice = "/dev/disk/by-uuid/3b523100-edaf-4f54-bb65-c96a67e8fa38";
 
     binfmt = {
       emulatedSystems = [ "aarch64-linux" ];
