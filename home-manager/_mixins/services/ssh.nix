@@ -20,36 +20,20 @@ _: {
         };
         ocr1 = {
           hostname = "144.24.253.246";
-          user = "ubuntu";
+          user = "nix";
           identityFile = "/home/yohan/.ssh/id_github";
         };
 
         tiny1 = {
           hostname = "140.238.217.72";
           user = "nix";
-          identityFile = "/home/yohan/.ssh/id_ed25519";
+          identityFile = "/home/yohan/.ssh/id_github";
         };
 
         tiny2 = {
           hostname = "140.238.223.226";
           user = "nix";
-          identityFile = "/home/yohan/.ssh/id_ed25519";
-        };
-
-        k0s1 = {
-          hostname = "192.168.1.10";
-          user = "core";
-          identityFile = "/home/yohan/.ssh/id_k0s";
-        };
-        k0s2 = {
-          hostname = "192.168.1.11";
-          user = "core";
-          identityFile = "/home/yohan/.ssh/id_k0s";
-        };
-        k0s3 = {
-          hostname = "192.168.1.12";
-          user = "core";
-          identityFile = "/home/yohan/.ssh/id_k0s";
+          identityFile = "/home/yohan/.ssh/id_github";
         };
       };
     };

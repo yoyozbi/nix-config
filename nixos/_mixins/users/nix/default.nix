@@ -13,7 +13,7 @@
     hashedPassword = null;
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA0wY1HBFWJGgaoT0L23bQg3icnmyDBds12gc0iOzuDV yohan@laptop-nix"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILUhAz/A2G0feoUU1BvE0p01BBvJ7BV7cU7RmACrLp7Z yohan@laptop-nix"
     ];
   };
 
