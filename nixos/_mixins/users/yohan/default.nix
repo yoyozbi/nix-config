@@ -16,6 +16,7 @@ let
       cifs-utils
     ]
     ++ lib.optionals (desktop != null) [
+      appflowy
       appimage-run
       libreoffice
       owncloud-client
