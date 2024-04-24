@@ -7,7 +7,7 @@
 }: {
   imports = [
     #./hardware-configuration.nix
-    ../_mixins/hardware/lanzaboote.nix
+    ../_mixins/hardware/systemdboot.nix
     inputs.nixos-hardware.nixosModules.dell-xps-15-9520-nvidia
     ../_mixins/services/bluetooth.nix
     ../_mixins/services/firewall.nix
@@ -21,13 +21,14 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/2eacbada-c6b8-40bd-ab6d-807406a1d5dd";
+      device = "/dev/disk/by-uuid/bf8f513f-593f-43d4-bb7a-058d73af43ed";
       fsType = "ext4";
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/B620-59D1";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022"];
     };
   };
   swapDevices = [
@@ -49,7 +50,7 @@
         devices = {
           "luks-2eacbada-c6b8-40bd-ab6d-807406a1d5dd" = {
             device = "/dev/disk/by-uuid/2eacbada-c6b8-40bd-ab6d-807406a1d5dd";
-            keyFile = "/crypto_keyfile.bin";
+            #keyFile = "/crypto_keyfile.bin";
           };
 
           "luks-75f49aa5-8296-45ab-8ddb-d12fa9afc72a" = {
