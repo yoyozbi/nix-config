@@ -3,4 +3,4 @@
 	url = http://github.com/yoyozbi/nvim-config
 [submodule "home-manager/_mixins/dotfiles"]
 	path = home-manager/_mixins/dotfiles
-	url = git@github.com:yoyozbi/dotfiles
+	url = https://github.com/yoyozbi/dotfiles

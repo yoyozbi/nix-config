@@ -14,6 +14,8 @@ let
       kubernetes-helm
       talosctl
       cifs-utils
+      git
+      vim
     ]
     ++ lib.optionals (desktop != null) [
       appflowy
