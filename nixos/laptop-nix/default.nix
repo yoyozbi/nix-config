@@ -39,10 +39,6 @@
 
   boot = {
     initrd = {
-      secrets = {
-        "/crypto_keyfile.bin" = null;
-      };
-
       availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ ];
 
