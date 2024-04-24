@@ -21,7 +21,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/84263630-ecdf-4ba5-a85c-78a2eb9f99f7";
+      device = "/dev/disk/by-uuid/2eacbada-c6b8-40bd-ab6d-807406a1d5dd";
       fsType = "ext4";
     };
 
@@ -32,7 +32,7 @@
   };
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/1a8f4d0f-ff23-4c86-9f65-de2388610e00";
+      device = "/dev/disk/by-uuid/75f49aa5-8296-45ab-8ddb-d12fa9afc72a";
     }
   ];
 
@@ -47,13 +47,13 @@
 
       luks = {
         devices = {
-          "luks-7efb93f8-93b9-40f2-b150-4ad3e86f8b6d" = {
-            device = "/dev/disk/by-uuid/7efb93f8-93b9-40f2-b150-4ad3e86f8b6d";
+          "luks-2eacbada-c6b8-40bd-ab6d-807406a1d5dd" = {
+            device = "/dev/disk/by-uuid/2eacbada-c6b8-40bd-ab6d-807406a1d5dd";
             keyFile = "/crypto_keyfile.bin";
           };
 
-          "luks-ff068a18-3c9c-4a0c-a68f-9e656a63ee9e" = {
-            device = "/dev/disk/by-uuid/ff068a18-3c9c-4a0c-a68f-9e656a63ee9e";
+          "luks-75f49aa5-8296-45ab-8ddb-d12fa9afc72a" = {
+            device = "/dev/disk/by-uuid/75f49aa5-8296-45ab-8ddb-d12fa9afc72a";
             #keyFile = "/crypto_keyfile.bin";
           };
         };
@@ -64,7 +64,7 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
 
-    resumeDevice = "/dev/disk/by-uuid/1a8f4d0f-ff23-4c86-9f65-de2388610e00";
+    resumeDevice = "/dev/disk/by-uuid/75f49aa5-8296-45ab-8ddb-d12fa9afc72a";
 
     binfmt = {
       emulatedSystems = [ "aarch64-linux" ];
