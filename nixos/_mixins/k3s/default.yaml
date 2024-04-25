@@ -75,25 +75,6 @@ spec:
       X-Forwarded-Proto: "https"
 ---
 apiVersion: helm.cattle.io/v1
-kind: HelmChart
-metadata:
-  name: rancher
-spec:
-  repo: https://releases.rancher.com/server-charts/latest
-  targetNamespace: cattle-system
-  chart: rancher
-  version: 2.8.2
-  valuesContent: |-
-    hostname: rancher.yohanzbinden.ch
-    replicas: 1;
-    tls: external
-    letsEncrypt.ingress.class: traefik
-    ingress.enabled: true
-    ingress.extraAnnotations:
-      traefik.ingress.kubernetes.io/router.middlewares: rancher-header@kubernetescrd
-      traefik.ingress.kubernetes.io/service.passhostheader: "true"
----
-apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
   name: traefik

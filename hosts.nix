@@ -29,6 +29,14 @@ let
         MAC address of the NIC port used as a gateway
       '';
     };
+    rancher = mkOption {
+      type = types.nullOr types.bool;
+      default = null;
+      description = ''
+	If this is a k3s server specify if you want to install rancher or not
+      '';
+    };
+
   };
 in
 {
@@ -56,6 +64,7 @@ in
       ocr1 = {
         internalIp = "10.0.0.93";
         externalIp = "144.24.253.246";
+	rancher = true;
         mac = "02:00:17:00:a1:bb";
       };
       tiny1 = {
@@ -71,6 +80,7 @@ in
       rp = {
 	internalIp = "192.168.1.2";
 	mac = "dc:a6:32:21:28:99";
+	rancher = false;
 	externalIp = "192.168.1.2";
       };
     };
