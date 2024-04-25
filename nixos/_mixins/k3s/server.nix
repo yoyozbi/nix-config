@@ -1,7 +1,6 @@
 { config, ... }: {
   imports = [ ./. ];
 
-  sops.secrets.k3s-server-token.sopsFile = ./secrets.yml;
   services.k3s = {
     role = "server";
     extraFlags = toString [
@@ -11,22 +10,6 @@
     ];
     clusterInit = true;
   };
-
-  # Write the default kubernetes config to a file under `/etc`
-  /*
-    environment.etc."kubenix.yaml".source =
-    (inputs.kubenix.evalModules.${builtins.currentSystem} {
-    	specialArgs = {
-    		inherit inputs config lib;
-    	};
-    	module = {kubenix, inputs, config, lib, ...}: {
-          			imports = [ ./deployments ];
-          			kubenix.project = "default-k3s-config";
-          			kubernetes.version = "1.28";
-    	};
-
-    }).config.kubernetes.resultYAML;
-  */
 
   environment.etc."k3s.yaml".text = builtins.readFile ./default.yaml;
 
