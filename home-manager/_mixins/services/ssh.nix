@@ -15,8 +15,8 @@ _: {
 
         rp = {
           hostname = "192.168.1.2";
-          user = "yohan";
-          identityFile = "/home/yohan/.ssh/id_rp";
+          user = "nix";
+          identityFile = "/home/yohan/.ssh/id_github";
         };
         ocr1 = {
           hostname = "144.24.253.246";
