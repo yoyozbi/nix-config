@@ -22,7 +22,11 @@ let
       libreoffice
       owncloud-client
       distrobox
+
+      #troubleshooting disks
       gparted
+      ntfs3g
+      btrfs-progs
 
       samba
       rpi-imager
