@@ -73,7 +73,7 @@
           hostname = "ocr1";
           username = "nix";
         };
-	"rp" = libx.mkHost {
+        "rp" = libx.mkHost {
           hostname = "rp";
           username = "nix";
         };

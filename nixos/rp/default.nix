@@ -1,26 +1,28 @@
-{
-lib
-,modulesPath
-, ...}:
-{
-    imports = [ 
-	(modulesPath + "/installer/scan/not-detected.nix")
-	../_mixins/services/openssh.nix
-	../_mixins/services/cachix.nix
-    ];
+{ lib
+, modulesPath
+, ...
+}: {
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../_mixins/services/openssh.nix
+    ../_mixins/services/cachix.nix
+    ./k3s.nix
+  ];
 
-    boot.loader.grub.enable = false;
+  boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
-  
+
   # networking config. important for ssh!
   networking = {
     hostName = "rp";
     interfaces.end0 = {
-      ipv4.addresses = [{
-        address = "192.168.1.2";
-        prefixLength = 24;
-      }];
+      ipv4.addresses = [
+        {
+          address = "192.168.1.2";
+          prefixLength = 24;
+        }
+      ];
     };
     defaultGateway = {
       address = "192.168.1.1"; # or whichever IP your router is
@@ -32,17 +34,16 @@ lib
     ];
   };
 
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/NIXOS_SD"; # this is important!
-      fsType = "ext4";
-      options = [ "noatime" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXOS_SD"; # this is important!
+    fsType = "ext4";
+    options = [ "noatime" ];
+  };
 
   swapDevices = [ ];
 
