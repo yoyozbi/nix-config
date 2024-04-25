@@ -18,12 +18,11 @@ let
       vim
     ]
     ++ lib.optionals (desktop != null) [
-      appflowy
       appimage-run
       libreoffice
       owncloud-client
       distrobox
-      cinnamon.warpinator
+      gparted
 
       samba
       rpi-imager
