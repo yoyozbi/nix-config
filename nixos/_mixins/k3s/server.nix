@@ -15,6 +15,7 @@
 
   # Link the file to k3s manifest directory
   system.activationScripts.k3s.text = ''
+    mkdir -p /var/lib/rancher/k3s/server/manifests
     ln -sf /etc/k3s.yaml /var/lib/rancher/k3s/server/manifests/init.yaml
   '';
 }
