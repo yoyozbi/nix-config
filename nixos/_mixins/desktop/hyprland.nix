@@ -19,10 +19,10 @@ let
     kitty
     dunst
     pamixer
+    swaylock-effects
   ];
 
   unstable-packages = with pkgs.unstable; [
-    swaylock-effects
   ];
 in
 {
