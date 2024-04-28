@@ -39,6 +39,12 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  boot.kernelParams = [
+    "cgroup_enable=cpuset"
+    "cgroup_memory=1"
+    "cgroup_enable=memory"
+  ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXOS_SD"; # this is important!
     fsType = "ext4";
