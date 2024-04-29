@@ -27,6 +27,7 @@ Updates are built by github actions and deployed to servers using cachix-deploy
  ```bash
 nix-shell -p sops --run "sops updatekeys nixos/_mixins/k3s/ocr-secrets.yml"
  ```
+ 5. Updates hosts in `hosts.nix`
 
 ## For tiny1 or tiny2
  1. Provision a new instance with ubuntu
