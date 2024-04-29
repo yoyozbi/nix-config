@@ -4,7 +4,7 @@ It uses [sops-nix](https://github.com/Mic92/sops-nix) [disko](https://github.com
 Updates are built by github actions and deployed to servers using cachix-deploy 
 # Hosts
 | Name | location | hardware | role |
-----------------------------------------
+|------|----------|----------|------|
 | ocr1 | oci      | arm64 4cpu 24G ram 60G ssd | k3s master |
 | tiny1 | oci     | amd64 2cpu 1G ram 60G ssd  | k3s agent  |
 | tiny2 | oci     | amd64 2cpu 1G ram 60G ssd  | k3s agent  |
