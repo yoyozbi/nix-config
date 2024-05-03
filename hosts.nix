@@ -70,13 +70,13 @@ in
         internalIp = "10.0.0.127";
         externalIp = "152.67.67.49";
         mac = "02:00:17:18:84:90";
-	rancher = false;
+        rancher = false;
       };
       tiny2 = {
         internalIp = "10.0.0.84";
         externalIp = "140.238.223.226";
         mac = "02:00:17:00:b0:5f";
-	rancher = false;
+        rancher = false;
       };
       rp = {
         internalIp = "192.168.1.2";
