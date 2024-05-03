@@ -22,6 +22,7 @@ let
       libreoffice
       owncloud-client
       distrobox
+      lens
 
       #troubleshooting disks
       gparted
