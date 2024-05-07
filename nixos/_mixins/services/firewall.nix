@@ -33,6 +33,18 @@ let
       }
     ];
   };
+  mqtt = {
+    hosts = [
+      "laptop-nix"
+    ];
+
+    tcpPortRanges = [
+      {
+        from = 1883;
+        to = 1883;
+      }
+    ];
+  };
 in
 {
   networking = {
@@ -41,7 +53,8 @@ in
       logReversePathDrops = true;
       allowedTCPPortRanges =
         lib.optionals (builtins.elem hostname wireguard.hosts) wireguard.tcpPortRanges
-        ++ lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.tcpPortRanges;
+        ++ lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.tcpPortRanges
+        ++ lib.optionals (builtins.elem hostname mqtt.hosts) mqtt.tcpPortRanges;
       allowedUDPPortRanges =
         lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.udpPortRanges;
     };
