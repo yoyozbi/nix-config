@@ -6,7 +6,6 @@
 let
   stable-packages = with pkgs; [
     shikane
-    waybar
     wofi
     wlogout
     sway-audio-idle-inhibit
@@ -19,10 +18,13 @@ let
     kitty
     dunst
     pamixer
-    swaylock-effects
+    python311
+    python311Packages.requests
   ];
 
   unstable-packages = with pkgs.unstable; [
+    waybar
+    swaylock-effects
   ];
 in
 {
