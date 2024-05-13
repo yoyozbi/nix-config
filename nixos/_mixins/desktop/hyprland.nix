@@ -25,6 +25,7 @@ let
   unstable-packages = with pkgs.unstable; [
     waybar
     swaylock-effects
+    cliphist
   ];
 in
 {
