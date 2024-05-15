@@ -118,7 +118,7 @@ in
 {
   imports =
     lib.optionals (desktop != null) [
-	../../_mixins/services/appimage.nix
+	../../services/appimage.nix
     ];
 
   environment.localBinInPath = true;
