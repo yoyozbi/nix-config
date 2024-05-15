@@ -5,26 +5,16 @@
 }:
 let
   pname = "kDrive";
-  version = "3.5.3.20231023";
+  version = "3.5.8.20240227";
   name = "${pname}-${version}-amd64";
 
   src = fetchurl {
     url = "https://download.storage.infomaniak.com/drive/desktopclient/${name}.AppImage";
-    sha256 = "UGpPHzBwQ5jDi0805GE0ZVAjjQf5CCQsxgrrr6qnqZE=";
+    sha256 = "v+Zw7R/JuwRCkidMb+hdmX9dau5aQhHIjcwgbCc5npQ=";
   };
 
   appimageContents = appimageTools.extractType2 {
     inherit name src;
-  };
-
-  desktopItem = makeDesktopItem {
-    name = pname;
-    exec = pname;
-    comment = "Infomaniak kDrive desktop client";
-    desktopName = "kDrive";
-    type = "Application";
-    icon = pname;
-    categories = [ "Office" ];
   };
 in
 appimageTools.wrapType2 {
@@ -36,12 +26,11 @@ appimageTools.wrapType2 {
     ];
   extraInstallCommands = ''
     runHook preInstall
-
-    mkdir -p $out/share/applications
-    mkdir -p $out/share/icons/hicolor
-    cp ${desktopItem}/share/applications/${pname}.desktop $out/share/applications/${pname}.desktop
-      cp -r ${appimageContents}/usr/share/icons/hicolor $out/share/icons/hicolor/
-      chmod -R +w $out/share
+    mkdir -p "$out/share/applications"
+    cp -r ${appimageContents}/usr/* "$out"
+    chmod -R +rw $out/share
+    chmod -R +x $out/bin
+    cp "${appimageContents}/kDrive_client.desktop" "$out/share/applications/kDrive_client.desktop"
 
     runHook postInstall
   '';

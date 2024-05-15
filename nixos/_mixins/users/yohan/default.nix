@@ -23,6 +23,7 @@ let
       owncloud-client
       distrobox
       lens
+      kDrive
 
       #troubleshooting disks
       gparted
@@ -117,6 +118,7 @@ in
 {
   imports =
     lib.optionals (desktop != null) [
+	../../_mixins/services/appimage.nix
     ];
 
   environment.localBinInPath = true;
