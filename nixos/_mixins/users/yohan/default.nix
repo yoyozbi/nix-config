@@ -16,6 +16,7 @@ let
       cifs-utils
       git
       vim
+      comma
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
