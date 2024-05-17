@@ -20,6 +20,9 @@ let
     pamixer
     python311
     python311Packages.requests
+    grim
+    slurp
+    swappy
   ];
 
   unstable-packages = with pkgs.unstable; [
