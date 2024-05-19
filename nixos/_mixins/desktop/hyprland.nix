@@ -23,7 +23,7 @@ let
     grim
     slurp
     swappy
-    networkmanager-openconnect
+    networkmanagerapplet 
   ];
 
   unstable-packages = with pkgs.unstable; [
