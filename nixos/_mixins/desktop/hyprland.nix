@@ -24,6 +24,7 @@ let
     slurp
     swappy
     networkmanagerapplet 
+    gnome.seahorse
   ];
 
   unstable-packages = with pkgs.unstable; [
@@ -50,17 +51,22 @@ in
       '';
     };
     dconf.enable = true;
-    regreet.enable = true;
   };
 
   environment.systemPackages = stable-packages ++ unstable-packages;
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "${username}";
-      };
+  services = {
+    greetd = {
+	enable = true;
+	settings = {
+	  default_session = {
+	    command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+	    user = "${username}";
+	  };
+	};
+    };
+    gvfs.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;	
     };
   };
 

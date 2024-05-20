@@ -1,7 +1,6 @@
 { fetchurl
 , makeDesktopItem
 , appimageTools
-,
 }:
 let
   pname = "kDrive";
@@ -23,14 +22,17 @@ appimageTools.wrapType2 {
     with pkgs; [
       libsecret
       libnotify
+      fuse3
+      libjpeg_original
+      zstd
     ];
+  
   extraInstallCommands = ''
     runHook preInstall
     mkdir -p "$out/share/applications"
     cp -r ${appimageContents}/usr/* "$out"
     chmod -R +rw $out/share
     chmod -R +x $out/bin
-    cp "${appimageContents}/kDrive_client.desktop" "$out/share/applications/kDrive_client.desktop"
 
     runHook postInstall
   '';
