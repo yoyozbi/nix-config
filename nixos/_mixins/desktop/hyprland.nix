@@ -31,8 +31,8 @@ let
   unstable-packages = with pkgs.unstable; [
     waybar
     cliphist
-    inputs.hypridle.packages.${pkgs.system}.hypridle
-    inputs.hyprlock.packages.${pkgs.system}.hyprlock
+    hypridle
+    hyprlock
   ];
 in
 {
