@@ -25,14 +25,14 @@ let
     networkmanagerapplet 
     gnome.seahorse
     libsForQt5.polkit-kde-agent
-
+    imagemagick_light
   ];
 
   unstable-packages = with pkgs.unstable; [
     waybar
     cliphist
-    hypridle
-    hyprlock
+    inputs.hypridle.packages.${pkgs.system}.hypridle
+    inputs.hyprlock.packages.${pkgs.system}.hyprlock
   ];
 in
 {
