@@ -10,7 +10,6 @@ let
     wlogout
     sway-audio-idle-inhibit
     swaybg
-    swayidle
     gnome.nautilus
     darkman
     pulsemixer
@@ -26,11 +25,14 @@ let
     networkmanagerapplet 
     gnome.seahorse
     libsForQt5.polkit-kde-agent
+
+  ] ++ [
+    inputs.hyprlock.packages.${pkgs.system}.hyprlock
+    inputs.hypridle.packages.${pkgs.hypridle}.hyprlock
   ];
 
   unstable-packages = with pkgs.unstable; [
     waybar
-    swaylock-effects
     cliphist
   ];
 in
