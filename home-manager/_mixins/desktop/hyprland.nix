@@ -7,9 +7,6 @@
       "${config.xdg.configHome}/shikane" = {
         source = ../dotfiles/shikane;
       };
-      "${config.xdg.configHome}/swaylock" = {
-        source = ../dotfiles/swaylock;
-      };
       "${config.xdg.configHome}/waybar" = {
         source = ../dotfiles/waybar;
       };

@@ -26,14 +26,13 @@ let
     gnome.seahorse
     libsForQt5.polkit-kde-agent
 
-  ] ++ [
-    inputs.hyprlock.packages.${pkgs.system}.hyprlock
-    inputs.hypridle.packages.${pkgs.system}.hypridle
   ];
 
   unstable-packages = with pkgs.unstable; [
     waybar
     cliphist
+    hypridle
+    hyprlock
   ];
 in
 {
@@ -79,7 +78,7 @@ in
   };
 
   security = {
-    pam.services.swaylock = { };
+    pam.services.hyprlock = { };
     polkit.enable = true;
   };
 }

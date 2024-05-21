@@ -29,7 +29,6 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprlock.url = "git+https://github.com/hyprwm/Hyprlock?submodules=1";
-    hypridle.url = "git+https://github.com/hyprwm/Hypridle?submodules=1";
   };
 
   outputs =
