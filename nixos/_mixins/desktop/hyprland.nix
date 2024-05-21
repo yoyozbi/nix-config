@@ -25,6 +25,7 @@ let
     swappy
     networkmanagerapplet 
     gnome.seahorse
+    libsForQt5.polkit-kde-agent
   ];
 
   unstable-packages = with pkgs.unstable; [
@@ -75,5 +76,8 @@ in
     wlr.enable = true;
   };
 
-  security.pam.services.swaylock = { };
+  security = {
+    pam.services.swaylock = { };
+    polkit.enable = true;
+  };
 }
