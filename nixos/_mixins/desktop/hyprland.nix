@@ -28,7 +28,7 @@ let
 
   ] ++ [
     inputs.hyprlock.packages.${pkgs.system}.hyprlock
-    inputs.hypridle.packages.${pkgs.hypridle}.hyprlock
+    inputs.hypridle.packages.${pkgs.system}.hypridle
   ];
 
   unstable-packages = with pkgs.unstable; [
