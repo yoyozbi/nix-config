@@ -19,6 +19,7 @@ let
       comma
     ]
     ++ lib.optionals (desktop != null) [
+      iosevka-comfy.comfy
       appimage-run
       libreoffice
       owncloud-client

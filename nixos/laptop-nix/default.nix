@@ -76,7 +76,7 @@
   hardware.enableAllFirmware = true;
 
   #enable Zen kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+#  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   hardware.opengl = {
     enable = true;
