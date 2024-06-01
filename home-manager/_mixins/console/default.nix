@@ -41,6 +41,7 @@ in
         php82Extensions.pcov
         bun
 	neovide
+	lazygit
         thefuck
         fira
         fira-go
