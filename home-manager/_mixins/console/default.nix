@@ -7,7 +7,12 @@ let
   inherit (pkgs.stdenv) isLinux;
 in
 {
-  fonts.fontconfig.enable = true;
+  fonts = {
+    fontconfig = {
+	enable = true;
+    };
+
+  };
   home = {
     file = {
       "${config.xdg.configHome}/yazi/keymap.toml".text = builtins.readFile ./yazi-keymap.toml;
@@ -23,6 +28,8 @@ in
     packages = with pkgs;
       [
         (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" "JetBrainsMono" "UbuntuMono" ]; })
+	iosevka-comfy.comfy
+
         # lsp
         tree-sitter
         eslint_d
@@ -33,6 +40,7 @@ in
         php82Extensions.xdebug
         php82Extensions.pcov
         bun
+	neovide
         thefuck
         fira
         fira-go
