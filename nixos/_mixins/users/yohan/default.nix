@@ -25,6 +25,7 @@ let
       distrobox
       lens
       kDrive
+			thunderbird
 
       #troubleshooting disks
       gparted
