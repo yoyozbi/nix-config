@@ -134,8 +134,10 @@ in
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "ch";
-    xkbVariant = "fr";
+    xkb = {
+			layout = "ch";
+    	variant = "fr";
+		};
   };
   # Configure console keymap
   console.keyMap = "fr_CH";
