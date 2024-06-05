@@ -24,7 +24,6 @@ let
       owncloud-client
       distrobox
       lens
-      kDrive
 			thunderbird
 
       #troubleshooting disks

@@ -88,8 +88,10 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" ];
-    layout = "ch";
-    xkbVariant = "fr";
+		xkb = {
+    	layout = "ch";
+    	variant = "fr";
+		};
   };
 
   hardware.nvidia = {
