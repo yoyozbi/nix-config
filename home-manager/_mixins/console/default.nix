@@ -35,8 +35,7 @@ in
         eslint_d
         stylua
         ruff
-        php82Packages.phpcs
-        php82Packages.php-cs-fixer
+        php82Packages.php-codesniffer
         php82Extensions.xdebug
         php82Extensions.pcov
         bun
@@ -175,7 +174,8 @@ in
 
     eza = {
       enable = true;
-      enableAliases = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
       extraOptions = [
         "--group-directories-first"
         "--header"
