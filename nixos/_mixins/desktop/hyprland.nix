@@ -26,6 +26,7 @@ let
     gnome.seahorse
     libsForQt5.polkit-kde-agent
     imagemagick_light
+		xwaylandvideobridge
   ];
 
   unstable-packages = with pkgs.unstable; [

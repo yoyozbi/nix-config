@@ -17,6 +17,7 @@ let
       git
       vim
       comma
+			graphviz
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
