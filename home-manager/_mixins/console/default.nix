@@ -221,9 +221,10 @@ in
         };
         push = {
           default = "matching";
+					autoSetupRemote = true;
         };
         pull = {
-          rebase = false;
+          rebase = true;
         };
         init = {
           defaultBranch = "main";
