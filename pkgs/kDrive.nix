@@ -1,39 +1,34 @@
-{ fetchurl
+{ fetchFromGitHub
 , makeDesktopItem
-, appimageTools
+, stdenv
+, pkgs
 }:
 let
   pname = "kDrive";
-  version = "3.5.8.20240227";
-  name = "${pname}-${version}-amd64";
+  version = "3.6.1";
+  name = "${pname}-${version}";
 
-  src = fetchurl {
-    url = "https://download.storage.infomaniak.com/drive/desktopclient/${name}.AppImage";
-    sha256 = "v+Zw7R/JuwRCkidMb+hdmX9dau5aQhHIjcwgbCc5npQ=";
+  src = fetchFromGitHub {
+		owner = "infomaniak";
+		repo = "desktop-kDrive";
+		rev = "${version}";
+    sha256 = "Aq7/cYIntVglfaAgKJsbfvTzwPcSWQkR4O0Sc+puhpw=";
   };
 
-  appimageContents = appimageTools.extractType2 {
-    inherit name src;
-  };
-in
-appimageTools.wrapType2 {
-  inherit name version src pname;
-  extraPkgs = pkgs:
-    with pkgs; [
-      libsecret
-      libnotify
-      fuse3
-      libjpeg_original
-      zstd
-    ];
   
-  extraInstallCommands = ''
-    runHook preInstall
-    mkdir -p "$out/share/applications"
-    cp -r ${appimageContents}/usr/* "$out"
-    chmod -R +rw $out/share
-    chmod -R +x $out/bin
-
-    runHook postInstall
-  '';
+in
+stdenv.mkDerivation rec {
+	inherit pname version src;
+	nativeBuildInputs = [ pkgs.kdePackages.wrapQtAppsHook pkgs.cmake pkgs.pkg-config ];
+	buildInputs = with pkgs; [
+		qt6.full
+		qt6.qtbase
+		poco
+		libsecret
+		sentry-native
+		log4cplus
+	];
+	env = {
+		log4cplus_DIR = "${pkgs.log4cplus}/lib";
+	};
 }
