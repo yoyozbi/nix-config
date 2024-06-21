@@ -26,6 +26,11 @@ let
       distrobox
       lens
 			thunderbird
+			kdenlive
+			ffmpeg
+			SDL
+			xml2
+			handbrake
 
       #troubleshooting disks
       gparted

@@ -27,6 +27,7 @@ let
     libsForQt5.polkit-kde-agent
     imagemagick_light
 		xwaylandvideobridge
+		brightnessctl
   ];
 
   unstable-packages = with pkgs.unstable; [
@@ -44,7 +45,7 @@ in
   programs = {
     hyprland = {
       enable = true;
-#      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
     bash = {
       interactiveShellInit = ''
