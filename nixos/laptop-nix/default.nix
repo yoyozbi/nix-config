@@ -1,5 +1,4 @@
 { inputs
-, pkgs
 , lib
 , config
 , platform
@@ -76,7 +75,7 @@
   hardware.enableAllFirmware = true;
 
   #enable Zen kernel
-#  boot.kernelPackages = pkgs.linuxPackages_zen;
+  #  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   hardware.opengl = {
     enable = true;
@@ -87,10 +86,10 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" ];
-		xkb = {
-    	layout = "ch";
-    	variant = "fr";
-		};
+    xkb = {
+      layout = "ch";
+      variant = "fr";
+    };
   };
 
   hardware.nvidia = {

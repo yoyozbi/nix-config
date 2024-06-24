@@ -9,9 +9,8 @@ in
 {
   fonts = {
     fontconfig = {
-	enable = true;
+      enable = true;
     };
-
   };
   home = {
     file = {
@@ -28,7 +27,7 @@ in
     packages = with pkgs;
       [
         (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" "JetBrainsMono" "UbuntuMono" ]; })
-	iosevka-comfy.comfy
+        iosevka-comfy.comfy
 
         # lsp
         tree-sitter
@@ -39,8 +38,8 @@ in
         php82Extensions.xdebug
         php82Extensions.pcov
         bun
-	neovide
-	lazygit
+        neovide
+        lazygit
         thefuck
         fira
         fira-go
@@ -221,7 +220,7 @@ in
         };
         push = {
           default = "matching";
-					autoSetupRemote = true;
+          autoSetupRemote = true;
         };
         pull = {
           rebase = true;

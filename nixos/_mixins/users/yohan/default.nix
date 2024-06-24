@@ -17,7 +17,7 @@ let
       git
       vim
       comma
-			graphviz
+      graphviz
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
@@ -25,12 +25,14 @@ let
       owncloud-client
       distrobox
       lens
-			thunderbird
-			kdenlive
-			ffmpeg
-			SDL
-			xml2
-			handbrake
+      thunderbird
+      kdenlive
+      ffmpeg
+      SDL
+      xml2
+      handbrake
+      kDrive
+      musescore
 
       #troubleshooting disks
       gparted
@@ -123,10 +125,9 @@ let
     ];
 in
 {
-  imports =
-    lib.optionals (desktop != null) [
-	../../services/appimage.nix
-    ];
+  imports = lib.optionals (desktop != null) [
+    ../../services/appimage.nix
+  ];
 
   environment.localBinInPath = true;
   environment.systemPackages = stable-packages ++ unstable-packages;
@@ -140,9 +141,9 @@ in
   # Configure keymap in X11
   services.xserver = {
     xkb = {
-			layout = "ch";
-    	variant = "fr";
-		};
+      layout = "ch";
+      variant = "fr";
+    };
   };
   # Configure console keymap
   console.keyMap = "fr_CH";

@@ -22,12 +22,12 @@ let
     grim
     slurp
     swappy
-    networkmanagerapplet 
+    networkmanagerapplet
     gnome.seahorse
     libsForQt5.polkit-kde-agent
     imagemagick_light
-		xwaylandvideobridge
-		brightnessctl
+    xwaylandvideobridge
+    brightnessctl
   ];
 
   unstable-packages = with pkgs.unstable; [
@@ -60,17 +60,17 @@ in
   environment.systemPackages = stable-packages ++ unstable-packages;
   services = {
     greetd = {
-	enable = true;
-	settings = {
-	  default_session = {
-	    command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-	    user = "${username}";
-	  };
-	};
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          user = "${username}";
+        };
+      };
     };
     gvfs.enable = true;
     gnome = {
-      gnome-keyring.enable = true;	
+      gnome-keyring.enable = true;
     };
   };
 
