@@ -1,12 +1,11 @@
 {...}:
 {
-	services.xserver.enable = true;
-	services.xserver.displayManager.sddm.enable = true;
-	services.xserver.desktopManager.plasma6.enable = true;
-
-	qt = {
-  	enable = true;
-  	platformTheme = "gnome";
-  	style = "adwaita-dark";
+	imports = [
+		../services/networkmanager.nix
+	];
+	services = {
+		xserver.enable = true;
+		displayManager.sddm.enable = true;
+		desktopManager.plasma6.enable = true;
 	};
 }
