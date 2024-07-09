@@ -2,6 +2,7 @@
 {
 	imports = [
 		../services/networkmanager.nix
+    ../services/pipewire.nix
 	];
 	services = {
 		xserver.enable = true;

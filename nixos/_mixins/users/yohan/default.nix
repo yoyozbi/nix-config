@@ -32,7 +32,6 @@ let
       xml2
       handbrake
       kDrive
-      musescore
 
       #troubleshooting disks
       gparted
@@ -122,6 +121,7 @@ let
   unstable-packages = with pkgs.unstable;
     lib.optionals (desktop != null) [
       warp-terminal
+      musescore
     ];
 in
 {
@@ -137,6 +137,7 @@ in
   ];
 
   programs.zsh.enable = true;
+	programs.nix-ld.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
