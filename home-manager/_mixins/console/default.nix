@@ -28,6 +28,7 @@ in
       [
         (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" "JetBrainsMono" "UbuntuMono" ]; })
         iosevka-comfy.comfy
+				lua-language-server
 
         # lsp
         tree-sitter
