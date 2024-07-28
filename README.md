@@ -10,6 +10,7 @@ Updates are built by github actions and deployed to servers using cachix-deploy
 | tiny2 | oci     | amd64 2cpu 1G ram 60G ssd  | k3s agent  |
 | rp    | home    | rpi4b with 4gb ram         | k3s cluster (solo)  |
 | laptop-nix | with me | dell xps16 9520 (i7 12700H 32G ram 1TB ssd) | daily driver |
+| surface-nix | with me | Surface Pro 5 | handwritten notes |
 
 
 # Installation (or reinstallation)
