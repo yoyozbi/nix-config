@@ -19,7 +19,6 @@
     initrd = {
       availableKernelModules = [ "xhci_pci" "nvme"  "usb_storage" "sd_mod" ];
       kernelModules = [ ];
-      };
     };
 
     kernelParams = [ "net.ipv4.ip_forward=0" ];
@@ -33,9 +32,6 @@
   # networking.interfaces.enp4s0u2u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   hardware.enableAllFirmware = true;
-
-  #enable Zen kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   hardware.opengl = {
     enable = true;
