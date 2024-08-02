@@ -11,7 +11,6 @@
 }: {
   imports =
     [
-      ./_mixins/console
       #inputs.home-manager.nixosModules.home-manager
     ]
     ++ lib.optional (builtins.isPath (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
