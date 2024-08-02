@@ -24,15 +24,12 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                # disable settings.keyFile if you want to use interactive password entry
-                passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
-                  allowDiscards = true;
-                  #keyFile = "/tmp/secret.key";
+									crypttabExtraOpts = ["tpm2-device=auto" "tpm2-pcrs=7" "token-timeout=10"];
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ];
+                  extraArgs = [ "-L" "nixos" "-f" ];
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
@@ -48,7 +45,7 @@
                     };
                     "/swap" = {
                       mountpoint = "/.swapvol";
-                      swap.swapfile.size = "10G";
+                      swap.swapfile.size = "20M";
                     };
                   };
                 };
