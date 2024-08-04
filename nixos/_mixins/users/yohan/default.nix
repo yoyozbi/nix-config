@@ -121,7 +121,6 @@ let
       discord
       steam
     ] ++ lib.optionals (desktop != null && hostname == "surface-nix") [
-      squeekboard
     ];
 
   unstable-packages = with pkgs.unstable;
