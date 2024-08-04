@@ -1,5 +1,6 @@
 { config
 , desktop
+, hostname
 , lib
 , pkgs
 , ...
@@ -23,59 +24,44 @@ let
       appimage-run
       libreoffice
       owncloud-client
-      distrobox
-      lens
-      thunderbird
-      kdenlive
-      ffmpeg
-      SDL
-      xml2
-      handbrake
-      kDrive
+      
 
       #troubleshooting disks
       gparted
       ntfs3g
       btrfs-progs
-
       samba
-      rpi-imager
-
-      minikube
-
-      #Music
-      tidal-hifi
-      spotify
-      stremio
-      qbittorrent
-
-      obs-studio
-
-      # Discord
-      discord
-      steam
+      
 
       # Other
-      beekeeper-studio
       obsidian
-      structorizer
-      vlc
+      firefox-wayland
+    ] ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
 
-      # Photos
-      darktable
-      digikam
-      gimp
-      # Dev
-      # tmux
-      bruno
-      python311
-      python311Packages.jupyter
-      python311Packages.notebook
-      python311Packages.pip
+      floorp
+      microsoft-edge
 
-      # IDE
-      #neovim
-      #jetbrains-toolbox
+      # Dotnet
+      dotnet-sdk_8
+      mono
+
+      # PHP
+      php82
+      php82Packages.composer
+      gitlab-runner
+      wl-clipboard
+
+      # Rust
+      rustup
+      rustPackages.clippy
+      rustfmt
+      openssl.dev
+      #	rust
+      #	rust-analyzer-unwrapped
+
+      # Go
+      go
+      gopls
 
       # C/C++
       mesa # Opengl
@@ -92,32 +78,50 @@ let
       wget
       jetbrains-toolbox
 
-      # Rust
-      rustup
-      rustPackages.clippy
-      rustfmt
-      openssl.dev
-      #	rust
-      #	rust-analyzer-unwrapped
+      # Dev
+      bruno
+      python311
+      python311Packages.jupyter
+      python311Packages.notebook
+      python311Packages.pip
 
-      # Go
-      go
-      gopls
+      # Other
+      beekeeper-studio
+      structorizer
+      vlc
 
-      # PHP
-      php82
-      php82Packages.composer
-      gitlab-runner
-      wl-clipboard
+      # Photos
+      darktable
+      digikam
+      gimp
 
-      #Dotnet
-      dotnet-sdk_8
-      mono
+      distrobox
+      lens
+      thunderbird
+      kdenlive
+      ffmpeg
+      SDL
+      xml2
+      handbrake
+      kDrive
 
-      floorp
-      firefox-wayland
-      microsoft-edge
+      rpi-imager
+
+      minikube
+
+      #Music
+      tidal-hifi
+      spotify
+      stremio
+      qbittorrent
+
+      obs-studio
+
+      # Discord
+      discord
+      steam
     ];
+
   unstable-packages = with pkgs.unstable;
     lib.optionals (desktop != null) [
       warp-terminal
