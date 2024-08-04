@@ -121,6 +121,7 @@ let
       discord
       steam
     ] ++ lib.optionals (desktop != null && hostname == "surface-nix") [
+      maliit-keyboard
     ];
 
   unstable-packages = with pkgs.unstable;
