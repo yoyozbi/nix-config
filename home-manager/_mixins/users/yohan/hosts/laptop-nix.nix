@@ -1,6 +1,6 @@
 {...} :
 {
 	imports = [
-      ./_mixins/console
-	]
+      ../../../console
+	];
 }
