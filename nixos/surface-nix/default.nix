@@ -2,12 +2,13 @@
 , lib
 , config
 , platform
+, pkgs
 , ...
 }: {
   imports = [
 		./disks.nix
     #./hardware-configuration.nix
-    ../_mixins/hardware/systemdboot.nix
+    ../_mixins/hardware/lanzaboote.nix
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
     ../_mixins/services/bluetooth.nix
     ../_mixins/services/firewall.nix
@@ -33,6 +34,9 @@
   # networking.interfaces.enp4s0u2u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   hardware.enableAllFirmware = true;
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
 
   hardware.opengl = {
     enable = true;
