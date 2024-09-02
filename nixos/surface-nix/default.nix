@@ -12,6 +12,7 @@
     ../_mixins/services/bluetooth.nix
     ../_mixins/services/firewall.nix
     ../_mixins/services/fwupd.nix
+    ../_mixins/services/tpm.nix
   ];
 
 
