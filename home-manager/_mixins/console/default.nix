@@ -29,7 +29,6 @@ in
         (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" "JetBrainsMono" "UbuntuMono" ]; })
         iosevka-comfy.comfy
 				lua-language-server
-				zed-editor
 
         # lsp
         tree-sitter
