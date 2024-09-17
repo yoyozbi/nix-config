@@ -40,6 +40,7 @@ let
 
       floorp
       microsoft-edge
+			#superProductivity
 
       # Dotnet
       dotnet-sdk_8
