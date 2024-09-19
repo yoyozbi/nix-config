@@ -14,13 +14,14 @@
     ../_mixins/services/firewall.nix
     ../_mixins/services/fwupd.nix
     ../_mixins/services/tpm.nix
+    ../_mixins/services/touchpad.nix
   ];
 
 
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "nvme"  "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
+      kernelModules = [ "tpm_tis" ];
     };
 
     kernelParams = [ "net.ipv4.ip_forward=0" ];
@@ -51,6 +52,13 @@
       variant = "fr";
     };
   };
+
+  services.iptsd.config = {
+    Touch = {
+        DisableOnPalm = true;
+        DisableOnStylus = true;
+      };
+    };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

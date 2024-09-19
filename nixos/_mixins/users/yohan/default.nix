@@ -122,6 +122,7 @@ let
       steam
     ] ++ lib.optionals (desktop != null && hostname == "surface-nix") [
       maliit-keyboard
+      unstable.rnote
     ];
 
   unstable-packages = with pkgs.unstable;
