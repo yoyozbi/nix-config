@@ -446,19 +446,6 @@
         "type": "github"
       }
     },
-    "nix-flatpak": {
-      "locked": {
-        "lastModified": 1721549352,
-        "narHash": "sha256-nlXJa8RSOX0kykrIYW33ukoHYq+FOSNztHLLgqKwOp8=",
-        "path": "/nix/store/m9rmqxlg9cbh5z5wwcgbfm6zpw3nd1mx-source",
-        "rev": "dbce39ea8664820ba9037caaf1e2fad365ed6b4b",
-        "type": "path"
-      },
-      "original": {
-        "id": "nix-flatpak",
-        "type": "indirect"
-      }
-    },
     "nix-formatter-pack": {
       "inputs": {
         "nixpkgs": [
@@ -760,7 +747,6 @@
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
         "lanzaboote": "lanzaboote",
-        "nix-flatpak": "nix-flatpak",
         "nix-formatter-pack": "nix-formatter-pack",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
