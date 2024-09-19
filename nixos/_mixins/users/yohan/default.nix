@@ -24,23 +24,21 @@ let
       appimage-run
       libreoffice
       owncloud-client
-      
 
       #troubleshooting disks
       gparted
       ntfs3g
       btrfs-progs
       samba
-      
 
       # Other
       obsidian
       firefox-wayland
-    ] ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
-
+    ]
+    ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
       floorp
       microsoft-edge
-			superProductivity
+      superProductivity
 
       # Dotnet
       dotnet-sdk_8
@@ -121,7 +119,8 @@ let
       # Discord
       discord
       steam
-    ] ++ lib.optionals (desktop != null && hostname == "surface-nix") [
+    ]
+    ++ lib.optionals (desktop != null && hostname == "surface-nix") [
       maliit-keyboard
       unstable.rnote
     ];
@@ -145,7 +144,7 @@ in
   ];
 
   programs.zsh.enable = true;
-	programs.nix-ld.enable = true;
+  programs.nix-ld.enable = true;
 
   # Configure keymap in X11
   services.xserver = {

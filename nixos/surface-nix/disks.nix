@@ -25,7 +25,7 @@
                 type = "luks";
                 name = "crypted";
                 settings = {
-									crypttabExtraOpts = ["tpm2-device=auto" "tpm2-pcrs=7" "token-timeout=10"];
+                  crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-pcrs=7" "token-timeout=10" ];
                 };
                 content = {
                   type = "btrfs";

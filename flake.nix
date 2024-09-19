@@ -66,7 +66,7 @@
           username = "yohan";
           desktop = "kde";
         };
-			  "surface-nix" = libx.mkHost {
+        "surface-nix" = libx.mkHost {
           hostname = "surface-nix";
           username = "yohan";
           desktop = "kde";

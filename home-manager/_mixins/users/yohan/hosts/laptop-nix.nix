@@ -1,6 +1,5 @@
-{...} :
-{
-	imports = [
-      ../../../console
-	];
+{ ... }: {
+  imports = [
+    ../../../console
+  ];
 }

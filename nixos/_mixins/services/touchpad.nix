@@ -1,7 +1,7 @@
 _: {
   services = {
-      libinput = {
-      	enable = true;
-      };
+    libinput = {
+      enable = true;
+    };
   };
 }

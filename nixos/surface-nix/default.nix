@@ -6,7 +6,7 @@
 , ...
 }: {
   imports = [
-		./disks.nix
+    ./disks.nix
     #./hardware-configuration.nix
     ../_mixins/hardware/lanzaboote.nix
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -17,10 +17,9 @@
     ../_mixins/services/touchpad.nix
   ];
 
-
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme"  "usb_storage" "sd_mod" ];
+      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ "tpm_tis" ];
     };
 
@@ -55,10 +54,10 @@
 
   services.iptsd.config = {
     Touch = {
-        DisableOnPalm = true;
-        DisableOnStylus = true;
-      };
+      DisableOnPalm = true;
+      DisableOnStylus = true;
     };
+  };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

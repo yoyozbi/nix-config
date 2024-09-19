@@ -1,5 +1,11 @@
-{ stdenv , lib , fetchurl , appimageTools , makeWrapper , electron }:
-
+{ stdenv
+, lib
+, fetchurl
+, appimageTools
+, makeWrapper
+, electron
+,
+}:
 stdenv.mkDerivation rec {
   pname = "super-productivity";
   version = "10.0.7";
