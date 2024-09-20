@@ -34,6 +34,7 @@ let
       # Other
       obsidian
       firefox-wayland
+      unstable.rnote
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
       floorp
@@ -90,8 +91,9 @@ let
       vlc
 
       # Photos
-      darktable
+    	rawtherapee
       digikam
+      exiftool
       gimp
 
       distrobox
@@ -122,7 +124,6 @@ let
     ]
     ++ lib.optionals (desktop != null && hostname == "surface-nix") [
       maliit-keyboard
-      unstable.rnote
     ];
 
   unstable-packages = with pkgs.unstable;
