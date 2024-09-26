@@ -25,7 +25,7 @@ _: {
         };
 
         tiny1 = {
-          hostname = "152.67.67.49";
+          hostname = "152.67.78.81";
           user = "nix";
           identityFile = "/home/yohan/.ssh/id_github";
         };

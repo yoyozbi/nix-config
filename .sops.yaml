@@ -1,7 +1,7 @@
 keys:
   - &laptop age17ruk8judftnkrgsm76ca8m3468ll53ttw4taftv3xtann9ww7ykq5m5ujx
   - &ocr1 age1r46e0k2t89dpqf93vqerkatq9jevl8pj2lhv7d06axw5q3svs53sgy2da8 
-  - &tiny1 age14p2xjnqf26xsyzjydj20jdgyrtgz5vhllymefp47t7x5wpm8efzq90zhyk
+  - &tiny1 age1xrwyye8j3ha5amfppy6jfszusrkge0aly8qe6gwn9sezr5ec7gmqklvx0e
   - &tiny2 age1ff52gljaqp4mx8qk24rve69p6exzr3sjpcd77cycqgcpdfr9uvaqmslnr8
   - &rp age17su9qtxjxdwuf5je5t86l2vg44n7v6th2hkkynyppn4c6gcxjueqmlyz9c
 creation_rules:

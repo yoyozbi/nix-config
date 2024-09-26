@@ -68,8 +68,8 @@ in
       };
       tiny1 = {
         internalIp = "10.0.0.127";
-        externalIp = "152.67.67.49";
-        mac = "02:00:17:18:84:90";
+        externalIp = "152.67.78.81";
+        mac = "02:00:17:00:49:ae";
         rancher = false;
       };
       tiny2 = {
