@@ -35,6 +35,7 @@ let
       obsidian
       firefox-wayland
       unstable.rnote
+			bitwarden
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
       floorp
