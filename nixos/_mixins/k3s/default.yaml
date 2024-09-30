@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: cloudflared
-  replicas: 1
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 25%
