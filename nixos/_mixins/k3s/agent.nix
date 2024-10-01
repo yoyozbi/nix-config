@@ -6,7 +6,7 @@
 
   services.k3s = {
     role = "agent";
-		extraFlags = toString [
+    extraFlags = toString [
       "--node-external-ip=${config.networking.yoyozbi.currentHost.externalIp}"
       "--node-ip=${config.networking.yoyozbi.currentHost.internalIp}"
     ];

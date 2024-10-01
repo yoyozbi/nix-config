@@ -35,7 +35,7 @@ let
       obsidian
       firefox-wayland
       unstable.rnote
-			bitwarden
+      bitwarden
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
       floorp
@@ -92,7 +92,7 @@ let
       vlc
 
       # Photos
-    	rawtherapee
+      rawtherapee
       digikam
       exiftool
       gimp

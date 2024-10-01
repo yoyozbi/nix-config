@@ -19,6 +19,7 @@
     k3s = {
       enable = true;
       tokenFile = lib.mkDefault config.sops.secrets.k3s-server-token.path;
+      package = pkgs.k3s;
     };
 
     openiscsi = {
@@ -35,7 +36,6 @@
   environment.systemPackages = [
     pkgs.nfs-utils
     pkgs.openiscsi
-    pkgs.k3s
     (pkgs.writeShellScriptBin "k3s-reset-node" (builtins.readFile ./k3s-reset-node))
   ];
 }
