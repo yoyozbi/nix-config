@@ -25,7 +25,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name:  ⚠️ Build /  🚀 Deploy
+    name:  ⚠️ Build
     outputs: 
       build: ${{ steps.agent.outputs.build }}
     steps:

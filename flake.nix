@@ -89,8 +89,8 @@
         };
       };
 
-			package.${system} = with pkgs; {
-				 tiny1 = cachix-deploy-lib.spec {
+			packages.${system} = with pkgs; {
+				tiny1 = cachix-deploy-lib.spec {
           agents = {
             "tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
           };
@@ -99,6 +99,7 @@
           agents = {
             "tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
           };
+				};
 				ocr1 = cachix-deploy-lib.spec {
 					agents = {
 						"ocr1" = self.nixosConfigurations."ocr1".config.system.build.toplevel;
