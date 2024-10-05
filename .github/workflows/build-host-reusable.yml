@@ -22,9 +22,6 @@ on:
         required: true
       CACHIX_ACTIVATE_TOKEN:
         required: true
-    outputs:
-      build:
-        value: ${{ jobs.build.outputs.build }}
 
 jobs:
   build:
@@ -48,3 +45,30 @@ jobs:
           out_path=$(nix build -L --print-out-paths --accept-flake-config .#hosts.${{ inputs.hostname }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    name: 🚀 Deploy
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-nix-cachix
+        with:
+          cacheName: ${{ inputs.cacheName }}
+          setup-qemu: ${{ inputs.setup-qemu }}
+          extra-nix-config: ${{ inputs.extra-nix-config }}
+          cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: 🚀 Deploy
+        env: 
+          CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+        run: |
+          cat << EOF >> deploy.json
+          {
+            "agents": {
+              "${{ inputs.hostname }}": "${{ needs.build.outputs.build }}"
+            }
+          }
+          EOF
+          cachix deploy activate deploy.json
