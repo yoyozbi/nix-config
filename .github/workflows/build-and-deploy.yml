@@ -24,6 +24,7 @@ jobs:
     name: Build rp
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    secrets: inherit
     with:
       hostname: rp
       cacheName: ${{ needs.prepare.outputs.cacheName }}
@@ -34,6 +35,7 @@ jobs:
     name: Build ocr1
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    secrets: inherit
     with:
       hostname: ocr1
       cacheName: ${{ needs.prepare.outputs.cacheName }}
@@ -44,6 +46,7 @@ jobs:
     name: Build tiny1
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    secrets: inherit
     with:
       hostname: tiny1
       cacheName: ${{ needs.prepare.outputs.cacheName }}
@@ -52,6 +55,7 @@ jobs:
     name: Build tiny2
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    secrets: inherit
     with:
       hostname: tiny2
       cacheName: ${{ needs.prepare.outputs.cacheName }}
