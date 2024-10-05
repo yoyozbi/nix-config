@@ -37,12 +37,12 @@ jobs:
         if: ${{ inputs.setup-qemu }}
       - uses: cachix/install-nix-action@v25
         name: Install with extra config
-        if: github.event_name == 'workflow_call' && github.event.inputs.extra-nix-config != ''
+        if: github.event.inputs.extra-nix-config != ''
         with:
           extra_nix_config: "extra-platforms = aarch64-linux"
       - uses: cachix/install-nix-action@v25
         name: Install
-        if: github.event_name != 'workflow_call' || github.event.inputs.extra-nix-config == ''
+        if: github.event.inputs.extra-nix-config == ''
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v14
         with:

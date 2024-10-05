@@ -12,6 +12,10 @@ on:  # yamllint disable-line rule:truthy
 env:
   CACHE_NAME: homelab-yohan
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   prepare:
     runs-on: ubuntu-latest
