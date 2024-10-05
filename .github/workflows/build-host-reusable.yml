@@ -3,7 +3,7 @@ name: Build host reusable workflow
 on:
   workflow_call:
     inputs:
-      hostname:
+      outputName:
         required: true
         type: string
       cacheName:
@@ -22,6 +22,8 @@ on:
         required: true
       CACHIX_ACTIVATE_TOKEN:
         required: true
+    outputs:
+      build: ${{jobs.build.outputs.build }}
 
 jobs:
   build:
@@ -51,7 +53,7 @@ jobs:
       - name: ⚠️  Build 
         id: agent
         run: | 
-          out_path=$(nix build -L --print-out-paths --accept-flake-config .#hosts.${{ inputs.hostname }})
+          out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.outputName }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
   deploy:
@@ -69,6 +71,7 @@ jobs:
         with:
           name: ${{ inputs.cacheName }}
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
       - name: 🚀 Deploy
         env: 
           CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
