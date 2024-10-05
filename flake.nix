@@ -91,10 +91,14 @@
 
 			packages.${system} = with pkgs; {
 			  hosts = {
-					tiny1 = self.nixosConfigurations."tiny1".config.system.build.toplevel;
-					tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
-					ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
-					rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+				  x86_64 = {
+						tiny1 = self.nixosConfigurations."tiny1".config.system.build.toplevel;
+						tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
+					};
+					aarch64 = {
+						ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
+						rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+					};
 				};
 			};
 

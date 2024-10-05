@@ -1,0 +1,40 @@
+name: Setup nix and cachix
+description: setup nix and cachix
+author: 'Zbinden Yohan'
+inputs:
+  cacheName:
+    required: true
+    type: string
+  setup-qemu:
+    required: false
+    type: boolean
+    default: false
+  extra-nix-config:
+    required: false
+    type: string
+  cachixAuthToken:
+    description: 'the cachix auth token'
+    required: true
+
+
+runs: 
+ using: composite
+ steps:
+  - uses: actions/checkout@v4
+    with:
+      fetch-depth: 0
+  - uses: docker/setup-qemu-action@v3
+    if: ${{ inputs.setup-qemu }}
+  - uses: cachix/install-nix-action@v25
+    name: Install with extra config
+    if: ${{ inputs.extra-nix-config != '' }}
+    with:
+      extra_nix_config: ${{ inputs.extra-nix-config }}
+  - uses: cachix/install-nix-action@v25
+    name: Install
+    if: ${{ inputs.extra-nix-config == '' }}
+  - uses: DeterminateSystems/magic-nix-cache-action@main
+  - uses: cachix/cachix-action@v14
+    with:
+      name: ${{ inputs.cacheName }}
+      authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
