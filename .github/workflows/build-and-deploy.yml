@@ -74,7 +74,7 @@ jobs:
   deploy-x86_64:
     needs: [build-x86_64]
     runs-on: ubuntu-latest
-    if: github.ref == "refs/heads/main"
+    if: github.ref == 'refs/heads/main'
     name:  🚀 Deploy / x86_64 (incremental)
     steps:
       - uses: actions/checkout@v4
