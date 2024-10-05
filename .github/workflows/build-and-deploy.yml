@@ -74,10 +74,10 @@ jobs:
          cat << EOF << deploy.json
          {
            "agents": {
-              "rp": "${{ needs.build-rp.outputs.rp }}",
-              "tiny1": "${{ needs.build-tiny1.outputs.tiny1 }}",
-              "tiny2": "${{ needs.build-tiny2.outputs.tiny2 }}",
-              "ocr1": "${{ needs.build-ocr1.outputs.ocr1 }}"
+              "rp": "${{ needs.build-rp.outputs.build }}",
+              "tiny1": "${{ needs.build-tiny1.outputs.build }}",
+              "tiny2": "${{ needs.build-tiny2.outputs.build }}",
+              "ocr1": "${{ needs.build-ocr1.outputs.build }}"
             }
          }
          EOF

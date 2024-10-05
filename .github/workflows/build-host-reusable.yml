@@ -16,12 +16,18 @@ on:
       extra-nix-config:
         required: false
         type: string
+    secrets:
+      CACHIX_AUTH_TOKEN:
+        description: 'the cachix auth token'
+        required: true
+    outputs:
+      build: ${{ jobs.build.outputs.build }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     outputs: 
-      ${{ inputs.hostname }}: ${{ steps.agent.outputs }}
+      build: ${{ steps.agent.outputs.build }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -46,5 +52,5 @@ jobs:
         run: | 
           out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.hostname }})
           echo "Built $out_path"
-          echo "${{ inputs.hostname }}=$out_path" >> $GITHUB_OUTPUT
+          echo "build=$out_path" >> $GITHUB_OUTPUT
 
