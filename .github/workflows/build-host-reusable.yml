@@ -34,7 +34,9 @@ jobs:
       build: ${{ steps.agent.outputs.build }}
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-nix-cachix.yml
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-nix-cachix
         with:
           cacheName: ${{ inputs.cacheName }}
           setup-qemu: ${{ inputs.setup-qemu }}
