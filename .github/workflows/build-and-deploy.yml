@@ -81,7 +81,7 @@ jobs:
         env:
           CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
         run: |
-          cat << EOF >> deploy.json
+          cat << EOF > deploy.json
           {
             "agents": {
               "ocr1": "${{ needs.ocr1.outputs.build }}",
@@ -110,7 +110,7 @@ jobs:
         env:
           CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
         run: |
-          cat << EOF >> deploy.json
+          cat << EOF > deploy.json
           {
             "agents": {
               "tiny1": "${{ needs.tiny1.outputs.build }}",
@@ -123,7 +123,7 @@ jobs:
           CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
         run: |
           rm deploy.json
-          cat << EOF >> deploy.json
+          cat << EOF > deploy.json
           {
             "agents": {
               "tiny2": "${{ needs.tiny2.outputs.build }}",
