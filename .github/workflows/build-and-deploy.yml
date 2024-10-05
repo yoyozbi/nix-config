@@ -1,4 +1,5 @@
 name: "Build and Deploy"
+
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:  # allows manual triggering
   push:
@@ -7,34 +8,66 @@ on:  # yamllint disable-line rule:truthy
   pull_request:
     branches:
       - main
+
+env:
+  CACHE_NAME: homelab-yohan
+
 jobs:
-  build:
+  build-rp:
+    name: Build rp
+    uses: ./.github/workflows/build-host-reusable.yml
+    with:
+      hostname: rp
+      cacheName: ${{ env.CACHE_NAME }}
+      setup-qemu: true
+      extra-nix-config: "extra-platforms = aarch64-linux"
+
+  build-ocr1:
+    name: Build ocr1
+    uses: ./.github/workflows/build-host-reusable.yml
+    with:
+      hostname: ocr1
+      cacheName: ${{ env.CACHE_NAME }}
+      setup-qemu: true
+      extra-nix-config: "extra-platforms = aarch64-linux"
+
+  build-tiny1:
+    name: Build tiny1
+    uses: ./.github/workflows/build-host-reusable.yml
+    with:
+      hostname: tiny1
+      cacheName: ${{ env.CACHE_NAME }}
+
+  build-tiny2:
+    name: Build tiny2
+    uses: ./.github/workflows/build-host-reusable.yml
+    with:
+      hostname: tiny2
+      cacheName: ${{ env.CACHE_NAME }}
+
+  deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: Homelab
-      url: "https://app.cachix.org/deploy/workspace/homelab-yohan"  # ⑴
+    needs: [build-rp, build-ocr1, build-tiny1, build-tiny2]
+    if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: docker/setup-qemu-action@v3                                 # ⑵
-      - uses: cachix/install-nix-action@v25
-        name: Install
-        with:
-          extra_nix_config: "extra-platforms = aarch64-linux"             # ⑶
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: cachix/cachix-action@v14                                    # ⑷
-        with:
-          name: homelab-yohan
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - name: Check
-        run: nix flake check
-      - name: Build
-        run: nix build --print-build-logs .#cachix-deploy-spec            # ⑸
-      - name: Deploy
-        if: github.ref == 'refs/heads/main'
-        env:
-          CACHIX_ACTIVATE_TOKEN: "${{ secrets.CACHIX_ACTIVATE_TOKEN }}"
-        run: |                                                            # ⑹
-          cachix push homelab-yohan ./result
-          cachix deploy activate --async ./result
+     - uses: actions/checkout@v4
+     - uses: cachix/install-nix-action@v30
+     - uses: cachix/cachix-action@v15
+       with:
+          name: ${{ env.CACHE_NAME }}
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+     - name: Deploy
+       env: 
+         CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+       run: |
+         cat << EOF << deploy.json
+         {
+           "agents": {
+              "rp": "${{ needs.build-rp.outputs.rp }}",
+              "tiny1": "${{ needs.build-tiny1.outputs.tiny1 }}",
+              "tiny2": "${{ needs.build-tiny2.outputs.tiny2 }}",
+              "ocr1": "${{ needs.build-ocr1.outputs.ocr1 }}"
+            }
+         }
+         EOF
+         cachix deploy activate deploy.json
