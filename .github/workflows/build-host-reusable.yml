@@ -23,7 +23,8 @@ on:
       CACHIX_ACTIVATE_TOKEN:
         required: true
     outputs:
-      build: ${{ jobs.build.outputs.build }}
+      build:
+        value: ${{ jobs.build.outputs.build }}
 
 jobs:
   build:
