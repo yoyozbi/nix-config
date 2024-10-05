@@ -51,7 +51,7 @@ jobs:
       - name: Build
         id: agent
         run: | 
-          out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.hostname }})
+          out_path=$(nix build -L --print-out-paths --accept-flake-config .#cachix-deploy-spec.${{ inputs.hostname }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
 
