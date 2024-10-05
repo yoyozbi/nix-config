@@ -116,7 +116,6 @@ let
       spotify
       stremio
       qbittorrent
-
       obs-studio
 
       # Discord
@@ -124,7 +123,6 @@ let
       steam
     ]
     ++ lib.optionals (desktop != null && hostname == "surface-nix") [
-      maliit-keyboard
     ];
 
   unstable-packages = with pkgs.unstable;
