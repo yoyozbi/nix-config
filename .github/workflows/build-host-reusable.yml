@@ -20,13 +20,13 @@ on:
       CACHIX_AUTH_TOKEN:
         description: 'the cachix auth token'
         required: true
-    outputs:
-      build:
-        value: ${{ jobs.build.outputs.build }}
+      CACHIX_ACTIVATE_TOKEN:
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    name:  ⚠️ Build
     outputs: 
       build: ${{ steps.agent.outputs.build }}
     steps:
@@ -39,7 +39,7 @@ jobs:
         name: Install with extra config
         if: ${{ inputs.extra-nix-config != '' }}
         with:
-          extra_nix_config: "extra-platforms = aarch64-linux"
+          extra_nix_config: ${{ inputs.extra-nix-config }}
       - uses: cachix/install-nix-action@v25
         name: Install
         if: ${{ inputs.extra-nix-config == '' }}
@@ -47,11 +47,30 @@ jobs:
       - uses: cachix/cachix-action@v14
         with:
           name: ${{ inputs.cacheName }}
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - name: Build
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: ⚠️  Build 
         id: agent
         run: | 
           out_path=$(nix build -L --print-out-paths --accept-flake-config .#hosts.${{ inputs.hostname }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
-
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.ref == 'refs/heads/main'
+    name: 🚀 Deploy
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v25
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: cachix/cachix-action@v14
+        with:
+          name: ${{ inputs.cacheName }}
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: 🚀 Deploy
+        env: 
+          CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+        run: |
+          cachix deploy activate ${{ needs.build.outputs.build }}          
