@@ -30,7 +30,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
     with:
-      outputName: ocr1
+      hostname: ocr1
       cacheName: ${{ needs.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
@@ -41,7 +41,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
     with:
-      outputName: rp
+      hostname: rp
       cacheName: ${{ needs.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
@@ -53,7 +53,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
     with:
-      outputName: tiny1
+      hostname: tiny1
       cacheName: ${{ needs.prepare.outputs.cacheName }}
 
   tiny2:
@@ -62,5 +62,5 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
     with:
-      outputName: tiny2
+      hostname: tiny2
       cacheName: ${{ needs.prepare.outputs.cacheName }}

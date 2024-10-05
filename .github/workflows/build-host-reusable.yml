@@ -1,9 +1,9 @@
-name: Build host reusable workflow
+name: Build/Deploy host reusable workflow
 
 on:
   workflow_call:
     inputs:
-      outputName:
+      hostname:
         required: true
         type: string
       cacheName:
@@ -50,7 +50,7 @@ jobs:
       - name: ⚠️  Build 
         id: agent
         run: | 
-          out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.outputName }})
+          out_path=$(nix build -L --print-out-paths --accept-flake-config .#hosts.${{ inputs.hostname }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
   deploy:
@@ -75,7 +75,7 @@ jobs:
           cat << EOF >> deploy.json
           {
             "agents": {
-              "${{ inputs.outputName }}": "${{ needs.build.outputs.build }}"
+              "${{ inputs.hostname }}": "${{ needs.build.outputs.build }}"
             }
           }
           EOF
