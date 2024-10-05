@@ -20,15 +20,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build ${{ github.event.inputs.hostname }}
     outputs: 
-      ${{ github.event.inputs.hostname }}: ${{ steps.agent.outputs }}
+      ${{ inputs.hostname }}: ${{ steps.agent.outputs }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: docker/setup-qemu-action@v3
-        if: github.event.inputs.setup-qemu
+        if: ${{ inputs.setup-qemu }}
       - uses: cachix/install-nix-action@v25
         name: Install with extra config
         if: github.event_name == 'workflow_call' && github.event.inputs.extra-nix-config != ''
@@ -40,12 +39,12 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v14
         with:
-          name: ${{ github.event.inputs.cacheName }}
+          name: ${{ inputs.cacheName }}
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - name: Build
         id: agent
         run: | 
-          out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ github.event.inputs.hostname }})
+          out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.hostname }})
           echo "Built $out_path"
-          echo "${{ github.event.inputs.hostname }}=$out_path" >> $GITHUB_OUTPUT
+          echo "${{ inputs.hostname }}=$out_path" >> $GITHUB_OUTPUT
 
