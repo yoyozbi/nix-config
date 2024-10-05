@@ -39,7 +39,7 @@ jobs:
     needs: [build-aarch64, prepare]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    name: 🚀 Deploy / aarch64
+    name: 🚀 Deploy / aarch64 (concurently)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -74,8 +74,8 @@ jobs:
   deploy-x86_64:
     needs: [build-x86_64]
     runs-on: ubuntu-latest
-    if: github.ref = "refs/heads/main"
-    name:  🚀 Deploy / x86_64
+    if: github.ref == "refs/heads/main"
+    name:  🚀 Deploy / x86_64 (incremental)
     steps:
       - uses: actions/checkout@v4
         with:
