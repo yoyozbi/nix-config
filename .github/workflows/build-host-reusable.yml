@@ -75,7 +75,7 @@ jobs:
           cat << EOF >> deploy.json
           {
             "agents": {
-              "${{ inputs.outputName }}": ${{ needs.build.outputs.build }}
+              "${{ inputs.outputName }}": "${{ needs.build.outputs.build }}"
             }
           }
           EOF
