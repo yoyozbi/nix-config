@@ -13,37 +13,48 @@ env:
   CACHE_NAME: homelab-yohan
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "null"
+    outputs:
+      cacheName: ${{ env.CACHE_NAME }}
+
   build-rp:
     name: Build rp
+    needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: rp
-      cacheName: ${{ env.CACHE_NAME }}
+      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
   build-ocr1:
     name: Build ocr1
+    needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: ocr1
-      cacheName: ${{ env.CACHE_NAME }}
+      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
   build-tiny1:
     name: Build tiny1
+    needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: tiny1
-      cacheName: ${{ env.CACHE_NAME }}
+      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
 
   build-tiny2:
     name: Build tiny2
+    needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: tiny2
-      cacheName: ${{ env.CACHE_NAME }}
+      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
 
   deploy:
     runs-on: ubuntu-latest

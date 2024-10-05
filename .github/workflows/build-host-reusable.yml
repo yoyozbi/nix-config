@@ -47,5 +47,5 @@ jobs:
         run: | 
           out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.hostname }})
           echo "Built $out_path"
-          echo "$out_path" >> $GITHUB_OUTPUT
+          echo "${{ inputs.hostname }}=$out_path" >> $GITHUB_OUTPUT
 
