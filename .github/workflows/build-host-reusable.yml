@@ -22,14 +22,10 @@ on:
         required: true
       CACHIX_ACTIVATE_TOKEN:
         required: true
-    outputs:
-      build:
-        value: ${{ jobs.build.outputs.build }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    name:  ⚠️ Build
+    name:  ⚠️ Build /  🚀 Deploy
     outputs: 
       build: ${{ steps.agent.outputs.build }}
     steps:
@@ -57,3 +53,22 @@ jobs:
           out_path=$(nix build -L --print-out-paths --accept-flake-config .#${{ inputs.outputName }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    name: 🚀 Deploy
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v25
+      - uses: cachix/cachix-action@v14
+        with:
+          name: ${{ inputs.cacheName }}
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: 🚀 Deploy
+        env: 
+          CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+        run: |
+          cachix deploy activate ${{ needs.build.outputs.build }}

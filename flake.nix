@@ -89,23 +89,27 @@
         };
       };
 
-			package.x86_64-linux = with pkgs; {
-				 cachix-deploy-spec = cachix-deploy-lib.spec {
+			package.${system} = with pkgs; {
+				 tiny1 = cachix-deploy-lib.spec {
           agents = {
             "tiny1" = self.nixosConfigurations."tiny1".config.system.build.toplevel;
+          };
+        };
+				tiny2 = cachix-deploy-lib.spec {
+          agents = {
             "tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
           };
-        };
+				ocr1 = cachix-deploy-lib.spec {
+					agents = {
+						"ocr1" = self.nixosConfigurations."ocr1".config.system.build.toplevel;
+					};
+				};
+				rp = cachix-deploy-lib.spec {
+					agents = {
+						"rp" = self.nixosConfigurations."rp".config.system.build.toplevel;
+					};
+				};
 			};
-
-      packages.aarch64-linux = with pkgs; {
-        cachix-deploy-spec = cachix-deploy-lib.spec {
-          agents = {
-            "ocr1" = self.nixosConfigurations."ocr1".config.system.build.toplevel;
-            "rp" = self.nixosConfigurations."rp".config.system.build.toplevel;
-          };
-        };
-      };
 
       formatter = libx.forAllSystems (
         system:
