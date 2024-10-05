@@ -26,7 +26,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: rp
-      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
+      cacheName: ${{ needs.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
@@ -36,7 +36,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: ocr1
-      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
+      cacheName: ${{ needs.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
@@ -46,7 +46,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: tiny1
-      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
+      cacheName: ${{ needs.prepare.outputs.cacheName }}
 
   build-tiny2:
     name: Build tiny2
@@ -54,7 +54,7 @@ jobs:
     uses: ./.github/workflows/build-host-reusable.yml
     with:
       hostname: tiny2
-      cacheName: ${{ neeeds.prepare.outputs.cacheName }}
+      cacheName: ${{ needs.prepare.outputs.cacheName }}
 
   deploy:
     runs-on: ubuntu-latest
