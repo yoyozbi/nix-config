@@ -72,4 +72,11 @@ jobs:
         env: 
           CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
         run: |
-          cachix deploy activate ${{ needs.build.outputs.build }}
+          cat << EOF >> deploy.json
+          {
+            "agents": {
+              "${{ inputs.outputName }}": ${{ needs.build.outputs.build }}
+            }
+          }
+          EOF
+          cachix deploy activate deploy.json
