@@ -24,43 +24,89 @@ jobs:
     outputs:
       cacheName: ${{ env.CACHE_NAME }}
 
-  ocr1:
-    name: ocr1
+  build-aarch64:
+    name: aarch64
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
     with:
-      hostname: ocr1
+      outputName: aarch64
       cacheName: ${{ needs.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
-  rp:
-    name: rp
+  deploy-aarch64:
+    needs: [build-aarch64, prepare]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    name: 🚀 Deploy / aarch64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-nix-cachix.yml
+        with:
+          cacheName: ${{ needs.prepare.outputs.cacheName }}
+          cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: 🚀 Deploy
+        env: 
+          CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+        run: |
+          cat << EOF >> deploy.json
+          {
+            "agents": {
+              "rp": "${{ needs.build-aarch64.outputs.build }}",
+              "ocr1": "${{ needs.build-aarch64.outputs.build }}"
+            }
+          }
+          EOF
+          cachix deploy activate deploy.json
+
+  build-x86_64:
+    name: x86_64
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
     with:
-      hostname: rp
-      cacheName: ${{ needs.prepare.outputs.cacheName }}
-      setup-qemu: true
-      extra-nix-config: "extra-platforms = aarch64-linux"
-
-
-  tiny1:
-    name: tiny1
-    needs: [prepare]
-    uses: ./.github/workflows/build-host-reusable.yml
-    secrets: inherit
-    with:
-      hostname: tiny1
+      outputName: x86_64
       cacheName: ${{ needs.prepare.outputs.cacheName }}
 
-  tiny2:
-    name: tiny2
-    needs: [prepare]
-    uses: ./.github/workflows/build-host-reusable.yml
-    secrets: inherit
-    with:
-      hostname: tiny2
-      cacheName: ${{ needs.prepare.outputs.cacheName }}
+  deploy-x86_64:
+    needs: [build-x86_64]
+    runs-on: ubuntu-latest
+    if: github.ref = "refs/heads/main"
+    name:  🚀 Deploy / x86_64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-nix-cachix.yml
+        with:
+          cacheName: ${{ needs.prepare.outputs.cacheName }}
+          cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: 🚀 Deploy (tiny1)
+        env:
+          CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+        run: |
+          cat << EOF >> deploy.json
+          {
+            "agents": {
+              "tiny1": "${{ needs.build-x86_64.outputs.build }}",
+            }
+          }
+          EOF
+          cachix deploy activate deploy.json
+      - name: 🚀 Deploy (tiny2)
+        env:
+          CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
+        run: |
+          rm deploy.json
+          cat << EOF >> deploy.json
+          {
+            "agents": {
+              "tiny2": "${{ needs.build-x86_64.outputs.build }}",
+            }
+          }
+          EOF
+          cachix deploy activate deploy.json
+
