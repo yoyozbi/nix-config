@@ -21,7 +21,8 @@ on:
         description: 'the cachix auth token'
         required: true
     outputs:
-      build: ${{ jobs.build.outputs.build }}
+      build:
+        value: ${{ jobs.build.outputs.build }}
 
 jobs:
   build:
