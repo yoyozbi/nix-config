@@ -96,7 +96,7 @@
             "tiny2" = self.nixosConfigurations."tiny2".config.system.build.toplevel;
           };
         };
-			}
+			};
 
       packages.aarch64-linux = with pkgs; {
         cachix-deploy-spec = cachix-deploy-lib.spec {
