@@ -14,7 +14,6 @@ let
     darkman
     pulsemixer
     bluetuith
-    kitty
     dunst
     pamixer
     python311
@@ -35,6 +34,7 @@ let
     cliphist
     hypridle
     hyprlock
+    kitty
   ];
 in
 {
@@ -45,12 +45,13 @@ in
   programs = {
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+			portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     bash = {
       interactiveShellInit = ''
         if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-           WLR_NO_HARDWARE_CURSORS=1 Hyprland #prevents cursor disappear when using Nvidia drivers
+           Hyprland 
         fi
       '';
     };

@@ -39,7 +39,7 @@ in
         php82Extensions.xdebug
         php82Extensions.pcov
         bun
-        neovide
+        unstable.neovide
         lazygit
         thefuck
         fira
