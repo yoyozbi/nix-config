@@ -15,6 +15,7 @@
     ../_mixins/services/fwupd.nix
     ../_mixins/services/tpm.nix
     ../_mixins/services/touchpad.nix
+    ../_mixins/services/openssh.nix
   ];
 
   boot = {
