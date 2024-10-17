@@ -1,9 +1,11 @@
 { lib
 , modulesPath
+, inputs
 , ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+		inputs.nixos-hardware.nixosModules.raspberry-pi-4
     ../_mixins/services/openssh.nix
     ../_mixins/services/cachix.nix
     ./k3s.nix
