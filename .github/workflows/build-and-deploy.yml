@@ -35,16 +35,16 @@ jobs:
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
-  rp:
-    name: rp
-    needs: [prepare]
-    uses: ./.github/workflows/build-host-reusable.yml
-    secrets: inherit
-    with:
-      hostname: rp
-      cacheName: ${{ needs.prepare.outputs.cacheName }}
-      setup-qemu: true
-      extra-nix-config: "extra-platforms = aarch64-linux"
+#  rp:
+#    name: rp
+#    needs: [prepare]
+#    uses: ./.github/workflows/build-host-reusable.yml
+#    secrets: inherit
+#    with:
+#      hostname: rp
+#      cacheName: ${{ needs.prepare.outputs.cacheName }}
+#      setup-qemu: true
+#      extra-nix-config: "extra-platforms = aarch64-linux"
 
 
   tiny1:
