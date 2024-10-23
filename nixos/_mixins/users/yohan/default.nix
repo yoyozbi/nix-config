@@ -157,6 +157,7 @@ in
   console.keyMap = "fr_CH";
 
   users.groups.yohan = { };
+	nix.settings.trusted-users = [ "root" "@wheel" ];
 
   users.users.yohan = {
     description = "Yohan Zbinden";
