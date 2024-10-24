@@ -29,6 +29,7 @@ in
         (nerdfonts.override { fonts = [ "FiraCode" "SourceCodePro" "JetBrainsMono" "UbuntuMono" ]; })
         iosevka-comfy.comfy
         lua-language-server
+        nixd
 
         # lsp
         tree-sitter
@@ -201,7 +202,7 @@ in
         more = "bat";
         checkip = "curl -s ifconfig.me/ip";
         tree = "eza --tree";
-				delete-old-branch = "git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}'); do git branch -D $branch; done";
+        delete-old-branch = "git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}'); do git branch -D $branch; done";
       };
       oh-my-zsh = {
         enable = true;
@@ -263,7 +264,7 @@ in
     neovim = {
       enable = true;
       defaultEditor = true;
-			package = pkgs.unstable.neovim-unwrapped;
+      package = pkgs.unstable.neovim-unwrapped;
     };
 
     tmux = {

@@ -81,6 +81,7 @@ let
 
       # Dev
       bruno
+      zed-editor
       python311
       python311Packages.jupyter
       python311Packages.notebook
@@ -157,7 +158,7 @@ in
   console.keyMap = "fr_CH";
 
   users.groups.yohan = { };
-	nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.settings.trusted-users = [ "root" "@wheel" ];
 
   users.users.yohan = {
     description = "Yohan Zbinden";

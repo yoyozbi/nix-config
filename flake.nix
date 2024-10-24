@@ -44,7 +44,6 @@
       pkgs = nixpkgs.legacyPackages.${system};
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
       stateVersion = "23.11";
-      cachix-deploy-lib = cachix-deploy.lib pkgs;
       libx = import ./lib { inherit inputs outputs stateVersion; };
     in
     {
@@ -89,14 +88,14 @@
         };
       };
 
-			packages.${system} = with pkgs; {
-			  hosts = {
-						tiny1 = self.nixosConfigurations."tiny1".config.system.build.toplevel;
-						tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
-						ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
-						rp = self.nixosConfigurations."rp".config.system.build.toplevel;
-				};
-			};
+      packages.${system} = with pkgs; {
+        hosts = {
+          tiny1 = self.nixosConfigurations."tiny1".config.system.build.toplevel;
+          tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
+          ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
+          rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+        };
+      };
 
       formatter = libx.forAllSystems (
         system:
