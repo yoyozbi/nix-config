@@ -77,11 +77,11 @@ let
       unzip
       zip
       wget
-      jetbrains-toolbox
+      unstable.jetbrains-toolbox
 
       # Dev
       bruno
-      zed-editor
+      unstable.zed-editor
       python311
       python311Packages.jupyter
       python311Packages.notebook

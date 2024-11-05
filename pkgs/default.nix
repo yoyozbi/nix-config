@@ -6,5 +6,5 @@
   sddm-themes = pkgs.callPackage ./sddm-themes.nix { };
   eclipse202306 = pkgs.callPackage ./eclipse-202306 { };
   superProductivity = pkgs.callPackage ./superProductivity.nix { };
-  zed-editor = pkgs.callPackage ./zed-editor { };
+  #zed-editor = pkgs.callPackage ./zed-editor { };
 }
