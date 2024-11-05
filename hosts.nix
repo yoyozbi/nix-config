@@ -8,6 +8,25 @@
 , ...
 }:
 let
+	traefikOptions = lib.types.submodule {
+		  options = {
+				enabled = lib.mkOption {
+					type = lib.types.bool;
+					default = false;
+					description = ''
+						Enable traefik dashboard
+					'';
+				};
+				dashboardUrl = lib.mkOption {
+					type = lib.types.str;
+					default = "traefik.${hostname}.local";
+					description = ''
+						Url of the traefik dashboard
+					'';
+				};
+			};
+		};
+
   hostOptions = with lib; {
     internalIp = mkOption {
       type = types.str;
@@ -36,6 +55,15 @@ let
         If this is a k3s server specify if you want to install rancher or not
       '';
     };
+
+		traefik-dashboard = mkOption {
+			type = types.nullOr traefikOptions;
+			default = null;
+			description = ''
+				Traefik dashboard configuration
+				'';
+		};
+		
   };
 in
 {
@@ -65,6 +93,10 @@ in
         externalIp = "144.24.253.246";
         rancher = true;
         mac = "02:00:17:00:a1:bb";
+				traefik-dashboard = {
+					enabled = true;
+					dashboardUrl = "traefik-ocr1.yohanzbinden.ch";
+				};
       };
       tiny1 = {
         internalIp = "10.0.0.127";
