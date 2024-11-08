@@ -57,7 +57,7 @@
       };
     };
 
-    kernelParams = [ "net.ipv4.ip_forward=0" ];
+    kernelParams = [ "net.ipv4.ip_forward=1" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
 
@@ -68,6 +68,10 @@
     };
   };
 
+	networking.extraHosts =
+  ''
+	80.74.149.89 teamsolid.ch
+	'';
   time.timeZone = "Europe/Zurich";
 
   networking.useDHCP = lib.mkDefault true;
