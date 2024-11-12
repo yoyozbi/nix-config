@@ -21,36 +21,37 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/bf8f513f-593f-43d4-bb7a-058d73af43ed";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/8383e9c6-6a01-4127-a949-8605c424195f";
+      fsType = "btrfs";
+      options = [ "subvol=@" ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/B620-59D1";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [ "fmask=0077" "dmask=0077" ];
     };
   };
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/3b523100-edaf-4f54-bb65-c96a67e8fa38";
+      device = "/dev/disk/by-uuid/3f9712bd-740c-404e-8038-462078bb1a19";
     }
   ];
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
       kernelModules = [ ];
 
       luks = {
         devices = {
-          "luks-2eacbada-c6b8-40bd-ab6d-807406a1d5dd" = {
-            device = "/dev/disk/by-uuid/2eacbada-c6b8-40bd-ab6d-807406a1d5dd";
+          "luks-32488ed5-9166-49a6-8cf4-f47a1c20668b" = {
+            device = "/dev/disk/by-uuid/32488ed5-9166-49a6-8cf4-f47a1c20668b";
             #keyFile = "/crypto_keyfile.bin";
           };
 
-          "luks-75f49aa5-8296-45ab-8ddb-d12fa9afc72a" = {
-            device = "/dev/disk/by-uuid/75f49aa5-8296-45ab-8ddb-d12fa9afc72a";
+          "luks-f82aee8f-f2cd-4a43-bef2-5f865eeccfe9" = {
+            device = "/dev/disk/by-uuid/f82aee8f-f2cd-4a43-bef2-5f865eeccfe9";
             #keyFile = "/crypto_keyfile.bin";
           };
         };
@@ -61,17 +62,13 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
 
-    resumeDevice = "/dev/disk/by-uuid/3b523100-edaf-4f54-bb65-c96a67e8fa38";
+    resumeDevice = "/dev/disk/by-uuid/3f9712bd-740c-404e-8038-462078bb1a19";
 
     binfmt = {
       emulatedSystems = [ "aarch64-linux" ];
     };
   };
 
-	networking.extraHosts =
-  ''
-	80.74.149.89 teamsolid.ch
-	'';
   time.timeZone = "Europe/Zurich";
 
   networking.useDHCP = lib.mkDefault true;
