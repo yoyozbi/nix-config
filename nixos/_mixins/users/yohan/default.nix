@@ -116,7 +116,7 @@ let
       tidal-hifi
       spotify
       stremio
-      #qbittorrent
+      deluge 
       obs-studio
 
       # Discord
