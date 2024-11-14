@@ -1,0 +1,22 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: portainer
+spec:
+  repo: https://portainer.github.io/k8s/
+  targetNamespace: portainer
+  chart: portainer
+  version: 1.0.58
+  valuesContent: |-
+    service:
+      type: ClusterIp
+    tls:
+      force: false
+    ingress:
+      tls: false
+      enabled: true
+      ingressClassName: traefik
+      hosts:
+        - host: <HOSTNAME>
+          paths:
+            - path: /

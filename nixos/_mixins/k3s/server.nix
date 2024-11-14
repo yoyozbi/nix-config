@@ -1,13 +1,30 @@
 { config, ... }:
 let
+  inherit (config.networking.yoyozbi) currentHost;
+
   rancher =
-    if config.networking.yoyozbi.currentHost.rancher
-    then builtins.readFile ./rancher.yaml
+    if currentHost.rancher
+    then builtins.readFile ./manifests/rancher.yaml
     else "";
 
   traefik-dashboard =
-    if config.networking.yoyozbi.currentHost.traefik-dashboard != null && config.networking.yoyozbi.currentHost.traefik-dashboard.enabled
-    then builtins.replaceStrings [ "<TRAEFIK-HOSTNAME>" ] [ config.networking.yoyozbi.currentHost.traefik-dashboard.dashboardUrl ] (builtins.readFile ./traefik.yaml)
+    if currentHost.traefik-dashboard != null && currentHost.traefik-dashboard.enabled
+    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.traefik-dashboard.dashboardUrl ] (builtins.readFile ./manifests/traefik.yaml)
+    else "";
+
+  argocd =
+    if currentHost.argocd != null && currentHost.argocd.enabled
+    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.argocd.dashboardUrl ] (builtins.readFile ./manifests/argocd.yaml)
+    else "";
+
+  longhorn =
+    if currentHost.longhorn != null && currentHost.longhorn.enabled
+    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.longhorn.dashboardUrl ] (builtins.readFile ./manifests/longhorn.yaml)
+    else "";
+
+  portainer =
+    if currentHost.portainer != null && currentHost.portainer.enabled
+    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.portainer.dashboardUrl ] (builtins.readFile ./manifests/portainer.yaml)
     else "";
 in
 {
@@ -16,9 +33,9 @@ in
   services.k3s = {
     role = "server";
     extraFlags = toString [
-      "--node-external-ip=${config.networking.yoyozbi.currentHost.externalIp}"
-      "--node-ip=${config.networking.yoyozbi.currentHost.internalIp}"
-      "--advertise-address=${config.networking.yoyozbi.currentHost.internalIp}"
+      "--node-external-ip=${currentHost.externalIp}"
+      "--node-ip=${currentHost.internalIp}"
+      "--advertise-address=${currentHost.internalIp}"
     ];
     tokenFile = config.sops.secrets.k3s-server-token.path;
     clusterInit = true;
@@ -27,6 +44,9 @@ in
   environment.etc."k3s.yaml".text = builtins.readFile ./default.yaml;
   environment.etc."rancher.yaml".text = rancher;
   environment.etc."traefik-dashboard.yaml".text = traefik-dashboard;
+  environment.etc."argocd.yaml".text = argocd;
+  environment.etc."longhorn.yaml".text = longhorn;
+  environment.etc."portainer.yaml".text = portainer;
 
   # Link the file to k3s manifest directory
   system.activationScripts.k3s.text = ''
@@ -41,5 +61,16 @@ in
     	ln -sf /etc/traefik-dashboard.yaml /var/lib/rancher/k3s/server/manifests/traefik-dashboard.yaml
     fi
 
+    if [ -s /etc/argocd.yaml ]; then
+    	ln -sf /etc/argocd.yaml /var/lib/rancher/k3s/server/manifests/argocd.yaml
+    fi
+
+    if [ -s /etc/longhorn.yaml ]; then
+    	ln -sf /etc/longhorn.yaml /var/lib/rancher/k3s/server/manifests/longhorn.yaml
+    fi
+
+    if [ -s /etc/portainer.yaml ]; then
+    	ln -sf /etc/portainer.yaml /var/lib/rancher/k3s/server/manifests/portainer.yaml
+    fi
   '';
 }

@@ -100,8 +100,8 @@ let
       '';
     };
     rancher = mkOption {
-      type = types.nullOr types.bool;
-      default = null;
+      type = types.bool;
+      default = false;
       description = ''
         If this is a k3s server specify if you want to install rancher or not
       '';
@@ -165,29 +165,43 @@ in
       ocr1 = {
         internalIp = "10.0.0.93";
         externalIp = "144.24.253.246";
-        rancher = false;
         mac = "02:00:17:00:a1:bb";
         traefik-dashboard = {
           enabled = true;
           dashboardUrl = "traefik-ocr1.yohanzbinden.ch";
         };
+
+        argocd = {
+          enabled = true;
+          dashboardUrl = "argocd.yohanzbinden.ch";
+        };
+
+        portainer = {
+          enabled = true;
+          dashboardUrl = "portainer.yohanzbinden.ch";
+        };
+
+        longhorn = {
+          enabled = true;
+          dashboardUrl = "longhorn.yohanzbinden.ch";
+        };
       };
+
       tiny1 = {
         internalIp = "10.0.0.127";
         externalIp = "152.67.78.81";
         mac = "02:00:17:00:49:ae";
-        rancher = false;
       };
+
       tiny2 = {
         internalIp = "10.0.0.84";
         externalIp = "152.67.67.251";
         mac = "02:00:17:00:a3:d4";
-        rancher = false;
       };
+
       rp = {
         internalIp = "192.168.1.2";
         mac = "dc:a6:32:21:28:99";
-        rancher = false;
         externalIp = "192.168.1.2";
       };
     };

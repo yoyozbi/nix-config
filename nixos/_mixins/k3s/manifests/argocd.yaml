@@ -1,7 +1,7 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: rancher
+  name: argocd
 spec:
   repo: https://argoproj.github.io/argo-helm
   targetNamespace: argocd
@@ -22,4 +22,26 @@ spec:
 
     applicationSet:
       replicas: 2
-    
+---
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argo-ingress
+  namespace: argocd
+  annotations:
+    traefik.ingress.kubernetes.io/service.passhostheader: "true"
+spec:
+  rules:
+  - host: <HOSTNAME>
+    http:
+      paths:
+      - path: /
+        pathType: 
+        backend:
+          service:
+            name: argocd-server
+            port:
+              number: 80
+---
+
