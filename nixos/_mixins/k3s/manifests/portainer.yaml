@@ -17,6 +17,8 @@ spec:
       type: ClusterIP
     tls:
       force: false
+    persistence:
+      storageClass: longhorn
     ingress:
       tls: false
       enabled: true
