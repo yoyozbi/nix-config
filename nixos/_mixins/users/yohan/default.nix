@@ -116,7 +116,7 @@ let
       tidal-hifi
       spotify
       stremio
-      deluge 
+      deluge
       obs-studio
 
       # Discord

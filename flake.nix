@@ -33,7 +33,6 @@
   outputs =
     { self
     , nixpkgs
-    , cachix-deploy
     , nix-formatter-pack
     , ...
     } @ inputs:

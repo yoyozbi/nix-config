@@ -8,24 +8,75 @@
 , ...
 }:
 let
-	traefikOptions = lib.types.submodule {
-		  options = {
-				enabled = lib.mkOption {
-					type = lib.types.bool;
-					default = false;
-					description = ''
-						Enable traefik dashboard
-					'';
-				};
-				dashboardUrl = lib.mkOption {
-					type = lib.types.str;
-					default = "traefik.${hostname}.local";
-					description = ''
-						Url of the traefik dashboard
-					'';
-				};
-			};
-		};
+  traefikOptions = lib.types.submodule {
+    options = {
+      enabled = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = ''
+          Enable traefik dashboard
+        '';
+      };
+      dashboardUrl = lib.mkOption {
+        type = lib.types.str;
+        default = "traefik.${hostname}.local";
+        description = ''
+          Url of the traefik dashboard
+        '';
+      };
+    };
+  };
+
+  longhornOptions = lib.types.submodule {
+    options = {
+      enabled = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = ''
+          Enable longhorn helm chart (only for master nodes)
+        '';
+      };
+      dashboardUrl = lib.mkOption {
+        type = lib.types.str;
+        default = "longhorn.${hostname}.local";
+        description = ''
+          URL of the dashboard
+        '';
+      };
+    };
+  };
+
+  argocdOptions = lib.types.submodule {
+    options = {
+      enabled = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = ''
+          Enable argocd helm chart (only for master nodes)
+        '';
+      };
+      dashboardUrl = lib.mkOption {
+        type = lib.types.str;
+        default = "argocd.${hostname}.local";
+      };
+    };
+  };
+
+  portainerOptions = lib.types.submodule {
+    options = {
+      enabled = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = ''
+          Enable portainer helm chart (only for master nodes)
+        '';
+      };
+      dashboardUrl = lib.mkOption {
+        type = lib.types.str;
+        default = "portainer.${hostname}.local";
+      };
+    };
+  };
 
   hostOptions = with lib; {
     internalIp = mkOption {
@@ -56,14 +107,37 @@ let
       '';
     };
 
-		traefik-dashboard = mkOption {
-			type = types.nullOr traefikOptions;
-			default = null;
-			description = ''
-				Traefik dashboard configuration
-				'';
-		};
-		
+    traefik-dashboard = mkOption {
+      type = types.nullOr traefikOptions;
+      default = null;
+      description = ''
+        Traefik dashboard configuration
+      '';
+    };
+
+    portainer = mkOption {
+      type = types.nullOr portainerOptions;
+      default = null;
+      description = ''
+        portainer config
+      '';
+    };
+
+    argocd = mkOption {
+      type = types.nullOr argocdOptions;
+      default = null;
+      description = ''
+        argocd config
+      '';
+    };
+
+    longhorn = mkOption {
+      type = types.nullOr longhornOptions;
+      default = null;
+      description = ''
+        longhorn configuration
+      '';
+    };
   };
 in
 {
@@ -91,12 +165,12 @@ in
       ocr1 = {
         internalIp = "10.0.0.93";
         externalIp = "144.24.253.246";
-        rancher = true;
+        rancher = false;
         mac = "02:00:17:00:a1:bb";
-				traefik-dashboard = {
-					enabled = true;
-					dashboardUrl = "traefik-ocr1.yohanzbinden.ch";
-				};
+        traefik-dashboard = {
+          enabled = true;
+          dashboardUrl = "traefik-ocr1.yohanzbinden.ch";
+        };
       };
       tiny1 = {
         internalIp = "10.0.0.127";

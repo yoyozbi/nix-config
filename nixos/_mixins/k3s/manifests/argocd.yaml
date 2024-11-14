@@ -1,0 +1,25 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: rancher
+spec:
+  repo: https://argoproj.github.io/argo-helm
+  targetNamespace: argocd
+  chart: argo-cd
+  version: 7.0.0
+  valuesContent: |-
+    redis-ha:
+      enabled: true
+
+    controller:
+      replicas: 1
+
+    server:
+      replicas: 2
+
+    repoServer:
+      replicas: 2
+
+    applicationSet:
+      replicas: 2
+    
