@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
@@ -37,7 +42,7 @@ spec:
     http:
       paths:
       - path: /
-        pathType: 
+        pathType: Prefix
         backend:
           service:
             name: argocd-server
