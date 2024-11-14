@@ -41,7 +41,7 @@ in
     clusterInit = true;
   };
 
-  environment.etc."k3s.yaml".text = builtins.readFile ./default.yaml;
+  environment.etc."k3s.yaml".text = builtins.readFile ./manifests/default.yaml;
   environment.etc."rancher.yaml".text = rancher;
   environment.etc."traefik-dashboard.yaml".text = traefik-dashboard;
   environment.etc."argocd.yaml".text = argocd;
