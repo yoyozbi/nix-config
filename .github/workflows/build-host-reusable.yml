@@ -71,4 +71,4 @@ jobs:
             }
           }
           EOF
-          cachix deploy activate deploy.json
+          cachix deploy activate deploy.json --async
