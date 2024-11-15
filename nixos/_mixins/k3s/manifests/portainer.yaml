@@ -17,8 +17,9 @@ spec:
       type: ClusterIP
     tls:
       force: false
+    nodeSelector.kubernetes\.io/hostname: ocr1
     persistence:
-      storageClass: longhorn
+      storageClass: local-path
     ingress:
       tls: false
       enabled: true
