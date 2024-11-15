@@ -17,7 +17,7 @@ spec:
       type: ClusterIP
     tls:
       force: false
-    nodeSelector: |-
+    nodeSelector:
       kubernetes.io/hostname: ocr1
     persistence:
       storageClass: local-path
