@@ -29,6 +29,7 @@ metadata:
   namespace: longhorn-system
   annotations:
     traefik.ingress.kubernetes.io/service.passhostheader: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
   - host: <HOSTNAME>

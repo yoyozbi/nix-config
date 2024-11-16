@@ -25,6 +25,8 @@ spec:
       tls: false
       enabled: true
       ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: web
       hosts:
         - host: <HOSTNAME>
           paths:
