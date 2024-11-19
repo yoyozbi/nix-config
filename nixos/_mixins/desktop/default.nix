@@ -6,9 +6,8 @@
     lib.optional (builtins.pathExists (./. + "/${desktop}.nix")) ./${desktop}.nix;
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
     };
   };
 

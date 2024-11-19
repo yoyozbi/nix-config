@@ -39,10 +39,9 @@
     sbctl
   ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   services.xserver = {
@@ -54,7 +53,7 @@
   };
 
   services.iptsd.config = {
-    Touch = {
+    Touchscreen = {
       DisableOnPalm = true;
       DisableOnStylus = true;
     };
