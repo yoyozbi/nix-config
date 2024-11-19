@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     lanzaboote.url = "github:nix-community/lanzaboote";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     cachix-deploy.url = "github:cachix/cachix-deploy-flake";
@@ -40,7 +41,6 @@
       inherit (self) outputs;
       system = "x86_64-linux";
 
-      pkgs = nixpkgs.legacyPackages.${system};
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
       stateVersion = "23.11";
       libx = import ./lib { inherit inputs outputs stateVersion; };
@@ -87,7 +87,7 @@
         };
       };
 
-      packages.${system} = with pkgs; {
+      packages.${system} = {
         hosts = {
           tiny1 = self.nixosConfigurations."tiny1".config.system.build.toplevel;
           tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;

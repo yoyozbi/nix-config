@@ -112,10 +112,11 @@ let
 
       minikube
 
-      #Music
+      #Music/Video
       tidal-hifi
       spotify
       stremio
+      kodi-wayland
       deluge
       obs-studio
 
