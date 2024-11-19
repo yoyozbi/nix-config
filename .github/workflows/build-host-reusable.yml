@@ -25,7 +25,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     name:  ⚠️ Build
     outputs: 
       build: ${{ steps.agent.outputs.build }}
@@ -47,7 +47,7 @@ jobs:
           echo "build=$out_path" >> $GITHUB_OUTPUT
   deploy:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-2vcpu-ubuntu-2204
     if: github.ref == 'refs/heads/main'
     name: 🚀 Deploy
     steps:
