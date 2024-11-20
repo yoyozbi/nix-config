@@ -182,7 +182,7 @@ in
         "--header"
       ];
       git = true;
-      icons = true;
+      icons = "auto";
     };
 
     zsh = {
