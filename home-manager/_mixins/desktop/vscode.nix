@@ -21,14 +21,9 @@
           vscode-extensions.bradlc.vscode-tailwindcss
           vscode-extensions.vscodevim.vim
           vscode-extensions.vscode-icons-team.vscode-icons
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "pretty-ts-errors";
-            publisher = "yoavbls";
-            sha256 = "83a2488977e340a404b5d5d982c42c96e2ae2593b432c0f58a3cbe40b604d6e6";
-            version = "0.5.2";
-          }
+          vscode-extensions.mkhl.direnv
+          vscode-extensions.yoavbls.pretty-ts-errors
+          vscode-extensions.svelte.svelte-vscode
         ];
 
       mutableExtensionsDir = true;
