@@ -114,6 +114,8 @@ let
 
       #Music/Video
       tidal-hifi
+      devToys
+      dotnet-sdk_8
       spotify
       stremio
       kodi-wayland
