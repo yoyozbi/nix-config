@@ -114,7 +114,7 @@ let
 
       #Music/Video
       tidal-hifi
-      devToys
+      #devToys
       dotnet-sdk_8
       spotify
       stremio
