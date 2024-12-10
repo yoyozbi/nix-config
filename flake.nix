@@ -6,6 +6,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     cachix-deploy.url = "github:cachix/cachix-deploy-flake";
+    deploy-rs.url = "github:serokell/deploy-rs";
 
     disko = {
       url = "github:nix-community/disko";
@@ -35,6 +36,7 @@
     { self
     , nixpkgs
     , nix-formatter-pack
+    , deploy-rs
     , ...
     } @ inputs:
     let
@@ -90,14 +92,24 @@
       packages.${system} = {
         hosts = {
           tiny1 = self.nixosConfigurations."tiny1".config.system.build.toplevel;
-          tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
           ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
-          rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+          tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
+        };
+      #rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+      };
+
+      deploy.nodes = {
+        surface-nix = {
+            hostname = "surface-nix";
+            profiles.system = {
+              user = "root";
+              sshUser = "yohan";
+              path =  deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.surface-nix;
+            };
         };
       };
 
       formatter = libx.forAllSystems (
-        system:
         nix-formatter-pack.lib.mkFormatter {
           pkgs = nixpkgs.legacyPackages.${system};
           config.tools = {

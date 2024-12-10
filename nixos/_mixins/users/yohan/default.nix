@@ -121,6 +121,7 @@ let
       kodi-wayland
       deluge
       obs-studio
+      blender
 
       # Discord
       discord
