@@ -123,6 +123,9 @@ let
       obs-studio
       blender
 
+      unstable.argocd
+      cloudflared
+
       # Discord
       discord
       steam
@@ -152,12 +155,16 @@ in
   programs.nix-ld.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services = {
+    xserver = {
     xkb = {
       layout = "ch";
       variant = "fr";
     };
+    
+    };
   };
+
   # Configure console keymap
   console.keyMap = "fr_CH";
 
