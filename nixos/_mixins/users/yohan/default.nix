@@ -129,6 +129,7 @@ let
       # Discord
       discord
       steam
+      heroic
     ]
     ++ lib.optionals (desktop != null && hostname == "surface-nix") [
     ];
