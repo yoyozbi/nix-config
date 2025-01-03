@@ -14,20 +14,22 @@ spec:
   version: 7.7.10
   valuesContent: |-
     redis-ha:
-      enabled: true
+      enabled: false
 
     controller:
       replicas: 1
 
     server:
-      replicas: 2
+      replicas: 1
 
     repoServer:
-      replicas: 2
+      replicas: 1
 
     applicationSet:
-      replicas: 2
-    configs.params."server\.insecure": true
+      replicas: 1
+    configs:
+      params:
+        "server\.insecure": true
 ---
 # https://kubernetes.io/docs/concepts/services-networking/ingress/
 apiVersion: networking.k8s.io/v1
