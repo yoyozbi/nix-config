@@ -16,6 +16,10 @@
       "${config.xdg.configHome}/wofi" = {
         source = ../dotfiles/wofi;
       };
+      "${config.xdg.configHome}/ghostty" = {
+        source = ../dotfiles/ghostty;
+      };
+
     };
   };
 }

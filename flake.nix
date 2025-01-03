@@ -52,7 +52,7 @@
         "yohan@laptop-nix" = libx.mkHome {
           hostname = "laptop-nix";
           username = "yohan";
-          desktop = "kde";
+          desktop = "hyprland";
         };
         "yohan@surface-nix" = libx.mkHome {
           hostname = "surface-nix";
@@ -64,7 +64,7 @@
         "laptop-nix" = libx.mkHost {
           hostname = "laptop-nix";
           username = "yohan";
-          desktop = "kde";
+          desktop = "hyprland";
         };
         "surface-nix" = libx.mkHost {
           hostname = "surface-nix";
