@@ -10,6 +10,7 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    netdata = _prev.netdata.override { withCloud = true; };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
