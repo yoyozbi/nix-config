@@ -1,6 +1,5 @@
 { lib
 , modulesPath
-, pkgs
 , ...
 }: {
   imports = [
@@ -11,6 +10,7 @@
     ../_mixins/services/cachix.nix
     ../_mixins/services/openssh.nix
     ../_mixins/services/networkmanager.nix
+    ../_mixins/services/netdata.nix
     ../_mixins/k3s/ocr-cluster.nix
     ../_mixins/k3s/server.nix
   ];
@@ -21,24 +21,6 @@
   boot.extraModulePackages = [ ];
 
   networking.hostName = "ocr1";
-
-  services = {
-    netdata = {
-      enable = true;
-      package = pkgs.netdata; 
-      config = {
-        global = {
-          "memory mode" = "ram";
-          "debug log" = "none";
-          "access log" = "none";
-          "error log" = "syslog";
-        };
-      };
-      configDir = {
-      };
-    };
-  };
-  environment.systemPackages = [ pkgs.netdata ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
