@@ -1,5 +1,6 @@
 { lib
 , modulesPath
+, pkgs
 , ...
 }: {
   imports = [
@@ -24,6 +25,7 @@
   services = {
     netdata = {
       enable = true;
+      package = pkgs.netdata.override { withCloud = true; };
       config = {
         global = {
           "memory mode" = "ram";
