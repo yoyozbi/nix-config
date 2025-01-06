@@ -110,9 +110,10 @@ spec:
       - "--entryPoints.web.http.middlewares=kube-system-cloudflare-rewrite@kubernetescrd"
 
     experimental:
-      cloudflarewarp:
-        modulename: github.com/BetterCorp/cloudflarewarp
-        version: v1.3.0
+      plugins:
+        cloudflarewarp:
+          modulename: github.com/BetterCorp/cloudflarewarp
+          version: v1.3.0
 
 # See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
 # The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for,
