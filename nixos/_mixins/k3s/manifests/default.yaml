@@ -3,9 +3,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: kube-system
-  name:  cloudflared
+  name: cloudflared
   labels:
-    app:  cloudflared
+    app: cloudflared
 spec:
   selector:
     matchLabels:
@@ -19,40 +19,40 @@ spec:
   template:
     metadata:
       labels:
-        app:  cloudflared
+        app: cloudflared
     spec:
-        # Init containers are exactly like regular containers, except:
-          # - Init containers always run to completion.
-          # - Each init container must complete successfully before the next one starts.
+      # Init containers are exactly like regular containers, except:
+      # - Init containers always run to completion.
+      # - Each init container must complete successfully before the next one starts.
       containers:
-      - image:  alpine #{"$imagescan": "cloudflared-scan"}
-        command: ["/bin/sh"]
-        args:
-          - -c
-          - >- 
-            apk add --no-cache curl &&
-            if [ $(arch) = 'x86_64' ]; then
-              export arch="amd64"
-            else
-              export arch="arm64"
-            fi &&
-            curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$arch -o /usr/bin/cloudflared &&
-            chmod +x /usr/bin/cloudflared &&
-            export TUNNEL_TOKEN="$(cat /etc/cloudflared-token)" &&
-            cloudflared tunnel --no-autoupdate run 
-        resources:
-          limits:
-            cpu: 100m
-            memory: 100Mi
-          requests:
-            cpu: 100m
-            memory: 100Mi
-        volumeMounts:
-          - mountPath: /etc/cloudflared-token
-            name: cloudflared-token
-            readOnly: true
+        - image: alpine #{"$imagescan": "cloudflared-scan"}
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - >-
+              apk add --no-cache curl &&
+              if [ $(arch) = 'x86_64' ]; then
+                export arch="amd64"
+              else
+                export arch="arm64"
+              fi &&
+              curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$arch -o /usr/bin/cloudflared &&
+              chmod +x /usr/bin/cloudflared &&
+              export TUNNEL_TOKEN="$(cat /etc/cloudflared-token)" &&
+              cloudflared tunnel --no-autoupdate run
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - mountPath: /etc/cloudflared-token
+              name: cloudflared-token
+              readOnly: true
 
-        name:  cloudflared
+          name: cloudflared
       restartPolicy: Always
       volumes:
         - name: cloudflared-token
@@ -93,6 +93,25 @@ spec:
       - "--entryPoints.web.proxyProtocol.insecure"
       - "--entryPoints.websecure.proxyProtocol.insecure"
       - "--entryPoints.web.forwardedHeaders.insecure"
+
+    experimental:
+      cloudflarewarp:
+        modulename: github.com/BetterCorp/cloudflarewarp
+        version: v1.3.0
+
+    file:
+      enabled: true
+      content: |
+        http:
+          middlewares:
+            cloudflarewarp:
+              plugin:
+                cloudflarewarp:
+                  disableDefault: false
+                  trustip: # Trust IPS not required if disableDefault is false - we will allocate Cloud Flare IPs automatically
+                    - "10.42.0.0/24"
+                    - "10.42.1.0/24"
+                    - "10.42.2.0/24"
 
 # See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
 # The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for,
