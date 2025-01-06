@@ -107,7 +107,7 @@ spec:
       - "--entryPoints.web.proxyProtocol.insecure"
       - "--entryPoints.websecure.proxyProtocol.insecure"
       - "--entryPoints.web.forwardedHeaders.insecure"
-      - "--entryPoints.web.http.middlewares=cloudflare-rewrite@kubernetescrd"
+      - "--entryPoints.web.http.middlewares=kube-system-cloudflare-rewrite@kubernetescrd"
 
     experimental:
       cloudflarewarp:
