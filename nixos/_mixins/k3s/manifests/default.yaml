@@ -74,6 +74,20 @@ spec:
     customRequestHeaders:
       X-Forwarded-Proto: "https"
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: cloudflare-rewrite
+  namespace: kube-system
+spec:
+  plugin:
+    cloudflarewarp:
+      disableDefault: false
+      trustip: # Trust IPS not required if disableDefault is false - we will allocate Cloud Flare IPs automatically
+        - "10.42.0.0/24"
+        - "10.42.1.0/24"
+        - "10.42.2.0/24"
+---
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
@@ -93,25 +107,12 @@ spec:
       - "--entryPoints.web.proxyProtocol.insecure"
       - "--entryPoints.websecure.proxyProtocol.insecure"
       - "--entryPoints.web.forwardedHeaders.insecure"
+      - "--entryPoints.web.http.middlewares=cloudflare-rewrite@kubernetescrd"
 
     experimental:
       cloudflarewarp:
         modulename: github.com/BetterCorp/cloudflarewarp
         version: v1.3.0
-
-    file:
-      enabled: true
-      content: |
-        http:
-          middlewares:
-            cloudflarewarp:
-              plugin:
-                cloudflarewarp:
-                  disableDefault: false
-                  trustip: # Trust IPS not required if disableDefault is false - we will allocate Cloud Flare IPs automatically
-                    - "10.42.0.0/24"
-                    - "10.42.1.0/24"
-                    - "10.42.2.0/24"
 
 # See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
 # The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for,
