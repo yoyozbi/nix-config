@@ -30,6 +30,7 @@ in
         iosevka-comfy.comfy
         lua-language-server
         nixd
+        fzf
 
         # lsp
         tree-sitter

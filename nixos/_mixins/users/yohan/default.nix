@@ -110,6 +110,8 @@ let
       kDrive
 
       rpi-imager
+      yubioath-flutter
+      yubikey-personalization-gui
 
       minikube
 
