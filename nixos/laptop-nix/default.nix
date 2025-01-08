@@ -2,7 +2,6 @@
 , lib
 , config
 , platform
-, pkgs
 , ...
 }:let
 pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${platform};
@@ -82,10 +81,10 @@ in {
   #  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   hardware.graphics = {
-    # package = pkgs-unstable.mesa.drivers;
+    #package = pkgs-unstable.mesa.drivers;
     enable = true;
     enable32Bit = true;
-    # package32 = pkgs-unstable.pkgsi686Linux.mesa.drivers;
+    #package32 = pkgs-unstable.pkgsi686Linux.mesa.drivers;
   };
 
   services.xserver = {

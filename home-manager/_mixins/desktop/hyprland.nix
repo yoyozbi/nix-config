@@ -19,7 +19,9 @@
       "${config.xdg.configHome}/ghostty" = {
         source = ../dotfiles/ghostty;
       };
-
+      "${config.home.homeDirectory}/.icons/Nordzy-hyprcursors" = {
+        source = ../cursor-theme/Nordzy-hyprcursors;
+      };
     };
   };
 }
