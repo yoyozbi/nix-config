@@ -54,9 +54,6 @@ in
 
   environment.systemPackages = stable-packages ++ unstable-packages;
 
-  environment.variables = {
-    NIXOS_OZONE_WL = 1; # Force chromium based app to use wayland
-  };
 
   services = {
     greetd = {
