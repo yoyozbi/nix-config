@@ -112,6 +112,8 @@ let
       rpi-imager
       yubioath-flutter
       yubikey-personalization-gui
+      android-tools
+      nym
 
       minikube
 

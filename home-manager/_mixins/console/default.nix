@@ -196,8 +196,8 @@ in
         brg = "batgrep";
         cat = "bat --paging=never";
         dmesg = "dmesg --human --color=always";
-        htop = "btm --basic --tree --hide_table_gap --dot_marker --mem_as_value";
-        top = "btm --basic --tree --hide_table_gap --dot_marker --mem_as_value";
+        htop = "btm --basic --tree --hide_table_gap --dot_marker";
+        top = "btm --basic --tree --hide_table_gap --dot_marker";
         ip = "ip --color --brief";
         less = "bat";
         more = "bat";

@@ -18,6 +18,7 @@ in {
     ../_mixins/services/boxes.nix
     ../_mixins/services/virtualbox.nix
     ../_mixins/services/focusrite.nix
+    ../_mixins/desktop/hyprland.nix
   ];
 
   fileSystems = {

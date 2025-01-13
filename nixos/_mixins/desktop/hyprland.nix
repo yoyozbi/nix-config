@@ -60,7 +60,7 @@ in
 
   services = {
     greetd = {
-      enable = true;
+      enable = false; # Would need to be set to true to have this greeter
       settings = {
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
