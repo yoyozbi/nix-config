@@ -16,10 +16,10 @@ on:
       extra-nix-config:
         required: false
         type: string
-    runs-on:
-      required: false
-      type: string
-      default: ubuntu-latest
+      runs-on:
+        required: false
+        type: string
+        default: ubuntu-latest
     secrets:
       CACHIX_AUTH_TOKEN:
         description: "the cachix auth token"
