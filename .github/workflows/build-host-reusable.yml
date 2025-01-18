@@ -16,18 +16,22 @@ on:
       extra-nix-config:
         required: false
         type: string
+    runs-on:
+      required: false
+      type: string
+      default: ubuntu-latest
     secrets:
       CACHIX_AUTH_TOKEN:
-        description: 'the cachix auth token'
+        description: "the cachix auth token"
         required: true
       CACHIX_ACTIVATE_TOKEN:
         required: true
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    name:  ⚠️ Build
-    outputs: 
+    runs-on: ${{ inputs.runs-on }}
+    name: ⚠️ Build
+    outputs:
       build: ${{ steps.agent.outputs.build }}
     steps:
       - uses: actions/checkout@v4
@@ -39,15 +43,15 @@ jobs:
           setup-qemu: ${{ inputs.setup-qemu }}
           extra-nix-config: ${{ inputs.extra-nix-config }}
           cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: ⚠️  Build 
+      - name: ⚠️  Build
         id: agent
-        run: | 
+        run: |
           out_path=$(nix build -L --print-out-paths --accept-flake-config .#hosts.${{ inputs.hostname }})
           echo "Built $out_path"
           echo "build=$out_path" >> $GITHUB_OUTPUT
   deploy:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
     if: github.ref == 'refs/heads/main'
     name: 🚀 Deploy
     steps:
@@ -61,7 +65,7 @@ jobs:
           extra-nix-config: ${{ inputs.extra-nix-config }}
           cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: 🚀 Deploy
-        env: 
+        env:
           CACHIX_ACTIVATE_TOKEN: ${{ secrets.CACHIX_ACTIVATE_TOKEN }}
         run: |
           cat << EOF >> deploy.json

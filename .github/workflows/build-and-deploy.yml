@@ -1,7 +1,7 @@
 name: "Build and Deploy"
 
-on:  # yamllint disable-line rule:truthy
-  workflow_dispatch:  # allows manual triggering
+on: # yamllint disable-line rule:truthy
+  workflow_dispatch: # allows manual triggering
   push:
     branches:
       - main
@@ -31,21 +31,21 @@ jobs:
     secrets: inherit
     with:
       hostname: ocr1
+      runs-on: ubuntu-24.04-arm
       cacheName: ${{ needs.prepare.outputs.cacheName }}
       setup-qemu: true
       extra-nix-config: "extra-platforms = aarch64-linux"
 
-#  rp:
-#    name: rp
-#    needs: [prepare]
-#    uses: ./.github/workflows/build-host-reusable.yml
-#    secrets: inherit
-#    with:
-#      hostname: rp
-#      cacheName: ${{ needs.prepare.outputs.cacheName }}
-#      setup-qemu: true
-#      extra-nix-config: "extra-platforms = aarch64-linux"
-
+  #  rp:
+  #    name: rp
+  #    needs: [prepare]
+  #    uses: ./.github/workflows/build-host-reusable.yml
+  #    secrets: inherit
+  #    with:
+  #      hostname: rp
+  #      cacheName: ${{ needs.prepare.outputs.cacheName }}
+  #      setup-qemu: true
+  #      extra-nix-config: "extra-platforms = aarch64-linux"
 
   tiny1:
     name: tiny1
