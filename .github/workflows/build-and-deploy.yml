@@ -33,8 +33,8 @@ jobs:
       hostname: ocr1
       runs-on: ubuntu-24.04-arm
       cacheName: ${{ needs.prepare.outputs.cacheName }}
-      setup-qemu: true
-      extra-nix-config: "extra-platforms = aarch64-linux"
+      setup-qemu: false
+      #extra-nix-config: "extra-platforms = aarch64-linux"
 
   #  rp:
   #    name: rp
