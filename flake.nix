@@ -96,7 +96,7 @@
           tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
         };
 
-      pacages.aarch64-linux = {
+      packages.aarch64-linux = {
         hosts = {
           ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
         };
