@@ -22,21 +22,43 @@ in {
   ];
 
   fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/8383e9c6-6a01-4127-a949-8605c424195f";
+    "/" = { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=root" "compress=zstd" "noatime" ];
+    };
+
+    "/home" =
+    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress=zstd" "noatime"];
+    };
+
+    "/nix" =
+    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress=zstd" "noatime"];
+    };
+
+    "/persist" =
+    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+      fsType = "btrfs";
+      options = [ "subvol=persist" "compress=zstd" "noatime"];
+    };
+    "/var/log" =
+    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+      fsType = "btrfs";
+      options = [ "subvol=log" "compress=zstd" "noatime"];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/B620-59D1";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
   };
   swapDevices = [
     {
-      device = "/dev/disk/by-uuid/3f9712bd-740c-404e-8038-462078bb1a19";
+      device = "/dev/disk/by-uuid/3c0e4bf1-cf21-42b7-820c-e81c85a8d6fb";
     }
   ];
 
@@ -47,13 +69,13 @@ in {
 
       luks = {
         devices = {
-          "luks-32488ed5-9166-49a6-8cf4-f47a1c20668b" = {
-            device = "/dev/disk/by-uuid/32488ed5-9166-49a6-8cf4-f47a1c20668b";
+          "enc" = {
+            device = "/dev/disk/by-uuid/aebd5b7d-2d4e-481c-aa66-ed3a95f3f18f";
             #keyFile = "/crypto_keyfile.bin";
           };
 
-          "luks-f82aee8f-f2cd-4a43-bef2-5f865eeccfe9" = {
-            device = "/dev/disk/by-uuid/f82aee8f-f2cd-4a43-bef2-5f865eeccfe9";
+          "swap" = {
+            device = "/dev/disk/by-uuid/11ddffc2-ca30-424e-895e-cca0b096f585";
             #keyFile = "/crypto_keyfile.bin";
           };
         };
@@ -63,8 +85,9 @@ in {
     kernelParams = [ "net.ipv4.ip_forward=1" ];
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
+    supportedFilesystems = [ "btrfs" ];
 
-    resumeDevice = "/dev/disk/by-uuid/3f9712bd-740c-404e-8038-462078bb1a19";
+    resumeDevice = "/dev/disk/by-uuid/3c0e4bf1-cf21-42b7-820c-e81c85a8d6fb";
 
     binfmt = {
       emulatedSystems = [ "aarch64-linux" ];
