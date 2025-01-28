@@ -39,7 +39,6 @@ let
       bitwarden
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
-      floorp
       microsoft-edge
       superProductivity
 
@@ -50,16 +49,12 @@ let
       # PHP
       php82
       php82Packages.composer
-      gitlab-runner
-      wl-clipboard
 
       # Rust
       rustup
       rustPackages.clippy
       rustfmt
       openssl.dev
-      #	rust
-      #	rust-analyzer-unwrapped
 
       # Go
       go
@@ -110,17 +105,12 @@ let
       kDrive
 
       rpi-imager
-      yubioath-flutter
-      yubikey-personalization-gui
       android-tools
-      nym
 
       minikube
 
       #Music/Video
       tidal-hifi
-      #devToys
-      dotnet-sdk_8
       spotify
       stremio
       kodi-wayland
