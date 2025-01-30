@@ -78,7 +78,7 @@ let
       edgeUrl = lib.mkOption {
         type = lib.types.str;
         default = "portainer-edge.${hostname}.local";
-      }
+      };
     };
   };
 
