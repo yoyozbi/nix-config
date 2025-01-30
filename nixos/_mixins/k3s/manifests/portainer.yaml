@@ -31,3 +31,7 @@ spec:
         - host: <HOSTNAME>
           paths:
             - path: /
+        - host: <EDGE-HOSTNAME>
+          paths:
+            - path: /
+              port: 8000

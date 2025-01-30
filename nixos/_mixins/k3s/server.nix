@@ -24,7 +24,7 @@ let
 
   portainer =
     if currentHost.portainer != null && currentHost.portainer.enabled
-    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.portainer.dashboardUrl ] (builtins.readFile ./manifests/portainer.yaml)
+    then bultins.replaceStrings [ "<EDGE-HOSTNAME>"] [currentHost.portainer.edgeUrl ] (builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.portainer.dashboardUrl ] (builtins.readFile ./manifests/portainer.yaml))
     else "";
 in
 {
