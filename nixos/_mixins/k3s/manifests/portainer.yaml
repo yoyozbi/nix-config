@@ -11,10 +11,10 @@ spec:
   repo: https://portainer.github.io/k8s/
   targetNamespace: portainer
   chart: portainer
-  version: 1.0.58
+  version: 1.0.59
   valuesContent: |-
     service:
-      type: ClusterIP
+      type: NodePort
     tls:
       force: false
     nodeSelector:
@@ -31,7 +31,3 @@ spec:
         - host: <HOSTNAME>
           paths:
             - path: /
-        - host: <EDGE-HOSTNAME>
-          paths:
-            - path: /
-              port: 8000

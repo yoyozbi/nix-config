@@ -75,10 +75,6 @@ let
         type = lib.types.str;
         default = "portainer.${hostname}.local";
       };
-      edgeUrl = lib.mkOption {
-        type = lib.types.str;
-        default = "portainer-edge.${hostname}.local";
-      };
     };
   };
 
@@ -183,7 +179,6 @@ in
         portainer = {
           enabled = true;
           dashboardUrl = "portainer.yohanzbinden.ch";
-          edgeUrl = "portainer-edge.yohanzbinden.ch";
         };
 
         longhorn = {
