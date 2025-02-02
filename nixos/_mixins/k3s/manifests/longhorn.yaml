@@ -11,7 +11,7 @@ spec:
   repo: https://charts.longhorn.io
   targetNamespace: longhorn-system
   chart: longhorn
-  version: 1.7.2
+  version: 1.8.0
   valuesContent: |-
     defaultSettings:
       defaultReplicaCount: 1
@@ -32,15 +32,15 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-  - host: <HOSTNAME>
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: longhorn-frontend
-            port:
-              number: 80
+    - host: <HOSTNAME>
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: longhorn-frontend
+                port:
+                  number: 80
 ---
 
