@@ -31,6 +31,7 @@ in
         lua-language-server
         nixd
         fzf
+        wl-clipboard
 
         # lsp
         tree-sitter
