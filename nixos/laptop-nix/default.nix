@@ -2,6 +2,7 @@
 , lib
 , config
 , platform
+, pkgs
 , ...
 }:let
 pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${platform};
@@ -102,7 +103,7 @@ in {
   hardware.enableAllFirmware = true;
 
   #enable Zen kernel
-  #  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   hardware.graphics = {
     #package = pkgs-unstable.mesa.drivers;
