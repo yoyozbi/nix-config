@@ -1,8 +1,9 @@
-{ fetchFromGitHub
-, buildDotnetModule
-, lib
-, pkgs
-, combinePackages
+{
+  fetchFromGitHub,
+  buildDotnetModule,
+  lib,
+  pkgs,
+  combinePackages,
 }:
 
 buildDotnetModule rec {
@@ -30,4 +31,3 @@ buildDotnetModule rec {
     license = licenses.mit;
   };
 }
-

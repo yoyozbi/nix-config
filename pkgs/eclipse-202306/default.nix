@@ -1,26 +1,26 @@
-{ lib
-, stdenv
-, fetchurl
-, makeDesktopItem
-, makeWrapper
-, freetype
-, fontconfig
-, libX11
-, libXrender
-, zlib
-, glib
-, gtk3
-, gtk2
-, libXtst
-, jdk
-, jdk8
-, gsettings-desktop-schemas
-, webkitgtk ? null
-, # for internal web browser
-  buildEnv
-, runCommand
-, callPackage
-,
+{
+  lib,
+  stdenv,
+  fetchurl,
+  makeDesktopItem,
+  makeWrapper,
+  freetype,
+  fontconfig,
+  libX11,
+  libXrender,
+  zlib,
+  glib,
+  gtk3,
+  gtk2,
+  libXtst,
+  jdk,
+  jdk8,
+  gsettings-desktop-schemas,
+  webkitgtk ? null,
+  # for internal web browser
+  buildEnv,
+  runCommand,
+  callPackage,
 }:
 # use ./update.sh to help with updating for each quarterly release
 #
@@ -30,16 +30,17 @@ let
   platform_major = "4";
   platform_minor = "28";
   year = "2023";
-  month = "06"; #release month
-  buildmonth = "06"; #sometimes differs from release month
+  month = "06"; # release month
+  buildmonth = "06"; # sometimes differs from release month
   timestamp = "${year}${buildmonth}050440";
   gtk = gtk3;
   arch =
-    if stdenv.hostPlatform.isx86_64
-    then "x86_64"
-    else if stdenv.hostPlatform.isAarch64
-    then "aarch64"
-    else throw "don't know what platform suffix for ${stdenv.hostPlatform.system} will be";
+    if stdenv.hostPlatform.isx86_64 then
+      "x86_64"
+    else if stdenv.hostPlatform.isAarch64 then
+      "aarch64"
+    else
+      throw "don't know what platform suffix for ${stdenv.hostPlatform.system} will be";
 in
 rec {
   # work around https://bugs.eclipse.org/bugs/show_bug.cgi?id=476075#c3
@@ -61,7 +62,11 @@ rec {
       makeWrapper
       ;
   };
-  buildEclipse = eclipseData: buildEclipseUnversioned (eclipseData // { productVersion = "${platform_major}.${platform_minor}"; });
+  buildEclipse =
+    eclipseData:
+    buildEclipseUnversioned (
+      eclipseData // { productVersion = "${platform_major}.${platform_minor}"; }
+    );
 
   ### Eclipse CPP
 
@@ -74,7 +79,8 @@ rec {
         {
           x86_64 = "sha256-0VFg68+M84SEPbLv2f3hNTK1tvUjN3u0X3DYFCMAFX8=";
           aarch64 = "sha256-K1e1Q//X+R4FfY60eE4nPgEaF0wUkUIO/AFzzjIrGRY=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -89,7 +95,8 @@ rec {
         {
           x86_64 = "sha256-wdZninKynNQ5o2nxyOxA7GDQ75tWs1TB2jh21O0fEpg=";
           aarch64 = "sha256-5iAoMyesBjmdAy/eSMkgtuYv5rnXAEjgLb0yNX02mdw=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -104,29 +111,33 @@ rec {
         {
           x86_64 = "sha256-SYeCXWGSi8bPbqngGC+ZSBQaKyZrDTFeT+RLKC+ZsDk=";
           aarch64 = "sha256-DN6fl7p+q96wsg9Mq6v3lTV0/7b87MFKTJSFuNrjLgs=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
   ### Eclipse Scala SDK
 
-  eclipse-scala-sdk = (buildEclipseUnversioned.override
-    {
-      jdk = jdk8;
-      gtk = gtk2;
-    }
-    {
-      name = "eclipse-scala-sdk-4.7.0";
-      description = "Eclipse IDE for Scala Developers";
-      productVersion = "4.7";
-      src = fetchurl {
-        url = "https://downloads.typesafe.com/scalaide-pack/4.7.0-vfinal-oxygen-212-20170929/scala-SDK-4.7.0-vfinal-2.12-linux.gtk.x86_64.tar.gz";
-        sha256 = "1n5w2a7mh9ajv6fxcas1gpgwb04pdxbr9v5dzr67gsz5bhahq4ya";
-      };
-    }).overrideAttrs (_oa: {
-    # Only download for x86_64
-    meta.platforms = [ "x86_64-linux" ];
-  });
+  eclipse-scala-sdk =
+    (buildEclipseUnversioned.override
+      {
+        jdk = jdk8;
+        gtk = gtk2;
+      }
+      {
+        name = "eclipse-scala-sdk-4.7.0";
+        description = "Eclipse IDE for Scala Developers";
+        productVersion = "4.7";
+        src = fetchurl {
+          url = "https://downloads.typesafe.com/scalaide-pack/4.7.0-vfinal-oxygen-212-20170929/scala-SDK-4.7.0-vfinal-2.12-linux.gtk.x86_64.tar.gz";
+          sha256 = "1n5w2a7mh9ajv6fxcas1gpgwb04pdxbr9v5dzr67gsz5bhahq4ya";
+        };
+      }
+    ).overrideAttrs
+      (_oa: {
+        # Only download for x86_64
+        meta.platforms = [ "x86_64-linux" ];
+      });
 
   ### Eclipse SDK
 
@@ -139,7 +150,8 @@ rec {
         {
           x86_64 = "sha256-QY16KSNZj6rq7YL+gOajI80XVtSdCh7MJGPscRJuf1o=";
           aarch64 = "sha256-oZXx87dlLZ61ezwDD0WnV48ZMjcK0FkSGl83LhkJvmc=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -154,7 +166,8 @@ rec {
         {
           x86_64 = "sha256-FC4zgx+75S9TJVp0azWgON/wNmoEy0074tj+DOdvNOg=";
           aarch64 = "sha256-wnRQKqg1V4hrD9VAg6sw8yypB97Wcivt4cH6MFP4KPs=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -169,7 +182,8 @@ rec {
         {
           x86_64 = "sha256-eSYWuw6s3H1ht4zPDwjd4oZ49KhIn1OaywtwKHyS0wI=";
           aarch64 = "sha256-9O0+S3G3vtjN1Vd4euf3gYRPPtrVxoBB+Uj7BlDAS5M=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -184,7 +198,8 @@ rec {
         {
           x86_64 = "sha256-kJoXaSwsjArpe4tqeSkZiU4AcR5dLBvdsyU7tBTiTdc=";
           aarch64 = "sha256-qydFxa0lQEwsxZQPlBXV/wiuXGuIcBHRasKZEmXJaOk=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -199,7 +214,8 @@ rec {
         {
           x86_64 = "sha256-BAEXN6sx4f+BJnKz0lkPoAmRXnlbl5s5ETAyfE/AZak=";
           aarch64 = "sha256-xayvsFAglBxAB49j2tnt52d6KX6LxMBRfx0wR/p8K70=";
-        }.${arch};
+        }
+        .${arch};
     };
   };
 
@@ -208,17 +224,16 @@ rec {
   # Function that assembles a complete Eclipse environment from an
   # Eclipse package and list of Eclipse plugins.
   eclipseWithPlugins =
-    { eclipse
-    , plugins ? [ ]
-    , jvmArgs ? [ ]
-    ,
+    {
+      eclipse,
+      plugins ? [ ],
+      jvmArgs ? [ ],
     }:
     let
       # Gather up the desired plugins.
       pluginEnv = buildEnv {
         name = "eclipse-plugins";
-        paths = with lib;
-          filter (x: x ? isEclipsePlugin) (closePropagation plugins);
+        paths = with lib; filter (x: x ? isEclipsePlugin) (closePropagation plugins);
       };
 
       # Prepare the JVM arguments to add to the ini file. We here also

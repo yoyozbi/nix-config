@@ -1,7 +1,9 @@
-{ config
-, lib
-, ...
-}: {
+{
+  config,
+  lib,
+  ...
+}:
+{
   imports = [ ./. ];
 
   services.k3s = {

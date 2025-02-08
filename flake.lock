@@ -615,24 +615,20 @@
     },
     "nix-formatter-pack": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_5",
         "nmd": "nmd",
         "nmt": "nmt"
       },
       "locked": {
         "lastModified": 1734904675,
         "narHash": "sha256-MoYUUxiLcNwC9woNLoCfXfzcCAHE310DqDcJd/GjM98=",
-        "owner": "Gerschtli",
-        "repo": "nix-formatter-pack",
+        "path": "/nix/store/lc6zfhvjp4mzxrb30h87pjm8a08jc3ci-source",
         "rev": "19e8cb01a078fea1e6cf824097978c41af74e24b",
-        "type": "github"
+        "type": "path"
       },
       "original": {
-        "owner": "Gerschtli",
-        "repo": "nix-formatter-pack",
-        "type": "github"
+        "id": "nix-formatter-pack",
+        "type": "indirect"
       }
     },
     "nixos-anywhere": {
@@ -835,6 +831,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1688392541,
+        "narHash": "sha256-lHrKvEkCPTUO+7tPfjIcb7Trk6k31rz18vkyqmkeJfY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ea4c80b39be4c09702b0cb3b42eab59e2ba4f24b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1738843498,
         "narHash": "sha256-7x+Q4xgFj9UxZZO9aUDCR8h4vyYut4zPUvfj3i+jBHE=",
         "owner": "NixOS",
@@ -849,7 +861,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1731763621,
         "narHash": "sha256-ddcX4lQL0X05AYkrkV2LMFgGdRvgap7Ho8kgon3iWZk=",
@@ -957,7 +969,7 @@
         "lanzaboote": "lanzaboote",
         "nix-formatter-pack": "nix-formatter-pack",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix"
@@ -986,7 +998,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1738291974,

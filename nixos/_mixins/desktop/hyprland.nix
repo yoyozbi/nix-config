@@ -1,7 +1,8 @@
-{ inputs
-, pkgs
-, username
-, ...
+{
+  inputs,
+  pkgs,
+  username,
+  ...
 }:
 let
   stable-packages = with pkgs; [
@@ -53,7 +54,6 @@ in
   };
 
   environment.systemPackages = stable-packages ++ unstable-packages;
-
 
   services = {
     greetd = {

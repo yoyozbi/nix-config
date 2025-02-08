@@ -1,11 +1,10 @@
-/*
-  based on https://github.com/TUM-DSE/doctor-cluster-config/blob/master/modules/hosts.nix
-*/
-{ lib
-, config
-, hostname
-, desktop
-, ...
+# based on https://github.com/TUM-DSE/doctor-cluster-config/blob/master/modules/hosts.nix
+{
+  lib,
+  config,
+  hostname,
+  desktop,
+  ...
 }:
 let
   traefikOptions = lib.types.submodule {
@@ -143,23 +142,19 @@ in
 {
   options = with lib; {
     networking.yoyozbi.hosts = mkOption {
-      type = with types; attrsOf (submodule [{ options = hostOptions; }]);
+      type = with types; attrsOf (submodule [ { options = hostOptions; } ]);
       description = "A host in the cluster";
     };
     networking.yoyozbi.currentHost = mkOption {
-      type = with types; submodule [{ options = hostOptions; }];
+      type = with types; submodule [ { options = hostOptions; } ];
       default = config.networking.yoyozbi.hosts.${hostname};
       description = "The host that is described by this configuration";
     };
   };
   config = {
-    warnings =
-      lib.optional
-        (
-          !(config.networking.yoyozbi.hosts ? ${hostname})
-          && desktop == null # we dont care if it is not a server
-        )
-        "Please add network configuration for ${hostname}. None found in ${./hosts.nix}";
+    warnings = lib.optional (
+      !(config.networking.yoyozbi.hosts ? ${hostname}) && desktop == null # we dont care if it is not a server
+    ) "Please add network configuration for ${hostname}. None found in ${./hosts.nix}";
 
     networking.yoyozbi.hosts = {
       ocr1 = {

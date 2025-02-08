@@ -1,7 +1,9 @@
-{ lib
-, modulesPath
-, ...
-}: {
+{
+  lib,
+  modulesPath,
+  ...
+}:
+{
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
 
@@ -15,7 +17,10 @@
     ../_mixins/k3s/server.nix
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_scsi" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "virtio_scsi"
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];

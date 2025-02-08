@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ../services/networkmanager.nix
     ../services/pipewire.nix

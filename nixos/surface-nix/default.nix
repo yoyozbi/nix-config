@@ -1,10 +1,12 @@
-{ inputs
-, lib
-, config
-, platform
-, pkgs
-, ...
-}: {
+{
+  inputs,
+  lib,
+  config,
+  platform,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./disks.nix
     #./hardware-configuration.nix
@@ -20,7 +22,12 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+      ];
       kernelModules = [ "tpm_tis" ];
     };
 

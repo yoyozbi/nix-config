@@ -24,21 +24,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-formatter-pack = {
-      url = "github:Gerschtli/nix-formatter-pack";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , nix-formatter-pack
-    , deploy-rs
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      nix-formatter-pack,
+      deploy-rs,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -96,8 +92,7 @@
           tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
         };
 
-      
-      #rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+        #rp = self.nixosConfigurations."rp".config.system.build.toplevel;
       };
 
       packages.aarch64-linux = {
@@ -108,26 +103,16 @@
 
       deploy.nodes = {
         surface-nix = {
-            hostname = "surface-nix";
-            profiles.system = {
-              user = "root";
-              sshUser = "yohan";
-              path =  deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.surface-nix;
-            };
+          hostname = "surface-nix";
+          profiles.system = {
+            user = "root";
+            sshUser = "yohan";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.surface-nix;
+          };
         };
       };
 
-      formatter = libx.forAllSystems (
-        nix-formatter-pack.lib.mkFormatter {
-          pkgs = nixpkgs.legacyPackages.${system};
-          config.tools = {
-            alejandra.enable = true;
-            deadnix.enable = true;
-            nixpkgs-fmt.enable = true;
-            statix.enable = true;
-          };
-        }
-      );
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 
       overlays = import ./overlays { inherit inputs; };
     };

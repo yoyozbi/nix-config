@@ -1,41 +1,42 @@
-{ lib
-, fetchFromGitHub
-, clang
-, cmake
-, copyDesktopItems
-, curl
-, perl
-, pkg-config
-, protobuf
-, xcbuild
-, fontconfig
-, freetype
-, libgit2
-, openssl
-, sqlite
-, zlib
-, zstd
-, alsa-lib
-, libxkbcommon
-, wayland
-, libglvnd
-, xorg
-, stdenv
-, darwin
-, makeFontsConf
-, vulkan-loader
-, envsubst
-, gitUpdater
-, cargo-about
-, #  versionCheckHook,
-  zed-editor
-, buildFHSEnv
-, makeRustPlatform
-, pkgs
-, withGLES ? false
-,
+{
+  lib,
+  fetchFromGitHub,
+  clang,
+  cmake,
+  copyDesktopItems,
+  curl,
+  perl,
+  pkg-config,
+  protobuf,
+  xcbuild,
+  fontconfig,
+  freetype,
+  libgit2,
+  openssl,
+  sqlite,
+  zlib,
+  zstd,
+  alsa-lib,
+  libxkbcommon,
+  wayland,
+  libglvnd,
+  xorg,
+  stdenv,
+  darwin,
+  makeFontsConf,
+  vulkan-loader,
+  envsubst,
+  gitUpdater,
+  cargo-about,
+  #  versionCheckHook,
+  zed-editor,
+  buildFHSEnv,
+  makeRustPlatform,
+  pkgs,
+  withGLES ? false,
 }:
-assert withGLES -> stdenv.hostPlatform.isLinux; let
+assert withGLES -> stdenv.hostPlatform.isLinux;
+let
   executableName = "zeditor";
   # Based on vscode.fhs
   # Zed allows for users to download and use extensions
@@ -48,13 +49,17 @@ assert withGLES -> stdenv.hostPlatform.isLinux; let
     inherit (pkgs.unstable) cargo rustc;
   };
 
-  fhs = { additionalPkgs ? _pkgs: [ ] }:
+  fhs =
+    {
+      additionalPkgs ? _pkgs: [ ],
+    }:
     buildFHSEnv {
       # also determines the name of the wrapped command
       name = executableName;
 
       # additional libraries which are commonly needed for extensions
-      targetPkgs = pkgs:
+      targetPkgs =
+        pkgs:
         (with pkgs; [
           # ld-linux-x86-64-linux.so.2 and others
           glibc
@@ -73,14 +78,12 @@ assert withGLES -> stdenv.hostPlatform.isLinux; let
         inherit (zed-editor) pname version;
       };
 
-      meta =
-        zed-editor.meta
-        // {
-          description = ''
-            Wrapped variant of ${zed-editor.pname} which launches in a FHS compatible environment.
-            Should allow for easy usage of extensions without nix-specific modifications.
-          '';
-        };
+      meta = zed-editor.meta // {
+        description = ''
+          Wrapped variant of ${zed-editor.pname} which launches in a FHS compatible environment.
+          Should allow for easy usage of extensions without nix-specific modifications.
+        '';
+      };
     };
 in
 rustPlatform.buildRustPackage rec {
@@ -123,19 +126,17 @@ rustPlatform.buildRustPackage rec {
     };
   };
 
-  nativeBuildInputs =
-    [
-      clang
-      cmake
-      copyDesktopItems
-      curl
-      perl
-      pkg-config
-      protobuf
-      rustPlatform.bindgenHook
-      cargo-about
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isDarwin [ xcbuild.xcrun ];
+  nativeBuildInputs = [
+    clang
+    cmake
+    copyDesktopItems
+    curl
+    perl
+    pkg-config
+    protobuf
+    rustPlatform.bindgenHook
+    cargo-about
+  ] ++ lib.optionals stdenv.hostPlatform.isDarwin [ xcbuild.xcrun ];
 
   dontUseCmakeConfigure = true;
 
@@ -157,7 +158,8 @@ rustPlatform.buildRustPackage rec {
       xorg.libxcb
     ]
     ++ lib.optionals stdenv.hostPlatform.isDarwin (
-      with darwin.apple_sdk.frameworks; [
+      with darwin.apple_sdk.frameworks;
+      [
         AppKit
         CoreAudio
         CoreFoundation
@@ -195,14 +197,8 @@ rustPlatform.buildRustPackage rec {
     RELEASE_VERSION = version;
   };
 
-  RUSTFLAGS =
-    if withGLES
-    then "--cfg gles"
-    else "";
-  gpu-lib =
-    if withGLES
-    then libglvnd
-    else vulkan-loader;
+  RUSTFLAGS = if withGLES then "--cfg gles" else "";
+  gpu-lib = if withGLES then libglvnd else vulkan-loader;
 
   preBuild = ''
     bash script/generate-licenses

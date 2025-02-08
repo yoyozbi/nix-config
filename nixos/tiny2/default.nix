@@ -1,8 +1,10 @@
-{ lib
-, platform
-, modulesPath
-, ...
-}: {
+{
+  lib,
+  platform,
+  modulesPath,
+  ...
+}:
+{
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     #		inputs.nixos-hardware.nixosModules.common-cpu-amd
@@ -20,7 +22,12 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi" ];
+      availableKernelModules = [
+        "ata_piix"
+        "uhci_hcd"
+        "xen_blkfront"
+        "vmw_pvscsi"
+      ];
       kernelModules = [ "nvme" ];
     };
   };

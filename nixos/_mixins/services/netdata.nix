@@ -1,9 +1,9 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
-services = {
+  services = {
     netdata = {
       enable = true;
-      package = pkgs.netdata; 
+      package = pkgs.netdata;
       config = {
         global = {
           "memory mode" = "ram";

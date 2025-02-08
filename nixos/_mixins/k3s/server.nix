@@ -2,30 +2,39 @@
 let
   inherit (config.networking.yoyozbi) currentHost;
 
-  rancher =
-    if currentHost.rancher
-    then builtins.readFile ./manifests/rancher.yaml
-    else "";
+  rancher = if currentHost.rancher then builtins.readFile ./manifests/rancher.yaml else "";
 
   traefik-dashboard =
-    if currentHost.traefik-dashboard != null && currentHost.traefik-dashboard.enabled
-    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.traefik-dashboard.dashboardUrl ] (builtins.readFile ./manifests/traefik.yaml)
-    else "";
+    if currentHost.traefik-dashboard != null && currentHost.traefik-dashboard.enabled then
+      builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.traefik-dashboard.dashboardUrl ] (
+        builtins.readFile ./manifests/traefik.yaml
+      )
+    else
+      "";
 
   argocd =
-    if currentHost.argocd != null && currentHost.argocd.enabled
-    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.argocd.dashboardUrl ] (builtins.readFile ./manifests/argocd.yaml)
-    else "";
+    if currentHost.argocd != null && currentHost.argocd.enabled then
+      builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.argocd.dashboardUrl ] (
+        builtins.readFile ./manifests/argocd.yaml
+      )
+    else
+      "";
 
   longhorn =
-    if currentHost.longhorn != null && currentHost.longhorn.enabled
-    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.longhorn.dashboardUrl ] (builtins.readFile ./manifests/longhorn.yaml)
-    else "";
+    if currentHost.longhorn != null && currentHost.longhorn.enabled then
+      builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.longhorn.dashboardUrl ] (
+        builtins.readFile ./manifests/longhorn.yaml
+      )
+    else
+      "";
 
   portainer =
-    if currentHost.portainer != null && currentHost.portainer.enabled
-    then builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.portainer.dashboardUrl ] (builtins.readFile ./manifests/portainer.yaml)
-    else "";
+    if currentHost.portainer != null && currentHost.portainer.enabled then
+      builtins.replaceStrings [ "<HOSTNAME>" ] [ currentHost.portainer.dashboardUrl ] (
+        builtins.readFile ./manifests/portainer.yaml
+      )
+    else
+      "";
 in
 {
   imports = [ ./. ];

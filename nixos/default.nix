@@ -1,14 +1,16 @@
-{ config
-, desktop
-, hostname
-, inputs
-, lib
-, outputs
-, pkgs
-, stateVersion
-, username
-, ...
-}: {
+{
+  config,
+  desktop,
+  hostname,
+  inputs,
+  lib,
+  outputs,
+  pkgs,
+  stateVersion,
+  username,
+  ...
+}:
+{
   imports =
     [
       inputs.disko.nixosModules.disko
@@ -17,7 +19,9 @@
       ./${hostname}
       ./_mixins/users/root
     ]
-    ++ lib.optional (builtins.pathExists (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
+    ++ lib.optional (builtins.pathExists (
+      ./. + "/_mixins/users/${username}"
+    )) ./_mixins/users/${username}
     ++ lib.optional (desktop != null) ./_mixins/desktop;
   nixpkgs = {
     overlays = [
@@ -73,7 +77,10 @@
     package = pkgs.unstable.nix;
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       # Avoid unwanted garbage collection when using nix-direnv
       keep-outputs = true;

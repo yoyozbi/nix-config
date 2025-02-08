@@ -1,6 +1,7 @@
-{ lib
-, hostname
-, ...
+{
+  lib,
+  hostname,
+  ...
 }:
 let
   wireguard = {
@@ -55,8 +56,7 @@ in
         lib.optionals (builtins.elem hostname wireguard.hosts) wireguard.tcpPortRanges
         ++ lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.tcpPortRanges
         ++ lib.optionals (builtins.elem hostname mqtt.hosts) mqtt.tcpPortRanges;
-      allowedUDPPortRanges =
-        lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.udpPortRanges;
+      allowedUDPPortRanges = lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.udpPortRanges;
     };
   };
 }

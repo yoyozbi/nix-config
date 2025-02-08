@@ -1,9 +1,10 @@
-{ desktop
-, lib
-, ...
-}: {
-  imports =
-    lib.optional (builtins.pathExists (./. + "/${desktop}.nix")) ./${desktop}.nix;
+{
+  desktop,
+  lib,
+  ...
+}:
+{
+  imports = lib.optional (builtins.pathExists (./. + "/${desktop}.nix")) ./${desktop}.nix;
 
   hardware = {
     graphics = {

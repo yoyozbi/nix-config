@@ -1,13 +1,15 @@
-{ config
-, desktop
-, hostname
-, lib
-, pkgs
-, ...
+{
+  config,
+  desktop,
+  hostname,
+  lib,
+  pkgs,
+  ...
 }:
 let
   ifExists = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-  stable-packages = with pkgs;
+  stable-packages =
+    with pkgs;
     [
       kubectl
       kubectx
@@ -129,7 +131,8 @@ let
     ++ lib.optionals (desktop != null && hostname == "surface-nix") [
     ];
 
-  unstable-packages = with pkgs.unstable;
+  unstable-packages =
+    with pkgs.unstable;
     lib.optionals (desktop != null) [
       warp-terminal
       musescore
@@ -153,11 +156,11 @@ in
   # Configure keymap in X11
   services = {
     xserver = {
-    xkb = {
-      layout = "ch";
-      variant = "fr";
-    };
-    
+      xkb = {
+        layout = "ch";
+        variant = "fr";
+      };
+
     };
   };
 
@@ -165,7 +168,10 @@ in
   console.keyMap = "fr_CH";
 
   users.groups.yohan = { };
-  nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.settings.trusted-users = [
+    "root"
+    "@wheel"
+  ];
 
   users.users.yohan = {
     description = "Yohan Zbinden";

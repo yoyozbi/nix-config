@@ -1,7 +1,9 @@
-{ lib
-, modulesPath
-, ...
-}: {
+{
+  lib,
+  modulesPath,
+  ...
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../_mixins/services/openssh.nix
@@ -34,7 +36,10 @@
     ];
   };
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "usbhid"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];

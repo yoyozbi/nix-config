@@ -1,25 +1,25 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, glib
-, libgcrypt
-, libGL
-, libgpg-error
-, libsecret
-, libxkbcommon
-, log4cplus
-, openssl_3_3
-, pkg-config
-, poco
-, qt6
-, sentry-native
-, shared-mime-info
-, sqlite
-, vulkan-headers
-, xxHash
-, zlib
-,
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  glib,
+  libgcrypt,
+  libGL,
+  libgpg-error,
+  libsecret,
+  libxkbcommon,
+  log4cplus,
+  openssl_3_3,
+  pkg-config,
+  poco,
+  qt6,
+  sentry-native,
+  shared-mime-info,
+  sqlite,
+  vulkan-headers,
+  xxHash,
+  zlib,
 }:
 stdenv.mkDerivation rec {
   pname = "kDrive";

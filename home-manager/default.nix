@@ -1,17 +1,21 @@
-{ config
-, desktop
-, hostname
-, inputs
-, lib
-, outputs
-, pkgs
-, stateVersion
-, username
-, ...
-}: {
+{
+  config,
+  desktop,
+  hostname,
+  inputs,
+  lib,
+  outputs,
+  pkgs,
+  stateVersion,
+  username,
+  ...
+}:
+{
   imports =
     lib.optional (builtins.isPath (./. + "/_mixins/users/${username}")) ./_mixins/users/${username}
-    ++ lib.optional (builtins.pathExists (./. + "/_mixins/users/${username}/hosts/${hostname}.nix")) ./_mixins/users/${username}/hosts/${hostname}.nix
+    ++ lib.optional (builtins.pathExists (
+      ./. + "/_mixins/users/${username}/hosts/${hostname}.nix"
+    )) ./_mixins/users/${username}/hosts/${hostname}.nix
     ++ lib.optional (desktop != null) ./_mixins/desktop;
   home = {
     # activation.report-changes = config.lib.dag.entryAnywhere ''
@@ -61,7 +65,10 @@
     package = pkgs.unstable.nix;
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       # Avoid unwanted garbage collection when using nix-direnv
       keep-outputs = true;
       keep-derivations = true;

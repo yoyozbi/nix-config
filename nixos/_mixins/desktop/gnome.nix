@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ../services/networkmanager.nix
   ];

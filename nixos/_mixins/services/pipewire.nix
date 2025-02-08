@@ -1,9 +1,12 @@
-{ desktop
-, lib
-, pkgs
-, ...
-}: {
-  environment.systemPackages = with pkgs;
+{
+  desktop,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  environment.systemPackages =
+    with pkgs;
     [
       alsa-utils
       pulseaudio

@@ -1,12 +1,15 @@
-{ inputs
-, lib
-, config
-, platform
-, pkgs
-, ...
-}:let
-pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${platform};
-in {
+{
+  inputs,
+  lib,
+  config,
+  platform,
+  pkgs,
+  ...
+}:
+let
+  pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${platform};
+in
+{
   imports = [
     #./hardware-configuration.nix
     ../_mixins/hardware/systemdboot.nix
@@ -23,38 +26,62 @@ in {
   ];
 
   fileSystems = {
-    "/" = { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+    "/" = {
+      device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
+      options = [
+        "subvol=root"
+        "compress=zstd"
+        "noatime"
+      ];
     };
 
-    "/home" =
-    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+    "/home" = {
+      device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
       fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" "noatime"];
+      options = [
+        "subvol=home"
+        "compress=zstd"
+        "noatime"
+      ];
     };
 
-    "/nix" =
-    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+    "/nix" = {
+      device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
       fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime"];
+      options = [
+        "subvol=nix"
+        "compress=zstd"
+        "noatime"
+      ];
     };
 
-    "/persist" =
-    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+    "/persist" = {
+      device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
       fsType = "btrfs";
-      options = [ "subvol=persist" "compress=zstd" "noatime"];
+      options = [
+        "subvol=persist"
+        "compress=zstd"
+        "noatime"
+      ];
     };
-    "/var/log" =
-    { device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
+    "/var/log" = {
+      device = "/dev/disk/by-uuid/8be38d0e-8c11-4139-bb55-3b7146176003";
       fsType = "btrfs";
-      options = [ "subvol=log" "compress=zstd" "noatime"];
+      options = [
+        "subvol=log"
+        "compress=zstd"
+        "noatime"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/B620-59D1";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
   };
   swapDevices = [
@@ -65,7 +92,15 @@ in {
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "vmd"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
       kernelModules = [ ];
 
       luks = {
