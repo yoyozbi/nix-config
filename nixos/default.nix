@@ -8,6 +8,7 @@
   pkgs,
   stateVersion,
   username,
+  platform,
   ...
 }:
 {
@@ -74,7 +75,7 @@
     };
 
     optimise.automatic = true;
-    package = pkgs.unstable.nix;
+    package = inputs.lix-module.packages.${platform}.default;
     settings = {
       auto-optimise-store = true;
       experimental-features = [
