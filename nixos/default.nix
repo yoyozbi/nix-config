@@ -75,7 +75,7 @@
     };
 
     optimise.automatic = true;
-    package = inputs.lix-module.packages.${platform}.default;
+    package = pkgs.unstable.nix;
     settings = {
       auto-optimise-store = true;
       experimental-features = [

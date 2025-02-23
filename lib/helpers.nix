@@ -53,7 +53,6 @@
       };
       modules =
         [
-          inputs.lix-module.nixosModules.default
           ../nixos
           #inputs.agenix.nixosModules.default
         ]

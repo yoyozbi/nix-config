@@ -4,6 +4,7 @@
   hostname,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -21,6 +22,7 @@ let
       vim
       comma
       graphviz
+      inputs.tide.packages.x86_64-linux.tide
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
