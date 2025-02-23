@@ -42,6 +42,10 @@ in
         fzf
         wl-clipboard
 
+        typst
+        tinymist
+        luarocks
+
         # lsp
         tree-sitter
         eslint_d
