@@ -7,6 +7,7 @@
   imports = [ ./. ];
 
   services.k3s = {
+    enable = false; #Disable agents to remove k3s data
     role = "agent";
     extraFlags = toString [
       #"--node-external-ip=${config.networking.yoyozbi.currentHost.externalIp}"
