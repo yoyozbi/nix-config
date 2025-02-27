@@ -45,6 +45,7 @@ let
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
       microsoft-edge
       superProductivity
+      unstable.anytype
 
       # Dotnet
       dotnet-sdk_8
