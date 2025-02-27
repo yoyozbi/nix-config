@@ -19,7 +19,7 @@
 
   services = {
     k3s = {
-      enable = false;
+      enable = true;
       tokenFile = lib.mkDefault config.sops.secrets.k3s-server-token.path;
       package = pkgs.k3s_1_30;
     };
