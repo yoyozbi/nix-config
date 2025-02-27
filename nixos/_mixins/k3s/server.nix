@@ -40,7 +40,6 @@ in
   imports = [ ./. ];
 
   services.k3s = {
-    enable = false; # Disable the service to remove k3s data
     role = "server";
     extraFlags = toString [
       "--node-external-ip=${currentHost.externalIp}"
