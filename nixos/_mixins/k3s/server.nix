@@ -42,7 +42,6 @@ in
   services.k3s = {
     role = "server";
     extraFlags = toString [
-      "--cluster-reset" #TO REMOVE
       "--node-external-ip=${currentHost.externalIp}"
       "--node-ip=${currentHost.internalIp}"
       "--advertise-address=${currentHost.internalIp}"
