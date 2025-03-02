@@ -23,6 +23,7 @@ let
       comma
       graphviz
       inputs.tide.packages.x86_64-linux.tide
+      unstable.syncthing
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
