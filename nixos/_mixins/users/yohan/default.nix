@@ -24,6 +24,7 @@ let
       graphviz
       inputs.tide.packages.x86_64-linux.tide
       unstable.syncthingtray
+      unstable.syncthing
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
