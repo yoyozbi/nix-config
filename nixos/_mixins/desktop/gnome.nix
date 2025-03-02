@@ -27,6 +27,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnomeExtensions.gsconnect
+    gnomeExtensions.appindicator
   ];
 }
