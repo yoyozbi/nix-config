@@ -13,12 +13,16 @@
   openssl_3_3,
   pkg-config,
   poco,
+  libzip,
+  extra-cmake-modules,
+  libsysprof-capture,
   qt6,
   sentry-native,
   shared-mime-info,
   sqlite,
   vulkan-headers,
   xxHash,
+  ninja,
   zlib,
 }:
 stdenv.mkDerivation rec {
@@ -40,6 +44,10 @@ stdenv.mkDerivation rec {
     libgpg-error
     libsecret
     libxkbcommon
+    extra-cmake-modules
+    libsysprof-capture
+    libzip
+    ninja
     # This is required because kdrive needs the log4cplusConfig.cmake file, which is only generated when built with cmake
     # Since log4cplus is built with make in nixpkgs, we rebuild it with cmake
     (log4cplus.overrideAttrs (_: {
@@ -74,11 +82,15 @@ stdenv.mkDerivation rec {
     "-DKDRIVE_THEME_DIR=${src}/infomaniak"
     "-DQT_FEATURE_neon=OFF"
     "-DSYSCONF_INSTALL_DIR=etc"
+    "-DBUILD_UNIT_TESTS=off"
   ];
 
   installFlagsArray = [
     # Build fails without this variable
     "DESTDIR=$(out)"
+    "BIN_INSTALL_DIR=$(out)"
+    "CMAKE_INSTALL_BINDIR=$(out)/bin"
+    "CMAKE_INSTALL_LIBDIR=$(out)/lib"
   ];
 
   patches = [ ./kdrive-CMakeLists.txt.patch ];
