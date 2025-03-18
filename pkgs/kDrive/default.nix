@@ -27,7 +27,7 @@
 }:
 stdenv.mkDerivation rec {
   pname = "kDrive";
-  version = "3.6.9";
+  version = "3.6.9b";
 
   src = fetchFromGitHub {
     owner = "infomaniak";
