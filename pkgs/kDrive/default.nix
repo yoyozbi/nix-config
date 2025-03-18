@@ -83,14 +83,16 @@ stdenv.mkDerivation rec {
     "-DQT_FEATURE_neon=OFF"
     "-DSYSCONF_INSTALL_DIR=etc"
     "-DBUILD_UNIT_TESTS=off"
+    "-Wdev"
+    "--debug-output"
+    "--trace"
   ];
 
   installFlagsArray = [
     # Build fails without this variable
     "DESTDIR=$(out)"
-    "BIN_INSTALL_DIR=$(out)"
-    "CMAKE_INSTALL_BINDIR=$(out)/bin"
-    "CMAKE_INSTALL_LIBDIR=$(out)/lib"
+    "CMAKE_INSTALL_PREFIX=$(out)"
+    "CMAKE_PREFIX_PATH=$(out)"
   ];
 
   patches = [ ./kdrive-CMakeLists.txt.patch ];
@@ -100,7 +102,7 @@ stdenv.mkDerivation rec {
     rm -rf $out/bin
 
     # Because DESTDIR is set to $out, built files end up in /nix/store/<hash>-kDrive-<version>/nix/store/<hash>-kDrive-<version>
-    mv $out$out/* $out
+    #mv $out$out/* $out
     rm -rf $out/nix
 
     # The binary fails to start if sync-exclude.lst is not located in the same directory
