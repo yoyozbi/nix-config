@@ -22,7 +22,6 @@
   sqlite,
   vulkan-headers,
   xxHash,
-  ninja,
   zlib,
 }:
 stdenv.mkDerivation rec {
@@ -47,7 +46,6 @@ stdenv.mkDerivation rec {
     extra-cmake-modules
     libsysprof-capture
     libzip
-    ninja
     # This is required because kdrive needs the log4cplusConfig.cmake file, which is only generated when built with cmake
     # Since log4cplus is built with make in nixpkgs, we rebuild it with cmake
     (log4cplus.overrideAttrs (_: {
@@ -83,16 +81,13 @@ stdenv.mkDerivation rec {
     "-DQT_FEATURE_neon=OFF"
     "-DSYSCONF_INSTALL_DIR=etc"
     "-DBUILD_UNIT_TESTS=off"
-    "-Wdev"
-    "--debug-output"
-    "--trace"
+    "-DCMAKE_INSTALL_PREFIX=$(out)"
+    "-DWITH_CRASH_REPORTER=off"
   ];
 
   installFlagsArray = [
     # Build fails without this variable
     "DESTDIR=$(out)"
-    "CMAKE_INSTALL_PREFIX=$(out)"
-    "CMAKE_PREFIX_PATH=$(out)"
   ];
 
   patches = [ ./kdrive-CMakeLists.txt.patch ];

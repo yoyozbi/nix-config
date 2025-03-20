@@ -110,7 +110,7 @@ let
       SDL
       xml2
       handbrake
-      kDrive
+      #kDrive
 
       rpi-imager
       android-tools
