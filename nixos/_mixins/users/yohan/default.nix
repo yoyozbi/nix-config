@@ -22,10 +22,9 @@ let
       vim
       comma
       graphviz
-      inputs.tide.packages.x86_64-linux.tide
+      #inputs.tide.packages.x86_64-linux.tide
       unstable.syncthingtray
       unstable.syncthing
-      rquickshare # Rust implementation of android quickshare
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run

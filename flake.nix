@@ -25,7 +25,7 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    tide.url = "github:Nxllpointer/tide";
+    tide.url = "github:Nxllpointer/tide/v1.1.0";
   };
 
   outputs =
