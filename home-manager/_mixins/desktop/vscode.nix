@@ -22,12 +22,13 @@
         vscode-extensions.vscodevim.vim
         vscode-extensions.vscode-icons-team.vscode-icons
         vscode-extensions.mkhl.direnv
+        vscode-extensions.ms-toolsai.jupyter
         vscode-extensions.yoavbls.pretty-ts-errors
         vscode-extensions.svelte.svelte-vscode
       ];
 
       mutableExtensionsDir = true;
-      package = pkgs.unstable.vscode;
+      package = pkgs.master.vscode;
     };
   };
 }
