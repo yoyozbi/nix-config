@@ -42,12 +42,10 @@ let
       firefox-wayland
       unstable.rnote
       xournalpp
-      bitwarden
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
       microsoft-edge
       superProductivity
-      unstable.anytype
 
       # Dotnet
       dotnet-sdk_8
@@ -101,9 +99,6 @@ let
       exiftool
       gimp
 
-      distrobox
-      lens
-      thunderbird
       kdenlive
       ffmpeg
       SDL
@@ -117,7 +112,6 @@ let
       minikube
 
       #Music/Video
-      tidal-hifi
       spotify
       stremio
       kodi-wayland
@@ -127,6 +121,7 @@ let
 
       unstable.argocd
       cloudflared
+      zotero
 
       # Discord
       discord
