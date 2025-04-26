@@ -10,5 +10,6 @@
   eclipse202306 = pkgs.callPackage ./eclipse-202306 { };
   superProductivity = pkgs.callPackage ./superProductivity.nix { };
   devToys = pkgs.callPackage ./devToys.nix { };
+  appflowy = pkgs.callPackage ./appflowy.nix { };
   #zed-editor = pkgs.callPackage ./zed-editor { };
 }

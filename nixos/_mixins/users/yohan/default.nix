@@ -127,6 +127,7 @@ let
       discord
       steam
       heroic
+      appflowy
     ]
     ++ lib.optionals (desktop != null && hostname == "surface-nix") [
     ];
