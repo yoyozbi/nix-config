@@ -4,6 +4,6 @@
     ../services/pipewire.nix
   ];
   services= {
-    desktopManager.plasma5.mobile.enable = true;
+    xserver.desktopManager.plasma5.mobile.enable = true;
   };
 }
