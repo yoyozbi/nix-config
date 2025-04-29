@@ -54,7 +54,7 @@
         "yohan@surface-nix" = libx.mkHome {
           hostname = "surface-nix";
           username = "yohan";
-          desktop = "gnome";
+          desktop = "kdemobile";
         };
       };
       nixosConfigurations = {
@@ -66,7 +66,7 @@
         "surface-nix" = libx.mkHost {
           hostname = "surface-nix";
           username = "yohan";
-          desktop = "gnome";
+          desktop = "kdemobile";
         };
         "tiny1" = libx.mkHost {
           hostname = "tiny1";
