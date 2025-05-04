@@ -46,6 +46,19 @@ let
       }
     ];
   };
+  lan-mouse = {
+    hosts = [
+    "laptop-nix"
+    "surface-nix"
+    ];
+
+    tcpPortRanges = [
+      {
+        from = 4242;
+        to = 4242;
+      }
+    ];
+  };
 in
 {
   networking = {
@@ -55,7 +68,8 @@ in
       allowedTCPPortRanges =
         lib.optionals (builtins.elem hostname wireguard.hosts) wireguard.tcpPortRanges
         ++ lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.tcpPortRanges
-        ++ lib.optionals (builtins.elem hostname mqtt.hosts) mqtt.tcpPortRanges;
+        ++ lib.optionals (builtins.elem hostname mqtt.hosts) mqtt.tcpPortRanges
+        ++ lib.optionals (builtins.elem hostname lan-mouse.hosts) lan-mouse.tcpPortRanges;
       allowedUDPPortRanges = lib.optionals (builtins.elem hostname kdeconnect.hosts) kdeconnect.udpPortRanges;
     };
   };
