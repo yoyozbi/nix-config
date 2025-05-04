@@ -23,13 +23,17 @@ let
       comma
       graphviz
       #inputs.tide.packages.x86_64-linux.tide
-      unstable.syncthingtray
-      unstable.syncthing
+
     ]
     ++ lib.optionals (desktop != null) [
       appimage-run
       libreoffice
       owncloud-client
+
+      unstable.syncthingtray
+      unstable.syncthing
+      unstable.rnote
+      lan-mouse
 
       #troubleshooting disks
       gparted
@@ -40,7 +44,6 @@ let
       # Other
       obsidian
       firefox-wayland
-      unstable.rnote
       xournalpp
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
@@ -128,16 +131,11 @@ let
       steam
       heroic
       appflowy
+      musescore
     ]
     ++ lib.optionals (desktop != null && hostname == "surface-nix") [
     ];
 
-  unstable-packages =
-    with pkgs.unstable;
-    lib.optionals (desktop != null) [
-      warp-terminal
-      musescore
-    ];
 in
 {
   imports = lib.optionals (desktop != null) [
@@ -145,7 +143,7 @@ in
   ];
 
   environment.localBinInPath = true;
-  environment.systemPackages = stable-packages ++ unstable-packages;
+  environment.systemPackages = stable-packages;
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
