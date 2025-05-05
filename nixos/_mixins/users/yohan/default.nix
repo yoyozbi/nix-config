@@ -33,7 +33,7 @@ let
       unstable.syncthingtray
       unstable.syncthing
       unstable.rnote
-      lan-mouse
+      inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       #troubleshooting disks
       gparted
