@@ -11,7 +11,7 @@ spec:
   repo: https://argoproj.github.io/argo-helm
   targetNamespace: argocd
   chart: argo-cd
-  version: 7.8.23
+  version: 7.9.1
   valuesContent: |-
     redis-ha:
       enabled: false
@@ -30,6 +30,14 @@ spec:
     configs:
       params:
         server.insecure: true
+      cm:
+        create: true
+        accounts:
+          - readonly: apiKey
+      rbac:
+        create: true
+        policy.csv: |
+          g, readonly, role:readonly
 ---
 # https://kubernetes.io/docs/concepts/services-networking/ingress/
 apiVersion: networking.k8s.io/v1
