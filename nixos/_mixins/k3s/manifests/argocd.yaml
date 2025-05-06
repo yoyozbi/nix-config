@@ -32,8 +32,7 @@ spec:
         server.insecure: true
       cm:
         create: true
-        accounts:
-          - readonly: apiKey
+        accounts.readonly: apiKey
       rbac:
         create: true
         policy.csv: |
