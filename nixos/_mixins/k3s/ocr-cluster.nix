@@ -4,5 +4,6 @@ _: {
     netdata-claim-token = {
       path = "/var/lib/netdata/cloud.d/token";
     };
+    k3s-server-token = {};
   };
 }
