@@ -48,7 +48,7 @@ spec:
               cpu: 100m
               memory: 100Mi
           volumeMounts:
-            - mountPath: /run/secrets/cloudflared-token
+            - mountPath: /etc/cloudflared-token
               name: cloudflared-token
               readOnly: true
 
@@ -57,7 +57,7 @@ spec:
       volumes:
         - name: cloudflared-token
           hostPath:
-            path: /etc/cloudflared-token
+            path: /run/secrets/cloudflared-token
             type: File
 ---
 apiVersion: v1
