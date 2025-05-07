@@ -82,6 +82,7 @@ let
       zip
       wget
       unstable.jetbrains-toolbox
+      icu63
 
       # Dev
       bruno
