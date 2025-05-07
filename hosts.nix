@@ -198,6 +198,11 @@ in
         internalIp = "192.168.1.2";
         mac = "dc:a6:32:21:28:99";
         externalIp = "192.168.1.2";
+
+        traefik-dashboard = {
+          enabled = true;
+          dashboardUrl = "traefik-rp.yohanzbinden.ch";
+        };
       };
     };
   };
