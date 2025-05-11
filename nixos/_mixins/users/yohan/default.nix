@@ -83,6 +83,8 @@ let
       wget
       unstable.jetbrains-toolbox
       icu63
+      networkmanager_strongswan
+      unstable.cloudflare-warp
 
       # Dev
       bruno
