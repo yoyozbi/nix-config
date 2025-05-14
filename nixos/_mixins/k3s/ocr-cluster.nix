@@ -15,5 +15,7 @@ _: {
     "homepage/sonarr-api-key" = {};
     "homepage/qbittorrent-username" = {};
     "homepage/qbittorrent-password" = {};
+    "vikunja/user" = {};
+    "vikunja/password" = {};
   };
 }
