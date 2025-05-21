@@ -149,7 +149,7 @@ in
   environment.systemPackages = stable-packages;
 
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
+    "electron-33.4.11"
   ];
 
   programs.zsh.enable = true;
