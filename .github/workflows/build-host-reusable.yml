@@ -13,9 +13,6 @@ on:
         required: false
         type: boolean
         default: false
-      extra-nix-config:
-        required: false
-        type: string
       runs-on:
         required: false
         type: string
@@ -41,7 +38,6 @@ jobs:
         with:
           cacheName: ${{ inputs.cacheName }}
           setup-qemu: ${{ inputs.setup-qemu }}
-          extra-nix-config: ${{ inputs.extra-nix-config }}
           cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: ⚠️  Build
         id: agent
@@ -62,7 +58,6 @@ jobs:
         with:
           cacheName: ${{ inputs.cacheName }}
           setup-qemu: ${{ inputs.setup-qemu }}
-          extra-nix-config: ${{ inputs.extra-nix-config }}
           cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: 🚀 Deploy
         env:

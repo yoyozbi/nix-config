@@ -9,12 +9,6 @@ inputs:
     required: false
     type: boolean
     default: false
-  extra-nix-config:
-    required: false
-    type: string
-    default: |
-      auto-allocate-uids = true
-      configurable-impure-env = true
   cachixAuthToken:
     description: "the cachix auth token"
     required: true
@@ -28,13 +22,11 @@ runs:
     - uses: docker/setup-qemu-action@v3
       if: ${{ inputs.setup-qemu }}
     - uses: cachix/install-nix-action@v31
-      name: Install with extra config
-      if: ${{ inputs.extra-nix-config != '' }}
-      with:
-        extra_nix_config: ${{ inputs.extra-nix-config }}
-    - uses: cachix/install-nix-action@v25
       name: Install
-      if: ${{ inputs.extra-nix-config == '' }}
+      with:
+        extra_nix_config: |
+          auto-allocate-uids = true
+          configurable-impure-env = true
     - uses: cachix/cachix-action@v14
       with:
         name: ${{ inputs.cacheName }}
