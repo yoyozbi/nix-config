@@ -1,8 +1,8 @@
 name: update-flake-lock
-on:  # yamllint disable-line rule:truthy
-  workflow_dispatch:  # allows manual triggering
+on: # yamllint disable-line rule:truthy
+  workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 1 * * *'  # runs every day at 00:00
+    - cron: "0 1 * * *" # runs every day at 00:00
 
 jobs:
   lockfile:
