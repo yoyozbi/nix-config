@@ -3,7 +3,7 @@
   services = {
     netdata = {
       enable = true;
-      package = pkgs.unstable.netdata;
+      package = pkgs.unstable.netdataCloud;
       config = {
         global = {
           "memory mode" = "ram";

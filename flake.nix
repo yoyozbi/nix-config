@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     lanzaboote.url = "github:nix-community/lanzaboote";
@@ -17,7 +17,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
@@ -26,7 +26,6 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    tide.url = "github:Nxllpointer/tide/v1.1.0";
   };
 
   outputs =
@@ -34,7 +33,6 @@
       self,
       nixpkgs,
       deploy-rs,
-      tide,
       ...
     }@inputs:
     let

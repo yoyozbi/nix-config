@@ -11,7 +11,7 @@ let
     wlogout
     sway-audio-idle-inhibit
     swaybg
-    gnome.nautilus
+    nautilus
     darkman
     pulsemixer
     bluetuith
@@ -23,10 +23,10 @@ let
     slurp
     swappy
     networkmanagerapplet
-    gnome.seahorse
+    seahorse
     libsForQt5.polkit-kde-agent
     imagemagick_light
-    xwaylandvideobridge
+    kdePackages.xwaylandvideobridge
     brightnessctl
   ];
 

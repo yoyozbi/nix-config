@@ -47,7 +47,6 @@ let
       xournalpp
     ]
     ++ lib.optionals (desktop != null && hostname == "laptop-nix") [
-      microsoft-edge
       superProductivity
 
       # Dotnet
@@ -95,7 +94,6 @@ let
       python311Packages.pip
 
       # Other
-      beekeeper-studio
       structorizer
       vlc
 
@@ -105,7 +103,7 @@ let
       exiftool
       gimp
 
-      kdenlive
+      kdePackages.kdenlive
       ffmpeg
       SDL
       xml2
@@ -149,7 +147,6 @@ in
   environment.systemPackages = stable-packages;
 
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-33.4.11"
   ];
 
   programs.zsh.enable = true;
