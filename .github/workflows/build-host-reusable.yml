@@ -31,9 +31,6 @@ jobs:
     outputs:
       build: ${{ steps.agent.outputs.build }}
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: ./.github/actions/setup-nix-cachix
         with:
           cacheName: ${{ inputs.cacheName }}
@@ -51,9 +48,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
     name: 🚀 Deploy
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: ./.github/actions/setup-nix-cachix
         with:
           cacheName: ${{ inputs.cacheName }}
