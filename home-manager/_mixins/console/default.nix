@@ -28,14 +28,10 @@ in
     packages =
       with pkgs;
       [
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "SourceCodePro"
-            "JetBrainsMono"
-            "UbuntuMono"
-          ];
-        })
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.ubuntu-mono
+
         iosevka-comfy.comfy
         lua-language-server
         nixd

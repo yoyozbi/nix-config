@@ -3,7 +3,7 @@
   programs = {
     vscode = {
       enable = true;
-      extensions = with pkgs; [
+      profiles.default.extensions = with pkgs; [
         vscode-extensions.bradlc.vscode-tailwindcss
         vscode-extensions.eamodio.gitlens
         vscode-extensions.ms-azuretools.vscode-docker
