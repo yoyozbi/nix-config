@@ -33,8 +33,16 @@ jobs:
       hostname: ocr1
       runs-on: ubuntu-24.04-arm
       cacheName: ${{ needs.prepare.outputs.cacheName }}
-      setup-qemu: false
-      #extra-nix-config: "extra-platforms = aarch64-linux"
+
+  surface-nix:
+    name: surface-nix
+    needs: [prepare]
+    uses: ./.github/workflows/build-host-reusable.yml
+    secrets: inherit
+    with:
+      hostname: surface-nix
+      runs-on: ubuntu-24.04
+      cacheName: ${{ needs.prepare.outputs.cacheName }}
 
   rp:
     name: rp
@@ -45,7 +53,6 @@ jobs:
       hostname: rp
       cacheName: ${{ needs.prepare.outputs.cacheName }}
       runs-on: ubuntu-24.04-arm
-      setup-qemu: false
 
   tiny1:
     name: tiny1

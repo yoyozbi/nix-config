@@ -91,16 +91,9 @@
           ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
           tiny2 = self.nixosConfigurations."tiny2".config.system.build.toplevel;
           rp = self.nixosConfigurations."rp".config.system.build.toplevel;
+          surface-nix = self.nixosConfigurations."surface-nix".config.system.build.toplevel;
         };
 
-      };
-
-      #TODO: Check if stil necessarry
-      packages.aarch64-linux = {
-        hosts = {
-          ocr1 = self.nixosConfigurations."ocr1".config.system.build.toplevel;
-          rp = self.nixosConfigurations."rp".config.system.build.toplevel;
-        };
       };
 
       deploy.nodes = {

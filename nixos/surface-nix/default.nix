@@ -12,6 +12,7 @@
     #./hardware-configuration.nix
     ../_mixins/hardware/lanzaboote.nix
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+    ../_mixins/services/cachix.nix
     ../_mixins/services/bluetooth.nix
     ../_mixins/services/firewall.nix
     ../_mixins/services/fwupd.nix

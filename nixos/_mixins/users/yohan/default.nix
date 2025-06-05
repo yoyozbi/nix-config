@@ -33,6 +33,7 @@ let
       unstable.syncthingtray
       unstable.syncthing
       unstable.rnote
+      unstable.saber
       inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       #troubleshooting disks

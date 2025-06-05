@@ -5,10 +5,6 @@ inputs:
   cacheName:
     required: true
     type: string
-  setup-qemu:
-    required: false
-    type: boolean
-    default: false
   cachixAuthToken:
     description: "the cachix auth token"
     required: true
@@ -16,8 +12,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: docker/setup-qemu-action@v3
-      if: ${{ inputs.setup-qemu }}
     - uses: cachix/install-nix-action@v31
       name: Install
       with:
