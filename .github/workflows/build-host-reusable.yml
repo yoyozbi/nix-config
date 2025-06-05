@@ -9,10 +9,6 @@ on:
       cacheName:
         required: true
         type: string
-      setup-qemu:
-        required: false
-        type: boolean
-        default: false
       runs-on:
         required: false
         type: string
@@ -41,7 +37,6 @@ jobs:
       - uses: ./.github/actions/setup-nix-cachix
         with:
           cacheName: ${{ inputs.cacheName }}
-          setup-qemu: ${{ inputs.setup-qemu }}
           cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: ⚠️  Build
         id: agent
@@ -61,7 +56,6 @@ jobs:
       - uses: ./.github/actions/setup-nix-cachix
         with:
           cacheName: ${{ inputs.cacheName }}
-          setup-qemu: ${{ inputs.setup-qemu }}
           cachixAuthToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: 🚀 Deploy
         env:
