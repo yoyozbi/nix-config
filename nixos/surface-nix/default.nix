@@ -42,7 +42,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp4s0u2u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
-  hardware.enableAllFirmware = true;
+  hardware.enableAllFirmware = false;
   environment.systemPackages = with pkgs; [
     sbctl
   ];

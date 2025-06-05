@@ -34,6 +34,8 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: "holster"
       - uses: ./.github/actions/setup-nix-cachix
         with:
           cacheName: ${{ inputs.cacheName }}
