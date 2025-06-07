@@ -13,6 +13,10 @@ on:
         required: false
         type: string
         default: ubuntu-latest
+      with-nothing-but-nix:
+        required: false
+        type: boolean
+        default: true
     secrets:
       CACHIX_AUTH_TOKEN:
         description: "the cachix auth token"
@@ -34,6 +38,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wimpysworld/nothing-but-nix@main
+        if: ${{ inputs.with-nothing-but-nix }}
         with:
           hatchet-protocol: "holster"
       - uses: ./.github/actions/setup-nix-cachix

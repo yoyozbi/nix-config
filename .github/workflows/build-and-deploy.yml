@@ -41,7 +41,8 @@ jobs:
     secrets: inherit
     with:
       hostname: surface-nix
-      runs-on: ubuntu-24.04
+      runs-on: blacksmith-8vcpu-ubuntu-2204
+      with-nothing-but-nix: false
       cacheName: ${{ needs.prepare.outputs.cacheName }}
 
   rp:
