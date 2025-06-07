@@ -1,0 +1,38 @@
+# Ignore everything
+/*
+
+# Git
+!.gitignore
+!README.md
+!.gitmodules
+!LICENSE
+
+# Hyprland
+
+!hypr
+!hypr/*
+
+!shikane
+!shikane/*
+
+!waybar
+!waybar/*
+
+!swaylock
+!swaylock/*
+
+!nvim
+!nvim/*
+
+!wlogout
+!wlogout/*
+
+!wofi
+!wofi/*
+
+!tmux
+!tmux/*
+tmux/plugins/*
+
+!ghostty
+

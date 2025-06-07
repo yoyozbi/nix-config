@@ -1,0 +1,58 @@
+[[profile]]
+name = "docked"
+exec = [
+  "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\"",
+]
+[[profile.output]]
+search = "s=L7LMDW002550"
+exec = ["echo This is output $SHIKANE_OUTPUT_NAME"]
+enable = true
+mode = { width = 2560, height = 1440, refresh = 144 }
+position = { x = 1080, y = 0 }
+
+[[profile.output]]
+search = "s=KBEH41A001124"
+exec = ["echo This is output $SHIKANE_OUTPUT_NAME"]
+enable = true
+mode = { width = 1920, height = 1080, refresh = 60 }
+position = { x = 0, y = 0 }
+transform = "270"
+
+[[profile.output]]
+search = "n=eDP-1"
+exec = ["echo This is output $SHIKANE_OUTPUT_NAME"]
+enable = false
+mode = { width = 1920, height = 1200, refresh = 60 }
+position = { x = 1080, y = 1440 }
+scale = 1
+
+[[profile]]
+name = "internal"
+exec = [
+  "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\"",
+]
+[[profile.output]]
+search = "n=eDP-1"
+enable = true
+mode = { width = 1920, height = 1200, refresh = 60 }
+position = { x = 0, y = 0 }
+scale = 1
+
+[[profile]]
+name = "external screen"
+exec = [
+  "notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\"",
+]
+[[profile.output]]
+search = "n=eDP-1"
+enable = true
+mode = { width = 1920, height = 1200, refresh = 60 }
+position = { x = 1080, y = 1440 }
+scale = 1
+
+[[profile.output]]
+search = "DELL P2720D"
+enable = true
+mode = { width = 2560, height = 1440, refresh = 60 }
+position = { x = 0, y = 0 }
+scale = 1
