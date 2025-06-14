@@ -11,7 +11,6 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    netdataCloud = _prev.netdata.override { withEbpf = true; };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

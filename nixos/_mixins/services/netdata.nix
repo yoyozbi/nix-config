@@ -16,5 +16,5 @@
       };
     };
   };
-  environment.systemPackages = [ pkgs.netdata ];
+  environment.systemPackages = [ pkgs.unstable.netdataCloud ];
 }
