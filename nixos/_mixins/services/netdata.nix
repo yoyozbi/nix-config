@@ -16,5 +16,9 @@
       };
     };
   };
-  environment.systemPackages = [ pkgs.unstable.netdataCloud ];
+  environment.systemPackages = with pkgs; 
+    [ 
+      unstable.netdataCloud 
+      git 
+    ];
 }
