@@ -5,9 +5,6 @@ on: # yamllint disable-line rule:truthy
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 env:
   CACHE_NAME: homelab-yohan
@@ -29,6 +26,7 @@ jobs:
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
     secrets: inherit
+    if: ${{ github.event_name == 'push' }}
     with:
       hostname: ocr1
       runs-on: ubuntu-24.04-arm
@@ -38,6 +36,7 @@ jobs:
     name: surface-nix
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     secrets: inherit
     with:
       hostname: surface-nix
@@ -49,6 +48,7 @@ jobs:
     name: rp
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    if: ${{ github.event_name == 'push' }}
     secrets: inherit
     with:
       hostname: rp
@@ -59,6 +59,7 @@ jobs:
     name: tiny1
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    if: ${{ github.event_name == 'push' }}
     secrets: inherit
     with:
       hostname: tiny1
@@ -68,6 +69,7 @@ jobs:
     name: tiny2
     needs: [prepare]
     uses: ./.github/workflows/build-host-reusable.yml
+    if: ${{ github.event_name == 'push' }}
     secrets: inherit
     with:
       hostname: tiny2
