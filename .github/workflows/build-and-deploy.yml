@@ -29,8 +29,8 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     with:
       hostname: ocr1
-      with-nothing-but-nix: true
-      runs-on: ubuntu-24.04-arm
+      #with-nothing-but-nix: true
+      runs-on: blacksmith-2vcpu-ubuntu-2404-arm
       cacheName: ${{ needs.prepare.outputs.cacheName }}
 
   surface-nix:
@@ -41,7 +41,7 @@ jobs:
     secrets: inherit
     with:
       hostname: surface-nix
-      runs-on: blacksmith-8vcpu-ubuntu-2204
+      runs-on: blacksmith-8vcpu-ubuntu-2404
       with-nothing-but-nix: false
       cacheName: ${{ needs.prepare.outputs.cacheName }}
 
@@ -53,9 +53,9 @@ jobs:
     secrets: inherit
     with:
       hostname: rp
-      with-nothing-but-nix: true
+      #with-nothing-but-nix: true
       cacheName: ${{ needs.prepare.outputs.cacheName }}
-      runs-on: ubuntu-24.04-arm
+      runs-on: blacksmith-2vcpu-ubuntu-2404-arm
 
   tiny1:
     name: tiny1
