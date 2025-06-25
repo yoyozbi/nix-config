@@ -53,7 +53,7 @@ jobs:
     secrets: inherit
     with:
       hostname: rp
-      #with-nothing-but-nix: false
+      with-nothing-but-nix: false
       cacheName: ${{ needs.prepare.outputs.cacheName }}
       runs-on: blacksmith-8vcpu-ubuntu-2404-arm
 
